@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "container-map"
+# version and requires-python are declared once, in cli.py (VERSION, MIN_PYTHON); setup.py reads them.
+# license is set in setup.py (LICENCE) for the same reason: one place, and it works before and after
+# setuptools 77, which changed the form of this field.
+dynamic = ["version", "requires-python", "license"]
+description = "Point it at a folder, get a 16-bit star system of what is actually there — and act from it."
+readme = "README.md"
+# the copyright holder named in LICENSE; change both together (test_zero.Packaging checks they agree)
+authors = [{name = "The container-map authors"}]
+keywords = ["tmux", "agents", "dashboard", "filesystem", "visualization"]
+classifiers = [
+  "Environment :: Console",
+  "Environment :: Web Environment",
+  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3",
+  "Topic :: System :: Monitoring",
+]
+dependencies = []
+
+[project.scripts]
+container-map = "cli:main"
+
+# render-game.py is not a module (the hyphen); setup.py copies it, the shell scripts and the
+# example configs next to these modules, where cli.py looks for them.
+[tool.setuptools]
+py-modules = [
+    "cli",
+    "config",
+    "themepacks",
+    "districts",
+    "bridge",
+    "decisions",
+    "verbs",
+    "demo",
+    "demo_agent",
+    "gamectl",
+    "tasks",
+    "wingmate",
+    "meta",
+    "container_map_mcp",
+    "cards",
+    "today",
+    "ships",
+    "remote_t3",
+    "constellations",
+    "history",
+    "sky",
+    "sfx",
+    "words",
+    "workflows",
+    "vendor3d",
+]

@@ -1,0 +1,487 @@
+{
+ "v": 1,
+ "rev": 1,
+ "t": 50000,
+ "skin": "neutral",
+ "theme": "classic",
+ "look": "pixel",
+ "reduced": false,
+ "focus": null,
+ "selectedWorkflow": null,
+ "light2d": [
+  -0.5,
+  0.74,
+  -0.45
+ ],
+ "star": {
+  "x": 0,
+  "y": 0,
+  "r": 150,
+  "label": "BENCH",
+  "load": 1
+ },
+ "planets": [
+  {
+   "uid": "area:ml",
+   "label": "ml",
+   "x": 296.1203074573548,
+   "y": -1112.256159124939,
+   "r": 72,
+   "purpose": "code",
+   "glyph": "code",
+   "conditions": [],
+   "seed": 2487298492,
+   "counts": {
+    "need_you": 2,
+    "problems": 0,
+    "decisions": 2
+   },
+   "health": "waiting"
+  },
+  {
+   "uid": "area:api",
+   "label": "api",
+   "x": 800.5237519739917,
+   "y": -827.0203882163263,
+   "r": 62,
+   "purpose": "code",
+   "glyph": "code",
+   "conditions": [],
+   "seed": 4091797917,
+   "counts": {
+    "need_you": 2,
+    "problems": 0,
+    "decisions": 2
+   },
+   "health": "waiting"
+  },
+  {
+   "uid": "area:site",
+   "label": "site",
+   "x": 1098.1432381090947,
+   "y": -344.7933128633329,
+   "r": 61,
+   "purpose": "code",
+   "glyph": "code",
+   "conditions": [],
+   "seed": 2292213796,
+   "counts": {
+    "need_you": 2,
+    "problems": 0,
+    "decisions": 2
+   },
+   "health": "waiting"
+  },
+  {
+   "uid": "area:infra",
+   "label": "infra",
+   "x": 1131.2400139686065,
+   "y": 212.36061498382224,
+   "r": 54,
+   "purpose": "code",
+   "glyph": "code",
+   "conditions": [],
+   "seed": 2330051731,
+   "counts": {
+    "need_you": 1,
+    "problems": 0,
+    "decisions": 4
+   },
+   "health": "waiting"
+  },
+  {
+   "uid": "area:ops",
+   "label": "ops",
+   "x": 905.8547132909291,
+   "y": 710.0903029957587,
+   "r": 52,
+   "purpose": "code",
+   "glyph": "code",
+   "conditions": [],
+   "seed": 4091811381,
+   "counts": {
+    "need_you": 2,
+    "problems": 1,
+    "decisions": 6
+   },
+   "health": "broken"
+  },
+  {
+   "uid": "area:scripts",
+   "label": "scripts",
+   "x": 571.3499420954442,
+   "y": 999.1797854578186,
+   "r": 46,
+   "purpose": "code",
+   "glyph": "code",
+   "conditions": [],
+   "seed": 1482766091,
+   "counts": {
+    "need_you": 0,
+    "problems": 0,
+    "decisions": 1
+   },
+   "health": "waiting"
+  },
+  {
+   "uid": "area:notes",
+   "label": "notes",
+   "x": 141.62939962870047,
+   "y": 1142.2530862995354,
+   "r": 60,
+   "purpose": "notes",
+   "glyph": "notes",
+   "conditions": [],
+   "seed": 2334712196,
+   "counts": {
+    "need_you": 1,
+    "problems": 0,
+    "decisions": 0
+   },
+   "health": "waiting"
+  },
+  {
+   "uid": "area:docs",
+   "label": "docs",
+   "x": -416.49709421884467,
+   "y": 1073.0010114194947,
+   "r": 59,
+   "purpose": "notes",
+   "glyph": "notes",
+   "conditions": [],
+   "seed": 2291772184,
+   "counts": {
+    "need_you": 2,
+    "problems": 0,
+    "decisions": 2
+   },
+   "health": "waiting"
+  },
+  {
+   "uid": "area:archive",
+   "label": "archive",
+   "x": -917.2784147007443,
+   "y": 695.2706738559375,
+   "r": 119,
+   "purpose": "archive",
+   "glyph": "archive",
+   "conditions": [],
+   "seed": 3103116997,
+   "counts": {
+    "need_you": 0,
+    "problems": 0,
+    "decisions": 0
+   },
+   "health": "ok"
+  },
+  {
+   "uid": "area:data",
+   "label": "data",
+   "x": -1146.5439452247115,
+   "y": 101.18291193948627,
+   "r": 66,
+   "purpose": "unsorted",
+   "glyph": "unsorted",
+   "conditions": [],
+   "seed": 2291759239,
+   "counts": {
+    "need_you": 1,
+    "problems": 0,
+    "decisions": 2
+   },
+   "health": "waiting"
+  },
+  {
+   "uid": "area:design",
+   "label": "design",
+   "x": -1055.8704708163946,
+   "y": -458.19051589700695,
+   "r": 56,
+   "purpose": "unsorted",
+   "glyph": "unsorted",
+   "conditions": [],
+   "seed": 3361048411,
+   "counts": {
+    "need_you": 0,
+    "problems": 0,
+    "decisions": 0
+   },
+   "health": "ok"
+  },
+  {
+   "uid": "area:media",
+   "label": "media",
+   "x": -722.1929220726087,
+   "y": -896.2356739765646,
+   "r": 53,
+   "purpose": "unsorted",
+   "glyph": "unsorted",
+   "conditions": [],
+   "seed": 2333475495,
+   "counts": {
+    "need_you": 0,
+    "problems": 0,
+    "decisions": 0
+   },
+   "health": "ok"
+  },
+  {
+   "uid": "area:empty",
+   "label": "empty",
+   "x": -250.14629080366706,
+   "y": -1123.4891335465454,
+   "r": 36,
+   "purpose": "unsorted",
+   "glyph": "unsorted",
+   "conditions": [
+    "empty"
+   ],
+   "seed": 2326337552,
+   "counts": {
+    "need_you": 0,
+    "problems": 0,
+    "decisions": 0
+   },
+   "health": "ok"
+  }
+ ],
+ "moons": [],
+ "foes": [],
+ "waiting": [],
+ "machines": [],
+ "craft": [
+  {
+   "uid": "ship:t3:bench-thread-01",
+   "role": "agent",
+   "label": "api · tidy the import paths",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:api",
+   "x": 716.9294574535311,
+   "y": -835.2662310250688,
+   "hdg": 1.669119467756285
+  },
+  {
+   "uid": "ship:t3:bench-thread-02",
+   "role": "agent",
+   "label": "site · write the release notes",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:site",
+   "x": 1029.4426985081243,
+   "y": -391.368369047255,
+   "hdg": 2.1665651097254814
+  },
+  {
+   "uid": "ship:t3:bench-thread-03",
+   "role": "agent",
+   "label": "ops · speed up the slow query",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:ops",
+   "x": 905.4139615126037,
+   "y": 636.0916155893601,
+   "hdg": 3.1356365132610673
+  },
+  {
+   "uid": "ship:t3:bench-thread-04",
+   "role": "agent",
+   "label": "docs · fix the date parser",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:docs",
+   "x": -339.1277160626393,
+   "y": 1049.022284937004,
+   "hdg": 4.411851477278503
+  },
+  {
+   "uid": "ship:t3:bench-thread-05",
+   "role": "agent",
+   "label": "ml · add the health endpoint",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:ml",
+   "x": 209.93337228111864,
+   "y": -1074.7353355075493,
+   "hdg": 1.1601983233858444
+  },
+  {
+   "uid": "ship:t3:bench-thread-06",
+   "role": "agent",
+   "label": "notes · clean the asset folder",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:notes",
+   "x": 199.10201939109368,
+   "y": 1083.7646431876917,
+   "hdg": 3.9182310027763907
+  },
+  {
+   "uid": "ship:t3:bench-thread-07",
+   "role": "agent",
+   "label": "infra · port the build script",
+   "letter": "",
+   "colour": "#3dff9e",
+   "state": "working",
+   "planet": "area:infra",
+   "x": 1095.7925650941474,
+   "y": 145.1335492417224,
+   "hdg": 2.6563604167605113
+  },
+  {
+   "uid": "ship:t3:bench-thread-08",
+   "role": "agent",
+   "label": "data · review the access logs",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:data",
+   "x": -1085.9942536562253,
+   "y": 165.04005602659052,
+   "hdg": -0.7588186463499134
+  },
+  {
+   "uid": "ship:t3:bench-thread-09",
+   "role": "agent",
+   "label": "design · draft the onboarding page",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:design",
+   "x": -1035.7147118034814,
+   "y": -382.8397005157958,
+   "hdg": -0.26137300438071875
+  },
+  {
+   "uid": "ship:t3:bench-thread-10",
+   "role": "agent",
+   "label": "scripts · map the old endpoints",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:scripts",
+   "x": 596.6078712011541,
+   "y": 936.0447158269793,
+   "hdg": 3.522152298684876
+  },
+  {
+   "uid": "ship:t3:bench-thread-11",
+   "role": "agent",
+   "label": "media · test the upload limits",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:media",
+   "x": -738.6866146064345,
+   "y": -823.0717613788938,
+   "hdg": 0.22172825958691833
+  },
+  {
+   "uid": "ship:t3:bench-thread-12",
+   "role": "agent",
+   "label": "api · shrink the docker image",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:api",
+   "x": 731.1161244591345,
+   "y": -874.3340357480781,
+   "hdg": 2.169119467756286
+  },
+  {
+   "uid": "ship:t3:bench-thread-13",
+   "role": "agent",
+   "label": "site · sort the error codes",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:site",
+   "x": 1060.182113959322,
+   "y": -418.60356319000186,
+   "hdg": 2.6665651097254806
+  },
+  {
+   "uid": "ship:t3:bench-thread-14",
+   "role": "agent",
+   "label": "ops · check the cache headers",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:ops",
+   "x": 940.9447777819653,
+   "y": 644.9390376664121,
+   "hdg": 3.635636513261067
+  },
+  {
+   "uid": "ship:t3:bench-thread-15",
+   "role": "agent",
+   "label": "docs · update the sample data",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:docs",
+   "x": -337.103063265746,
+   "y": 1089.050554996133,
+   "hdg": -1.3713338299010824
+  },
+  {
+   "uid": "ship:t3:bench-thread-16",
+   "role": "agent",
+   "label": "ml · trace the memory spike",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:ml",
+   "x": 202.49571501227365,
+   "y": -1120.6487564280658,
+   "hdg": 1.6601983233858435
+  },
+  {
+   "uid": "ship:t3:bench-thread-17",
+   "role": "agent",
+   "label": "notes · document the cron jobs",
+   "letter": "",
+   "colour": "#5fb4ff",
+   "state": "idle",
+   "planet": "area:notes",
+   "x": 220.1072218593497,
+   "y": 1118.4784902370443,
+   "hdg": 4.418231002776391
+  }
+ ],
+ "workflows": [],
+ "shows": [],
+ "counts": {
+  "need_you": 0,
+  "answer": 0,
+  "review": 0,
+  "decisions": 0,
+  "problems": 0,
+  "working": 0,
+  "on_hold": 0,
+  "done_today": 0,
+  "oldest_decision": {
+   "days": null,
+   "source": null
+  },
+  "total": 0
+ },
+ "ship": {
+  "x": 0,
+  "y": 118,
+  "hdg": -1.5707963267948966,
+  "spd": 0,
+  "bank": 0,
+  "roll": false,
+  "uturn": false,
+  "boost": false,
+  "brake": false,
+  "meter": 1
+ }
+}

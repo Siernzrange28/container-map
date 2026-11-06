@@ -1,0 +1,61 @@
+{
+ "title": "Fix the phone labels",
+ "goal": "Every planet name on the phone readable at 13 px, none cut",
+ "by": {
+  "name": "Claude Code",
+  "seat": null
+ },
+ "start": "now",
+ "stale_after_min": 15,
+ "steps": [
+  {
+   "key": "find",
+   "label": "Find the cut labels",
+   "at": "{root}/api",
+   "kind": "note",
+   "after": []
+  },
+  {
+   "key": "fix",
+   "label": "Fix the label slots",
+   "at": "{root}/ops",
+   "kind": "task",
+   "after": [
+    "find"
+   ],
+   "inputs": [
+    {
+     "from": "find",
+     "path": "cut-labels.txt"
+    }
+   ],
+   "task": {
+    "text": "Move each planet name into its fixed slot under the body; fold a name that does not fit to a pip.",
+    "runner": "claude",
+    "model": null,
+    "verify": "python3 -m unittest -q test_labels",
+    "retries": 2,
+    "check_runner": "codex",
+    "wait": "clear"
+   }
+  },
+  {
+   "key": "approve",
+   "label": "Look at the phone shots",
+   "at": "{root}/ops",
+   "kind": "gate",
+   "after": [
+    "fix"
+   ]
+  },
+  {
+   "key": "docs",
+   "label": "Write it up",
+   "at": "{root}/docs",
+   "kind": "note",
+   "after": [
+    "approve"
+   ]
+  }
+ ]
+}

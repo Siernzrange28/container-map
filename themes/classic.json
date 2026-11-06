@@ -1,0 +1,121 @@
+{
+  "name": "classic",
+  "mood": "Classic 16-bit space: saturated jewel planets on pitch-black space with faint colour washes, deep navy panels, soft halos.",
+  "ui": {
+    "bg": "#080d20",
+    "panel": "#0b1428",
+    "border": "#344c6b",
+    "text": "#c8dcf5",
+    "muted": "#9bacc0",
+    "accent": "#ffd166",
+    "danger": "#f85149",
+    "ok": "#3dff9e",
+    "plate": "#090f22",
+    "focus": "#ffe28a"
+  },
+  "space": {
+    "base": "#050508",
+    "nebula": ["#2a1460", "#0a3a5c", "#5c2a0e"],
+    "stars": ["#ffffff", "#a5f3fc", "#fef08a", "#c0d8ff"],
+    "scanlines": false,
+    "glow": 0.6
+  },
+  "style": {
+    "city": {"a": "#1452ff", "b": "#16d96a", "c": "#f2fbff", "d": "#ffd84a", "glow": "#3d7bff"},
+    "ocean": {"a": "#0090d6", "b": "#20e4dc", "c": "#eaffff", "glow": "#18c8ff"},
+    "desert": {"a": "#ff9b3b", "b": "#cf4a26", "c": "#ffdba3", "glow": "#ff8a3d"},
+    "ice": {"a": "#dcf6ff", "b": "#2f9cff", "c": "#ffffff", "glow": "#8fdcff"},
+    "toxic": {"a": "#0fc27c", "b": "#dcf23a", "c": "#065f3f", "glow": "#35ffa4"},
+    "blight": {"a": "#ff2b6a", "b": "#6a1fd6", "c": "#ffd3e2", "glow": "#ff2b6a"},
+    "gas": {"a": "#8b7aff", "b": "#ff6fd2", "c": "#ffd9f3", "d": "#4b35cf", "glow": "#a07dff"},
+    "rock": {"a": "#8c96c6", "b": "#454d78", "c": "#cdd5f5", "glow": "#8c96c6"},
+    "belt": {"a": "#c9743c", "b": "#5a2c1b", "c": "#ffbd73", "glow": "#ff9a4d"},
+    "star": {"a": "#ffc53a", "b": "#ff6f17", "c": "#fff5be", "glow": "#ffae2c"},
+    "station": {"a": "#cdd6ff", "b": "#7c5bff", "c": "#4ff0ff", "glow": "#b48cff"}
+  },
+  "kinds": {
+    "code": {"base": "#1f6bff", "land": "#22e07a", "hi": "#b8ffd9", "glow": "#3d86ff"},
+    "docs": {"base": "#00a8e8", "land": "#3cf2e2", "hi": "#d2fffb", "glow": "#1cd0ff"},
+    "config": {"base": "#8b4dff", "land": "#ffa31a", "hi": "#ecd6ff", "glow": "#a46bff"},
+    "data": {"base": "#d6f4ff", "land": "#2a95ff", "hi": "#ffffff", "glow": "#7fd4ff"},
+    "media": {"base": "#ff4f9a", "land": "#ffd23f", "hi": "#ffd6ea", "glow": "#ff63b4"},
+    "logs": {"base": "#12c487", "land": "#d8f23c", "hi": "#d6fff0", "glow": "#2dffb0"},
+    "archive": {"base": "#ff8a3d", "land": "#b8432a", "hi": "#ffd6ad", "glow": "#ff7a2e"},
+    "cache": {"base": "#8f84ff", "land": "#5640d4", "hi": "#dcd8ff", "glow": "#7f6bff"},
+    "live": {"base": "#ff8a1f", "land": "#ff3b30", "hi": "#fff1a6", "glow": "#ff9a2e"},
+    "binary": {"base": "#7090ff", "land": "#2f3fb8", "hi": "#d2dbff", "glow": "#6f8cff"},
+    "trouble": {"base": "#ff2d6f", "land": "#6d1fd1", "hi": "#ffc4d8", "glow": "#ff2d6f"}
+  },
+  "tiles": {},
+  "tile_palette": {},
+  "sprites": {
+    "fighter": [
+      "....a....",
+      "...hch...",
+      "...hcm...",
+      "..hhmmd..",
+      "a.hhmmd.a",
+      "ahhhmmmda",
+      "ahhdmmdda",
+      "a..dmd..a",
+      "...e.e..."
+    ],
+    "cargo": [
+      "...ooo...",
+      "..oohoo..",
+      ".oohchoo.",
+      "oommdmmoo",
+      "oxxXdXxxo",
+      "oxxXdXxxo",
+      "oxxXdXxxo",
+      "ommmdmmmo",
+      "oyyYdYyyo",
+      "oyyYdYyyo",
+      "oyyYdYyyo",
+      "oohmdmhoo",
+      ".oomdmoo.",
+      "..oeoeo..",
+      "..ooooo.."
+    ],
+    "drone": [
+      "r.ooo.r",
+      ".ohhho.",
+      "ohmmmdo",
+      "ohmamdo",
+      "ohmmddo",
+      ".odddo.",
+      "r.ooo.r"
+    ],
+    "probe": [
+      "ooo.o.ooo",
+      "opPohoPpo",
+      "opPmamPpo",
+      "opPodoPpo",
+      "ooo.o.ooo"
+    ],
+    "beacon": [
+      "..a..",
+      ".hah.",
+      "hmamd",
+      ".hmd.",
+      "..d..",
+      "..d.."
+    ],
+    "gate": [
+      "....ooooo....",
+      "..ooaaaaaoo..",
+      ".ooahhhhhaoo.",
+      ".oahhooohhao.",
+      "oahho...ohhao",
+      "oaho.....ohao",
+      "oamo.....ohao",
+      "oamo.....omao",
+      "oammo...ommao",
+      ".oammooommao.",
+      ".ooammmmmaoo.",
+      "..ooaaaaaoo..",
+      "....ooooo...."
+    ]
+  },
+  "sprite_palette": {"h": "#eef4ff", "m": "#9fb2e0", "d": "#44558a", "c": "#5ff2ff", "r": "#9fb2e0", "p": "#2f7bff", "P": "#1a3f9e", "o": "#0a1020", "b": "#2f7bff", "B": "#8fd4ff", "R": "#ff4d5e", "g": "#e6fbff", "k": "#3a1624", "K": "#b3263f", "C": "#1f6f8f", "T": "#ffa23a"}
+}

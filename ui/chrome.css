@@ -1,0 +1,432 @@
+/* ui/chrome.css — the right rail, the status bar, the sheets and the machines chip.
+   Joins the end of the page's main stylesheet (render-game.py, the seams), before the theme rewriter: a hex colour
+   here becomes a theme variable like the rest of that sheet; one written as rgb() stays as it is. Every colour below is
+   rgb(): the comps' tokens (COMPS-2D.md "The system"), and colour means status in every theme and skin. The desktop
+   layout is html:not(.m): a desktop and a touch tablet (html.t, the desktop layout with touch targets; the rail
+   starts closed below 1280 px); a phone (html.m) keeps its own. */
+:root{--cm-12:12px;--cm-13:13px;--cm-14:14px;--cm-15:15px;--cm-16:16px;--cm-17:17px;--cm-18:18px;--cm-20:20px;--cm-22:22px;--cm-24:24px;--cm-30:30px}   /* the chrome's type sizes (the comps' scale; none under 12) */
+#rail,#statusbar,#machines,#legendchip,#pressi,#crumb,#helpsheet{display:none}
+/* ---- the desktop frame: the map at (0,0), a 400 px rail on the right, a 44 px status bar under the map ---- */
+html:not(.m) #wrap,html:not(.m) #wrap.side,html:not(.m) #wrap.dash{--railw:400px;--barh:44px;--dashw:0px;--sidew:var(--railw)}
+@media (max-width:1100px){html:not(.m) #wrap,html:not(.m) #wrap.side,html:not(.m) #wrap.dash{--railw:320px}}   /* a small window or tablet: the map keeps 60% with a card open */
+html:not(.m) #wrap.rail-closed{--railw:0px}
+html:not(.m) #stage{left:0;right:var(--railw);bottom:var(--barh)}
+html:not(.m) #today{bottom:var(--barh)}
+/* retired boxes keep their ids, hidden; the old assistant panel lives in the status bar; the old card and rail
+   show only inside the rail (CM.railCard moves them there) */
+html:not(.m) :is(#dash,#hud,#comms,#ticker,#nums,#topbar,#taskbar,#quick,#theme,#keyline,#help,#legend,#mateshow,#tacfoot){display:none!important}
+html:not(.m) #wrap>#panel,html:not(.m) #wrap>#side{display:none!important}
+html:not(.m) #wrap>#mate{display:none!important}
+html:not(.m) #permits{left:calc((100vw - var(--railw))/2)}
+html:not(.m) #radio{left:16px;bottom:calc(var(--barh) + 172px)}
+html:not(.m) #touchpad{bottom:calc(var(--barh) + 12px)}
+html:not(.m) #quests{left:calc((100vw - var(--railw))/2);top:calc((100vh - var(--barh))/2)}
+html:not(.m) #prompter{left:calc((100vw - var(--railw))/2)}
+
+/* ---- the rail ---- */
+html:not(.m) #rail{display:flex;flex-direction:column;position:absolute;z-index:6;top:0;right:0;bottom:0;width:var(--railw);
+  background:linear-gradient(180deg,rgb(13,21,38) 0%,rgb(10,17,32) 55%,rgb(9,15,28) 100%);border-left:1px solid rgb(34,48,74);
+  box-shadow:-24px 0 48px rgba(0,0,0,.35);color:rgb(232,238,246);font:500 var(--cm-15)/1.3 "Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.005em}
+html:not(.m) #wrap.rail-closed #rail{display:none}
+html:not(.m) #today.on~#rail{display:none}
+#rail *{box-sizing:border-box}
+#rail button{font:inherit;color:inherit}
+#railtabs{display:flex;gap:22px;align-items:flex-end;height:56px;flex:none;padding:0 22px;border-bottom:1px solid rgb(34,48,74);
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px)}
+#railtabs [role=tab]{position:relative;display:flex;align-items:center;gap:7px;height:56px;padding:0;border:0;background:none;cursor:pointer;
+  font:600 var(--cm-17)/1 "Barlow Condensed","Arial Narrow",sans-serif;color:rgb(154,168,188);letter-spacing:.01em}
+#railtabs [role=tab]:hover{color:rgb(232,238,246)}
+html:not(.m) #railnew{position:absolute;top:12px;right:14px;z-index:1}
+html:not(.m) #railnew[hidden]{display:none}
+#railtabs [role=tab][aria-selected=true]{color:rgb(232,238,246)}
+#railtabs [role=tab][aria-selected=true]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:2px;background:rgb(232,238,246);box-shadow:0 0 10px rgba(232,238,246,.45)}
+#rail .cnt{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:19px;padding:0 6px;border-radius:10px;font:600 var(--cm-13)/1 "Barlow Condensed",sans-serif;background:rgb(24,35,58);color:rgb(201,211,225)}
+#rail .cnt.amber{background:rgba(255,181,71,.16);color:rgb(255,181,71)}
+#rail .cnt.cyan{background:rgba(111,183,255,.15);color:rgb(111,183,255)}
+#rail .cnt.red{background:rgba(255,90,95,.16);color:rgb(255,90,95)}
+#railbody{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:6px 14px 18px;scrollbar-width:thin;scrollbar-color:rgb(34,48,74) transparent}
+#railcard{flex:1;min-height:0;display:flex;flex-direction:column}
+#railcard[hidden],#railbody[hidden],#railtabs[hidden]{display:none}
+#rail .rchead{display:flex;align-items:center;justify-content:space-between;height:48px;flex:none;padding:0 20px;border-bottom:1px solid rgb(34,48,74)}
+#railback{border:0;background:none;cursor:pointer;padding:6px 0;font:600 var(--cm-15)/1 "Barlow Condensed",sans-serif!important;color:rgb(154,168,188)!important}
+#railback:hover{color:rgb(232,238,246)!important}
+#rail kbd,#statusbar kbd,#pressi kbd,#helpsheet kbd{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;border-radius:4px;
+  border:1px solid rgb(58,74,100);border-bottom-width:2px;font:600 var(--cm-12)/1 "Barlow Condensed",sans-serif;color:rgb(154,168,188);background:none}
+#railcardbody{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:rgb(34,48,74) transparent}
+/* sections, rows, folds (the comps' rail): a status rule, where it lives, one plain line, meta */
+#rail .sec{margin-top:16px}
+#rail .sec-h{display:flex;flex-wrap:wrap;align-items:baseline;padding:0 8px 8px}
+#rail .sec-h h3{display:flex;align-items:baseline;margin:0;font:600 var(--cm-18)/1.1 "Barlow Condensed",sans-serif;color:rgb(232,238,246);letter-spacing:.005em;text-transform:none}
+#rail .sec-h .n{font-size:15px;color:rgb(154,168,188);font-weight:600;margin-left:6px}
+#rail .sec-h .more{order:3;flex:1 0 100%;font-size:16px;line-height:1.25;color:rgb(232,238,246);font-weight:500;margin:3px 0 0}
+#rail .sec-h::after{content:"";order:2;flex:1;height:1px;margin-left:12px;align-self:center;background:linear-gradient(90deg,rgba(34,48,74,.9),rgba(34,48,74,0))}
+#rail .row{position:relative;display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:11px 12px 11px 14px;border-radius:4px;
+  background:linear-gradient(90deg,rgba(255,255,255,.035),rgba(255,255,255,.015));margin-bottom:6px;cursor:pointer;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)}
+#rail .row:hover{background:linear-gradient(90deg,rgba(255,255,255,.07),rgba(255,255,255,.03))}
+#rail .row:focus-visible{outline:2px solid rgb(232,238,246);outline-offset:-2px}
+#rail .row::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:2px;background:var(--rule,rgb(107,118,132))}
+#rail .row.a{--rule:rgb(255,181,71)}#rail .row.r{--rule:rgb(255,90,95)}#rail .row.c{--rule:rgb(111,183,255)}#rail .row.g{--rule:rgb(74,222,128)}
+#rail .row.hot .age{color:rgb(154,168,188)}
+#rail .row.hot{background:linear-gradient(90deg,rgba(255,181,71,.15),rgba(255,181,71,.04) 70%);box-shadow:inset 0 1px 0 rgba(255,181,71,.35),inset 0 -1px 0 rgba(255,181,71,.18)}
+#rail .row .th{width:34px;height:34px;display:flex;align-items:center;justify-content:center;align-self:start}
+#rail .row .th img,#rail .row .th canvas{width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));image-rendering:auto}
+#rail .row .t{font:600 var(--cm-16)/1.2 "Barlow Condensed",sans-serif;color:rgb(232,238,246);overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#rail .row .m{font:500 var(--cm-16)/1.25 "Barlow Condensed",sans-serif;color:rgb(196,208,224);margin-top:3px;overflow-wrap:anywhere}
+#rail .row .m b{font-weight:600;color:rgb(255,181,71)}#rail .row .m b.r{color:rgb(255,90,95)}#rail .row .m b.c{color:rgb(111,183,255)}#rail .row .m b.g{color:rgb(74,222,128)}#rail .row .m b.w{color:rgb(196,208,224)}
+#rail .row .age{font:600 var(--cm-15)/1.2 "Barlow Condensed",sans-serif;color:rgb(176,190,210);align-self:start;margin-top:2px;white-space:nowrap}
+#rail .row .acts{grid-column:2 / 4;display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}
+#rail .row .bar{height:4px;border-radius:2px;background:rgba(111,183,255,.18);margin-top:7px;overflow:hidden}
+#rail .row .bar i{display:block;height:100%;background:rgb(111,183,255);box-shadow:0 0 8px rgba(111,183,255,.8)}
+#rail .row.agent{border-radius:10px;clip-path:none;background:rgba(111,183,255,.06);box-shadow:inset 0 0 0 1px rgba(111,183,255,.22)}
+#rail .fold{display:flex;align-items:center;gap:8px;width:100%;padding:12px 14px;border-radius:4px;border:1px solid rgba(34,48,74,.55);background:rgba(255,255,255,.015);
+  font:600 var(--cm-16)/1.2 "Barlow Condensed",sans-serif;color:rgb(232,238,246);margin-bottom:6px;cursor:pointer;text-align:left}
+#rail .fold:hover{background:rgba(255,255,255,.045)}
+#rail .fold .s{flex:1;color:rgb(196,208,224);font-weight:500;font-size:16px}
+#rail .fold .s b{color:rgb(74,222,128);font-weight:600}
+#rail .fold .chev{color:rgb(154,168,188);font-size:16px}
+#rail .quiet{margin:22px 8px 0;font:500 var(--cm-16)/1.4 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+#rail .quiet b{display:block;font-size:20px;font-weight:600;color:rgb(232,238,246);margin-bottom:4px}
+#rail .note{margin:6px 8px 0;font:500 var(--cm-14)/1.35 "Barlow Condensed",sans-serif;color:rgb(127,141,162)}
+/* buttons: outlined, 30 px, radius 8, verb first */
+.cmbtn{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:8px;border:1px solid rgb(52,68,94);background:rgba(255,255,255,.03);
+  color:rgb(232,238,246);font:600 var(--cm-14)/1 "Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.01em;white-space:nowrap;cursor:pointer;text-decoration:none}
+.cmbtn:hover{background:rgba(255,255,255,.08);border-color:rgb(90,110,140)}
+.cmbtn:focus-visible{outline:2px solid rgb(232,238,246);outline-offset:2px}
+.cmbtn.amber{border-color:rgba(255,181,71,.7);color:rgb(255,208,138);background:rgba(255,181,71,.07)}
+.cmbtn.lead{border-color:rgba(232,238,246,.75)}
+.cmbtn.big{height:36px;padding:0 14px;font-size:15px;border-radius:9px}
+.cmbtn:disabled{opacity:.5;cursor:default}
+
+/* ---- the planet, agent and machine cards (the rail on a desktop; the same words in a phone's sheet) ---- */
+#pbody .pc{color:rgb(232,238,246);font:500 var(--cm-15)/1.3 "Barlow Condensed","Arial Narrow",sans-serif}
+#pbody .pc *{box-sizing:border-box}
+#pbody .pc .pc-hero{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center;padding:18px 22px 6px}
+#pbody .pc .pc-hero .pic{width:64px;height:64px;display:flex;align-items:center;justify-content:center}
+#pbody .pc .pc-hero img,#pbody .pc .pc-hero canvas{width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+#pbody .pc .pc-name{margin:0;font:600 var(--cm-30)/1 "Barlow Condensed",sans-serif;letter-spacing:.005em;color:rgb(232,238,246);overflow-wrap:anywhere;text-transform:none}
+#pbody .pc .pc-sub{font:500 var(--cm-15)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188);margin-top:5px;overflow-wrap:anywhere}
+#pbody .pc .pc-say{padding:8px 22px 0;font:500 var(--cm-17)/1.35 "Barlow Condensed",sans-serif;color:rgb(232,238,246);overflow-wrap:anywhere}
+#pbody .pc .pc-say b{font-weight:600}.pc .pc-say b.r{color:rgb(255,90,95)}.pc .pc-say b.a{color:rgb(255,181,71)}.pc .pc-say b.c{color:rgb(111,183,255)}.pc .pc-say b.g{color:rgb(74,222,128)}
+#pbody .pc .pc-btns{display:flex;flex-wrap:wrap;gap:8px;padding:14px 22px 4px}
+#pbody .pc .pc-body{padding:0 14px 18px}
+#pbody .pc .pc-det{margin:14px 0 0;padding:10px 14px;border-radius:10px;border:1px solid rgba(34,48,74,.55);font:500 var(--cm-14)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+#pbody .pc .pc-det .r{display:flex;justify-content:space-between;gap:12px;padding:4px 0}
+#pbody .pc .pc-det .r>span:last-child{color:rgb(232,238,246);font-weight:600;text-align:right;overflow-wrap:anywhere}
+#pbody .pc .pc-det a,#pbody .pc .pc-det button.lnk{color:rgb(232,238,246);text-decoration:underline;text-underline-offset:2px;font:600 var(--cm-14)/1.3 "Barlow Condensed",sans-serif;background:none;border:0;padding:0;cursor:pointer}
+#pbody .pc details.pc-more{margin:12px 0 0;border:1px solid rgba(34,48,74,.55);border-radius:10px;padding:0 14px;color:rgb(154,168,188)}
+#pbody .pc details.pc-more>summary{cursor:pointer;padding:10px 0;font:600 var(--cm-15)/1.2 "Barlow Condensed",sans-serif;color:rgb(232,238,246);list-style:none}
+#pbody .pc details.pc-more>summary::-webkit-details-marker{display:none}
+#pbody .pc details.pc-more>summary::after{content:" ›";color:rgb(154,168,188)}
+#pbody .pc details.pc-more[open]>summary::after{content:" ⌄"}
+#pbody .pc details.pc-more[open]{padding-bottom:12px}
+#pbody .pc details.pc-more h4{margin:12px 0 4px;font:600 var(--cm-14)/1.2 "Barlow Condensed",sans-serif;color:rgb(154,168,188);text-transform:none;letter-spacing:.01em}
+#pbody .pc details.pc-more dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 10px;margin:4px 0;font:500 var(--cm-13)/1.35 "Share Tech Mono",ui-monospace,monospace}
+#pbody .pc details.pc-more dt{color:rgb(127,141,162)}.pc details.pc-more dd{margin:0;color:rgb(201,211,225);overflow-wrap:anywhere}
+#pbody .pc details.pc-more pre,#pbody .pc details.pc-more code{white-space:pre-wrap;overflow-wrap:anywhere;font:500 var(--cm-12)/1.4 "Share Tech Mono",ui-monospace,monospace;color:rgb(201,211,225)}
+#pbody .pc details.pc-more pre{max-height:320px;overflow-y:auto;overflow-x:hidden;background:rgb(7,9,13);padding:8px 10px;border-radius:6px;margin:6px 0}
+#pbody .pc details.pc-more table{width:100%;table-layout:fixed;border-collapse:collapse;font:500 var(--cm-13)/1.3 "Barlow Condensed",sans-serif}
+#pbody .pc details.pc-more td{padding:3px 4px;overflow-wrap:anywhere;color:rgb(201,211,225)}
+#pbody .pc details.pc-more .crow{display:flex;gap:8px;align-items:center;padding:4px 0;cursor:pointer;color:rgb(201,211,225)}
+#pbody .pc details.pc-more .crow .n{flex:1;min-width:0;overflow-wrap:anywhere}.pc details.pc-more .crow .m{color:rgb(127,141,162)}
+#pbody .pc details.pc-more img.file-planet{width:18px;height:18px}
+#pbody .pc details.pc-more textarea{width:100%;min-height:84px;background:rgb(7,9,13);color:rgb(232,238,246);border:1px solid rgb(52,68,94);border-radius:6px;padding:8px;font:500 var(--cm-14)/1.4 "Barlow Condensed",sans-serif}
+#pbody .pc details.pc-more .saym,#pbody .pc details.pc-more .saymeta{font:500 var(--cm-13)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188);margin-top:6px}
+#pbody .pc details.pc-more .terminalbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:500 var(--cm-13)/1.3 "Barlow Condensed",sans-serif}
+#pbody .pc .pc-ask{margin:14px 0 0;padding:12px 14px;border-radius:10px;background:rgba(255,181,71,.07);box-shadow:inset 0 0 0 1px rgba(255,181,71,.35)}
+#pbody .pc .pc-ask .pq{white-space:pre-wrap;overflow-wrap:anywhere;font:500 var(--cm-14)/1.35 "Barlow Condensed",sans-serif;color:rgb(232,238,246);max-height:9em;overflow-y:auto;margin:0 0 8px}
+#pbody .pc .pc-ask .prow{display:flex;gap:8px}
+/* the card inside the rail: no frame of its own */
+html:not(.m) #railcardbody>#panel{position:static!important;display:block!important;transform:none!important;width:auto!important;height:auto!important;
+  padding:0!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important;clip-path:none!important;opacity:1!important;
+  visibility:visible!important;overflow:visible!important;inset:auto!important;filter:none!important}
+html:not(.m) #railcardbody>#panel #pbody{height:auto;overflow:visible;padding:0}
+html:not(.m) #railcardbody>#panel>.close,html:not(.m) #railcardbody>#panel>#pgrip{display:none!important}
+html:not(.m) #railcardbody>#side{position:static!important;display:flex!important;flex-direction:column;width:auto!important;height:100%!important;inset:auto!important;
+  background:none!important;border:0!important;box-shadow:none!important;clip-path:none!important;color:rgb(232,238,246)}
+html:not(.m) #railcardbody>#side>.shead,html:not(.m) #railcardbody>#side>#tasks{display:none!important}
+html:not(.m) #railcardbody>#side #tbody{border-top:0}
+/* the task card in the rail */
+html:not(.m) #railcardbody #tbody .tvh{padding:16px 20px 8px}
+html:not(.m) #railcardbody #tbody .tvt{font:600 var(--cm-24)/1.15 "Barlow Condensed",sans-serif;color:rgb(232,238,246);overflow-wrap:anywhere}
+html:not(.m) #railcardbody #tbody .tvm{font:500 var(--cm-14)/1.35 "Barlow Condensed",sans-serif;color:rgb(154,168,188);overflow-wrap:anywhere}
+html:not(.m) #railcardbody #tbody *{max-width:100%}
+html:not(.m) #railcardbody #tbody pre,html:not(.m) #railcardbody #tbody .tv-al>div{white-space:pre-wrap;overflow-wrap:anywhere}
+/* the composer as a card of its own */
+html:not(.m) #railcardbody #composer{padding:16px 20px 20px;font:500 var(--cm-15)/1.35 "Barlow Condensed",sans-serif;color:rgb(232,238,246)}
+html:not(.m) #railcardbody #composer h2{margin:0 0 6px;font:600 var(--cm-24)/1.15 "Barlow Condensed",sans-serif;letter-spacing:.005em;color:rgb(232,238,246);text-transform:none;overflow-wrap:anywhere}
+html:not(.m) #railcardbody #composer #ctarget{display:block;font:500 var(--cm-15)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188);margin-top:4px}
+html:not(.m) #railcardbody #composer .sub{font:500 var(--cm-14)/1.35 "Barlow Condensed",sans-serif;color:rgb(154,168,188);margin-bottom:10px}
+html:not(.m) #railcardbody #composer textarea{width:100%;min-height:120px;resize:vertical;background:rgb(7,9,13);color:rgb(232,238,246);border:1px solid rgb(52,68,94);border-radius:8px;padding:10px;font:500 var(--cm-15)/1.4 "Barlow Condensed",sans-serif}
+html:not(.m) #railcardbody #composer .crow{display:flex!important;flex-wrap:wrap;gap:10px;margin-top:10px}
+html:not(.m) #railcardbody #composer .cfield{display:flex;flex-direction:column;gap:4px;flex:1 1 150px;min-width:0;margin-top:10px}
+html:not(.m) #railcardbody #composer>.cfield{flex:0 0 auto}
+html:not(.m) #railcardbody #composer :is(textarea,input)::placeholder{color:rgb(127,141,162);opacity:1}
+html:not(.m) #railcardbody #composer .crow .cfield{margin-top:0}
+html:not(.m) #railcardbody #composer .cfield.cwide{flex:0 0 auto;width:100%}
+html:not(.m) #railcardbody #composer label{font:600 var(--cm-14)/1.2 "Barlow Condensed",sans-serif;color:rgb(154,168,188);white-space:normal;overflow-wrap:anywhere}
+html:not(.m) #railcardbody #composer :is(input[type=text],select){width:100%;min-width:0;height:34px;background:rgb(7,9,13);color:rgb(232,238,246);border:1px solid rgb(52,68,94);border-radius:8px;padding:0 10px;font:500 var(--cm-15)/1 "Barlow Condensed",sans-serif}
+html:not(.m) #railcardbody #composer .chk{display:flex;align-items:center;gap:6px;height:34px;color:rgb(201,211,225)}
+html:not(.m) #railcardbody #composer .cbtns{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+html:not(.m) #railcardbody #composer #cgo{height:36px;padding:0 16px;border-radius:9px;border:1px solid rgb(232,238,246);background:rgb(232,238,246);color:rgb(5,7,13);font:600 var(--cm-15)/1 "Barlow Condensed",sans-serif;cursor:pointer}
+html:not(.m) #railcardbody #composer #cgo:disabled{opacity:.45;cursor:default}
+html:not(.m) #railcardbody #composer #ccancel{height:36px;padding:0 12px;border-radius:9px;border:1px solid rgb(52,68,94);background:none;color:rgb(232,238,246);font:600 var(--cm-15)/1 "Barlow Condensed",sans-serif;cursor:pointer}
+html:not(.m) #railcardbody #composer .saym{flex-basis:100%;font:500 var(--cm-14)/1.35 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+html:not(.m) #railcardbody #composer .saym.err{color:rgb(255,90,95)}
+#composer .connect{margin:12px 0 0;padding:12px 14px;border-radius:10px;background:rgba(255,181,71,.07);box-shadow:inset 0 0 0 1px rgba(255,181,71,.35);color:rgb(232,238,246);font:500 var(--cm-15)/1.4 "Barlow Condensed",sans-serif}
+#composer .connect b{display:block;font-size:17px;font-weight:600;margin-bottom:4px}
+#composer .connect[hidden]{display:none}
+
+/* ---- the status bar ---- */
+html:not(.m) #statusbar{display:flex;align-items:center;gap:14px;position:absolute;z-index:6;left:0;bottom:0;right:var(--railw);height:var(--barh);padding:0 12px 0 8px;
+  background:linear-gradient(180deg,rgb(11,17,30),rgb(7,11,20));border-top:1px solid rgb(34,48,74);color:rgb(232,238,246);font:500 var(--cm-15)/1 "Barlow Condensed","Arial Narrow",sans-serif}
+html:not(.m) #today.on~#statusbar{right:0}
+#statusbar button{font:inherit}
+#sb-counts{display:flex;align-items:center;gap:14px;height:32px;padding:0 14px;border-radius:8px;background:rgba(3,5,10,.65);border:1px solid rgb(28,40,61);box-shadow:inset 0 1px 2px rgba(0,0,0,.6);
+  font:600 var(--cm-18)/1 "Barlow Condensed",sans-serif;color:rgb(244,248,252);white-space:nowrap;cursor:pointer;flex:none}
+#sb-counts:hover{border-color:rgb(52,68,94)}
+#sb-counts .c{display:flex;align-items:baseline;gap:6px}
+#sb-counts .c b{font:400 var(--cm-16)/1 Silkscreen,"Pixelify Sans",monospace;position:relative;top:1px;letter-spacing:0}
+#sb-counts .c b.amber{color:rgb(255,181,71)}#sb-counts .c b.red{color:rgb(255,90,95)}#sb-counts .c b.zero{color:rgb(127,141,162)}
+#sb-counts .dot{width:3px;height:3px;border-radius:2px;background:rgb(58,74,100)}
+#sb-mid{flex:1;min-width:0;display:flex;align-items:center;height:36px;overflow:hidden}
+#sb-readout{flex:1;min-width:0;padding-left:4px;font:500 var(--cm-17)/1.2 "Barlow Condensed",sans-serif;color:rgb(208,219,233);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#sb-readout b{color:rgb(232,238,246);font-weight:600}
+#sb-readout b.r{color:rgb(255,90,95)}#sb-readout b.a{color:rgb(255,181,71)}#sb-readout b.c{color:rgb(111,183,255)}
+#sb-route{flex:1;min-width:0;display:flex;align-items:center;gap:6px;overflow:hidden}
+#sb-route[hidden],#sb-readout[hidden]{display:none}
+#sb-right{display:flex;align-items:center;gap:8px;flex:none}
+#statusbar .sbbtn{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 10px 0 12px;border-radius:8px;border:1px solid rgb(52,68,94);background:rgba(255,255,255,.03);
+  color:rgb(232,238,246);font:600 var(--cm-14)/1 "Barlow Condensed",sans-serif;cursor:pointer;white-space:nowrap}
+#statusbar .sbbtn:hover{background:rgba(255,255,255,.08)}
+#sb-help{width:30px;height:30px;border-radius:8px;border:1px solid rgb(42,58,84);background:none;color:rgb(154,168,188);font:600 var(--cm-15)/1 "Barlow Condensed",sans-serif;cursor:pointer}
+#sb-help:hover{color:rgb(232,238,246);border-color:rgb(90,110,140)}
+/* the assistant as one line ("Ask Scout…"); its answers open above it while it talks */
+#sb-ask{position:relative;width:280px;height:30px}
+html:not(.m) #sb-ask>#mate{position:absolute!important;inset:auto 0 0 auto!important;left:auto!important;right:0!important;bottom:0!important;top:auto!important;
+  display:block!important;width:280px!important;height:30px;filter:none!important;z-index:31;transform:none!important}
+html:not(.m) #sb-ask>#mate .mp{display:none}
+html:not(.m) #sb-ask>#mate .nb{position:relative;display:block;width:280px;height:30px;padding:0;margin:0;background:none;border:0;box-shadow:none;clip-path:none;font:500 var(--cm-15)/1.35 "Barlow Condensed",sans-serif}
+html:not(.m) #sb-ask>#mate .nh,html:not(.m) #sb-ask>#mate #matetxt{display:none}
+html:not(.m) #sb-ask>#mate #matef{display:flex;align-items:center;gap:8px;width:280px;height:30px;margin:0;padding:0 10px;border-radius:8px;border:1px solid rgb(42,58,84);background:rgba(5,7,13,.6)}
+html:not(.m) #sb-ask>#mate #matef::before{content:"";flex:none;width:16px;height:16px;border-radius:5px;background:linear-gradient(135deg,rgb(111,183,255),rgb(61,107,255));box-shadow:0 0 8px rgba(111,183,255,.5)}
+html:not(.m) #sb-ask>#mate #mateq{flex:1;min-width:0;height:28px;padding:0;border:0;background:none;color:rgb(232,238,246);font:500 var(--cm-15)/1 "Barlow Condensed",sans-serif;outline:none}
+html:not(.m) #sb-ask>#mate #mateq::placeholder{color:rgb(200,212,228);text-transform:none;letter-spacing:0}
+html:not(.m) #sb-ask>#mate #matef button[type=submit]{display:none}
+html:not(.m) #sb-ask>#mate.open #matef{border-color:rgb(111,183,255)}
+html:not(.m) #sb-ask>#mate.open .nh,html:not(.m) #sb-ask>#mate.open #matetxt{display:block}
+html:not(.m) #sb-ask>#mate.open .nb{position:absolute;right:0;bottom:0;width:420px;height:auto;display:flex;flex-direction:column;align-items:stretch;pointer-events:none}
+html:not(.m) #sb-ask>#mate.open .nb>*{pointer-events:auto}
+html:not(.m) #sb-ask>#mate.open .nh{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;margin:0;padding:10px 14px 0;background:rgb(11,18,32);border:1px solid rgb(34,48,74);border-bottom:0;
+  border-radius:12px 12px 0 0;font:500 var(--cm-13)/1.2 "Barlow Condensed",sans-serif;color:rgb(127,141,162)}
+html:not(.m) #sb-ask>#mate.open #matetxt{display:block;max-height:min(46vh,380px);overflow-y:auto;margin:0 0 10px;padding:8px 14px 14px;background:rgb(11,18,32);border:1px solid rgb(34,48,74);border-top:0;
+  border-radius:0 0 12px 12px;box-shadow:0 12px 40px rgba(0,0,0,.6);font:500 var(--cm-15)/1.4 "Barlow Condensed",sans-serif;color:rgb(232,238,246);white-space:pre-wrap;overflow-wrap:anywhere}
+html:not(.m) #sb-ask>#mate.open #matef{align-self:flex-end;flex:none}
+html:not(.m) #sb-ask>#mate.open .nh #matehide{display:none}
+html:not(.m) #sb-ask>#mate.open .nh #matepill{display:none}
+html:not(.m) #sb-ask>#mate.open .nh #matealso{background:none;border:0;color:rgb(111,183,255);text-decoration:underline;font:600 var(--cm-13)/1.2 "Barlow Condensed",sans-serif;cursor:pointer;padding:0}
+#mateclose{margin-left:auto;background:none;border:0;color:rgb(154,168,188);font:600 var(--cm-13)/1.2 "Barlow Condensed",sans-serif;cursor:pointer;padding:0}
+#mateclose:hover{color:rgb(232,238,246)}
+
+/* ---- chips on the map: glass, radius 12, 16 px from the map's edges ---- */
+html:not(.m) :is(#machines,#legendchip,#pressi,#crumb):not([hidden]){display:flex;position:absolute;z-index:5;border-radius:12px;padding:9px 12px;
+  background:linear-gradient(180deg,rgba(16,25,44,.9),rgba(9,14,26,.9));border:1px solid rgb(34,48,74);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 30px rgba(0,0,0,.45);backdrop-filter:blur(10px);
+  font:600 var(--cm-14)/1.2 "Barlow Condensed","Arial Narrow",sans-serif;color:rgb(154,168,188)}
+html:not(.m) #today.on~.mchip{display:none!important}
+#legendchip{left:16px;bottom:calc(var(--barh,44px) + 12px);flex-direction:column;gap:14px;max-width:calc(100vw - var(--railw,0px) - 32px)}
+/* the three-view switch (2D map / first / third person) sits at the map's bottom right, over the status bar: the chips
+   stack bottom left, and a centred switch covered the legend chip (p3PovSync centres it inline on the stage: !important) */
+html:not(.m) #pov-switch:not(.in3d){left:auto!important;right:calc(var(--railw,0px) + 16px);transform:none;bottom:calc(var(--barh,44px) + 14px)}
+#legendchip{font-size:19px!important;background:rgba(8,12,22,.96)!important;border-color:rgb(52,68,94)!important}
+#legendchip .l1{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;color:rgb(244,248,252);font-weight:600}
+#legendchip .l1 span{display:flex;align-items:center;gap:4px}
+#legendchip i.g.h{display:inline-block;width:14px;height:14px;margin-right:5px;border:2px dashed rgb(176,190,210);border-radius:50%;box-sizing:border-box;vertical-align:-2px}
+#legendchip .l1 img{width:28px;height:28px;object-fit:contain}
+#legendchip .l2{display:flex;flex-wrap:wrap;gap:10px 30px;align-items:center;color:rgb(214,224,238);font-weight:500}
+#legendchip .l2 i{font-style:normal;font-weight:600}
+#legendchip .lx{position:absolute;top:2px;right:4px;border:0;background:none;color:rgb(206,217,232);font:600 var(--cm-22)/1 "Barlow Condensed",sans-serif;cursor:pointer;padding:4px 8px}
+#legendchip .lx:hover{color:rgb(232,238,246)}
+#legendchip .l1{padding-right:28px}
+@media (max-width:1439px){#legendchip{gap:10px}#legendchip .l1{gap:6px 18px}#legendchip .l2{gap:6px 22px}}   /* a smaller window keeps the tighter spacing, so the legend never grows over the home view's planets */
+i.sw{display:inline-block;width:8px;height:8px;border-radius:4px;margin-right:5px;position:relative;top:-1px;flex:none}   /* the chips' colour dot (<i>); a <span class="sw"> is the agents list's state word */
+#machines{left:16px;bottom:calc(var(--barh,44px) + 12px + var(--legendh,0px));align-items:center;gap:12px;padding:8px 12px;cursor:default}
+#machines .h{color:rgb(232,238,246);font-weight:600}
+#machines button{display:flex;align-items:center;gap:6px;border:0;background:none;padding:0;color:rgb(154,168,188);font:500 var(--cm-14)/1.2 "Barlow Condensed",sans-serif;cursor:pointer}
+#machines button:hover{color:rgb(232,238,246)}
+#pressi{right:calc(var(--railw,0px) + 16px);bottom:calc(var(--barh,44px) + 14px);align-items:center;gap:6px;color:rgb(232,238,246);font:600 var(--cm-15)/1.2 "Barlow Condensed",sans-serif;
+  border-color:rgba(111,183,255,.55)!important}
+
+/* ---- the "?" sheet: what you see, keys, settings, set up ---- */
+html:not(.m) #helpsheet:not([hidden]){display:flex;flex-direction:column;position:absolute;z-index:40;left:calc((100vw - var(--railw)) / 2 - 360px);top:44px;width:720px;
+  max-height:calc(100vh - var(--barh) - 88px);background:rgb(11,18,32);border:1px solid rgb(34,48,74);border-radius:14px;box-shadow:0 0 0 100vmax rgba(5,7,13,.45),0 18px 60px rgba(0,0,0,.7);
+  color:rgb(232,238,246);font:500 var(--cm-15)/1.4 "Barlow Condensed","Arial Narrow",sans-serif}
+html.m #helpsheet:not([hidden]),html.t #helpsheet:not([hidden]){display:flex;flex-direction:column;position:fixed;z-index:60;inset:5vh 4vw;background:rgb(11,18,32);border:1px solid rgb(34,48,74);
+  border-radius:14px;color:rgb(232,238,246);font:500 var(--cm-15)/1.4 "Barlow Condensed","Arial Narrow",sans-serif}
+#helpsheet *{box-sizing:border-box}
+#helpsheet .hh{display:flex;align-items:center;gap:22px;height:56px;flex:none;padding:0 22px;border-bottom:1px solid rgb(34,48,74)}
+#helpsheet .hh [role=tab]{position:relative;height:56px;border:0;background:none;padding:0;cursor:pointer;font:600 var(--cm-17)/1 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+#helpsheet .hh [role=tab][aria-selected=true]{color:rgb(232,238,246)}
+#helpsheet .hh [role=tab][aria-selected=true]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:2px;background:rgb(232,238,246);box-shadow:0 0 10px rgba(232,238,246,.45)}
+#helpsheet .hh .hx{margin-left:auto;height:30px;padding:0 12px;border-radius:8px;border:1px solid rgb(52,68,94);background:none;color:rgb(232,238,246);font:600 var(--cm-14)/1 "Barlow Condensed",sans-serif;cursor:pointer}
+#helpsheet .hb{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:14px 22px 22px;scrollbar-width:thin;scrollbar-color:rgb(34,48,74) transparent}
+#helpsheet h3{margin:14px 0 8px;font:600 var(--cm-18)/1.2 "Barlow Condensed",sans-serif;color:rgb(232,238,246);letter-spacing:.005em;text-transform:none}
+#helpsheet h3:first-child{margin-top:4px}
+#helpsheet p{margin:4px 0 10px;color:rgb(154,168,188)}
+#helpsheet .lgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#helpsheet .lgrid>div{display:grid;grid-template-columns:40px minmax(0,1fr);gap:2px 10px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,.025)}
+#helpsheet .lgrid img{width:40px;height:40px;grid-row:span 2}
+#helpsheet .lgrid b{font-weight:600;color:rgb(232,238,246)}
+#helpsheet .lgrid small{font:500 var(--cm-13)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+#helpsheet .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 24px}
+#helpsheet .krow{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid rgba(34,48,74,.55)}
+#helpsheet .krow span{flex:1;color:rgb(201,211,225)}
+#helpsheet .krow kbd{margin-left:2px}
+#helpsheet .srow{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(34,48,74,.55)}
+#helpsheet .srow label{color:rgb(232,238,246);font-weight:600}
+#helpsheet .srow select{width:100%;height:32px;background:rgb(7,9,13);color:rgb(232,238,246);border:1px solid rgb(52,68,94);border-radius:8px;padding:0 8px;font:500 var(--cm-15)/1 "Barlow Condensed",sans-serif}
+#helpsheet .grp{margin:18px 0 2px;font:600 var(--cm-14)/1.2 "Barlow Condensed",sans-serif;color:rgb(154,168,188);letter-spacing:.06em;text-transform:uppercase}
+#helpsheet .card{margin:8px 0;padding:12px 14px;border-radius:10px;border:1px solid rgba(34,48,74,.55);background:rgba(255,255,255,.02)}
+#helpsheet .card b{color:rgb(232,238,246)}
+#helpsheet details{margin-top:10px;border-top:1px solid rgba(34,48,74,.55);padding-top:8px}
+#helpsheet details>summary{cursor:pointer;font-weight:600;color:rgb(232,238,246)}
+#helpsheet .mrow{display:flex;align-items:center;gap:8px;padding:4px 0;color:rgb(201,211,225)}
+#helpsheet .msg{color:rgb(154,168,188);margin-top:6px}
+#helpsheet .msg.err{color:rgb(255,90,95)}
+#helpsheet .code{font:600 var(--cm-22)/1 Silkscreen,monospace;color:rgb(232,238,246);letter-spacing:.08em}
+html:not(.m) #railcardbody #composer label,html:not(.m) #railcardbody #composer .crow label,html:not(.m) #railcardbody #composer .cfield label{display:block;padding:0;background:none;border:0;
+  font:600 var(--cm-14)/1.2 "Barlow Condensed",sans-serif;letter-spacing:.01em;text-transform:none;color:rgb(154,168,188)}
+html:not(.m) #railcardbody #composer .chk{border:1px solid rgb(52,68,94);border-radius:8px;padding:0 10px;font:500 var(--cm-15)/1 "Barlow Condensed",sans-serif;background:rgb(7,9,13)}
+html:not(.m) #railcardbody #composer :is(textarea,input,select):focus{outline:2px solid rgb(232,238,246);outline-offset:1px}
+html:not(.m) #railcardbody #composer #ccancel{text-decoration:none}
+html:not(.m) #railcardbody #composer .cwide{margin-top:12px}
+html:not(.m) #railcardbody #composer .cnarrow select{width:100%}
+/* focus rings in the chrome are the text colour: amber means a state on this map, never the keyboard */
+#rail :focus-visible,#statusbar :focus-visible,#helpsheet :focus-visible,.mchip :focus-visible{outline:2px solid rgb(232,238,246);outline-offset:2px}
+#rail :focus:not(:focus-visible),#statusbar :focus:not(:focus-visible),#helpsheet :focus:not(:focus-visible){outline:none}
+#helpsheet .hb:focus{outline:none}
+#rail details.pc-rest>summary{list-style:none}
+#rail details.pc-rest>summary::-webkit-details-marker{display:none}
+#rail details.pc-rest[open]>summary{display:none}
+/* the task card in the rail: a state word, the title, one plain line, the second opinion and the test in words, Details closed */
+html:not(.m) #railcardbody #tbody .tvh{border-bottom:1px solid rgb(34,48,74)}
+html:not(.m) #railcardbody #tbody .tvh .pill{border:0;padding:0;margin:0 0 6px;font:600 var(--cm-14)/1.2 "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+html:not(.m) #railcardbody #tbody .tvh .tvt{-webkit-line-clamp:4;margin:0 0 6px}
+html:not(.m) #railcardbody #tbody .tvm{display:block}
+#tbody .tvplain{font:500 var(--cm-15)/1.35 "Barlow Condensed",sans-serif;color:rgb(154,168,188);overflow-wrap:anywhere}
+#tbody .tvop{font:600 var(--cm-15)/1.35 "Barlow Condensed",sans-serif;color:rgb(232,238,246);margin-top:2px}
+#tbody .tvop.ok{color:rgb(74,222,128)}#tbody .tvop.bad{color:rgb(255,90,95)}
+#tbody details.tvdet{margin:6px 0 2px}
+#tbody details.tvdet>summary{cursor:pointer;font:600 var(--cm-14)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188);list-style:none}
+#tbody details.tvdet>summary::-webkit-details-marker{display:none}
+#tbody details.tvdet>summary::after{content:" ›"}
+#tbody details.tvdet .tvchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+html:not(.m) #railcardbody #tbody .tvtabs button{font:600 var(--cm-15)/1 "Barlow Condensed",sans-serif;color:rgb(154,168,188);padding:10px 12px 9px;letter-spacing:.01em}
+html:not(.m) #railcardbody #tbody .tvtabs button.on{color:rgb(232,238,246);border-bottom-color:rgb(232,238,246)}
+html:not(.m) #railcardbody #tbody .tvpane{padding:12px 16px}
+html:not(.m) #railcardbody #tbody .tv-chat{font:500 var(--cm-15)/1.45 "Barlow Condensed",sans-serif}
+html:not(.m) #railcardbody #tbody .tv-msg{border-radius:8px}
+html:not(.m) #railcardbody #tbody .tv-msg.you{background:rgb(19,30,52);border-color:rgb(34,48,74);color:rgb(232,238,246)}
+html:not(.m) #railcardbody #tbody .tv-msg .who{font:600 var(--cm-13)/1.2 "Barlow Condensed",sans-serif;letter-spacing:.04em;color:rgb(154,168,188)}
+html:not(.m) #railcardbody #tbody .tvfoot{background:none;border-top:1px solid rgb(34,48,74);padding:12px 16px 16px}
+html:not(.m) #railcardbody #tbody .tvfoot .tbtns button{height:30px;padding:0 12px;border-radius:8px;border:1px solid rgb(52,68,94);background:rgba(255,255,255,.03);color:rgb(232,238,246);font:600 var(--cm-14)/1 "Barlow Condensed",sans-serif}
+html:not(.m) #railcardbody #tbody .tvfoot .tbtns button.ok{border-color:rgba(255,181,71,.7);color:rgb(255,208,138);background:rgba(255,181,71,.07)}
+html:not(.m) #railcardbody #tbody .tvfoot .tbtns button.warn{border-color:rgba(255,90,95,.7);color:rgb(255,154,146)}
+html:not(.m) #railcardbody #tbody .tvfoot .tbtns select{height:30px;border-radius:8px;border:1px solid rgb(52,68,94);background:rgb(7,9,13);color:rgb(232,238,246);font:500 var(--cm-14)/1 "Barlow Condensed",sans-serif;max-width:100%}
+html:not(.m) #railcardbody #tbody .tvfoot .tclosed{font:600 var(--cm-15)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+html:not(.m) #railcardbody #tbody .tvfoot .tfollow textarea{border-radius:8px;border-color:rgb(52,68,94);background:rgb(7,9,13);color:rgb(232,238,246);font:500 var(--cm-15)/1.4 "Barlow Condensed",sans-serif}
+html:not(.m) #railcardbody #tbody .tvfoot .tfollow textarea:focus{outline:2px solid rgb(232,238,246)}
+html:not(.m) #railcardbody #tbody .tvfoot .tfollow button{height:36px;border-radius:9px;border:1px solid rgb(232,238,246);background:rgb(232,238,246);color:rgb(5,7,13);font:600 var(--cm-15)/1 "Barlow Condensed",sans-serif}
+html:not(.m) #railcardbody #tbody .tvfoot .tblockers{font:500 var(--cm-14)/1.35 "Barlow Condensed",sans-serif;color:rgb(255,154,146);margin-top:8px}
+/* one line of text (its words read as one sentence: a flex box would break them around the key) */
+html:not(.m) #pressi:not([hidden]){display:block;white-space:nowrap}
+#pressi kbd{display:inline-block;line-height:16px;margin:0 2px;vertical-align:1px;color:rgb(232,238,246)}
+#crumb{left:16px;top:16px;align-items:center;gap:10px;padding:7px 12px 7px 10px;border-radius:10px!important;cursor:pointer;font:500 var(--cm-15)/1.2 "Barlow Condensed",sans-serif!important;color:rgb(154,168,188)!important}
+#crumb b{color:rgb(232,238,246);font-weight:600}#crumb .sep{color:rgb(127,141,162)}
+#crumb kbd{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;border-radius:4px;border:1px solid rgb(58,74,100);border-bottom-width:2px;font:600 var(--cm-12)/1 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+html:not(.m) #wrap.in-focus :is(#legendchip,#machines){display:none!important}
+html:not(.m) #wrap.board-open :is(#legendchip,#machines,#pressi,#crumb){display:none!important}
+/* the Decisions board (Q, For you > Decisions): the rail's type and colours, plain words */
+html:not(.m) #quests{z-index:30;background:rgb(11,18,32);border:1px solid rgb(34,48,74);border-radius:14px;box-shadow:0 0 0 100vmax rgba(5,7,13,.45),0 18px 60px rgba(0,0,0,.7);padding:18px 22px 22px;
+  color:rgb(232,238,246);font:500 var(--cm-15)/1.4 "Barlow Condensed","Arial Narrow",sans-serif}
+html:not(.m) #quests h2{font:600 var(--cm-22)/1.1 "Barlow Condensed",sans-serif;letter-spacing:.005em;color:rgb(232,238,246);text-transform:none}
+html:not(.m) #quests .sub,html:not(.m) #quests .col .sub{font:500 var(--cm-14)/1.35 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+html:not(.m) #quests .how{font:500 var(--cm-14)/1.45 "Barlow Condensed",sans-serif;color:rgb(201,211,225);background:rgba(255,255,255,.025);border:1px solid rgba(34,48,74,.55);border-radius:10px;padding:10px 14px}
+html:not(.m) #quests .how b{color:rgb(255,181,71)}
+html:not(.m) #quests .col h3{font:600 var(--cm-18)/1.1 "Barlow Condensed",sans-serif;letter-spacing:.005em;color:rgb(232,238,246);text-transform:none;margin:0 0 6px}
+html:not(.m) #quests .div{font:600 var(--cm-14)/1.2 "Barlow Condensed",sans-serif;letter-spacing:.01em;color:rgb(154,168,188);text-transform:none;border-bottom:1px solid rgba(34,48,74,.9)}
+html:not(.m) #quests .chip{font:600 var(--cm-12)/1.2 "Barlow Condensed",sans-serif;letter-spacing:.04em;text-transform:none;border-radius:6px;border-color:rgb(52,68,94);color:rgb(154,168,188);padding:2px 8px}
+html:not(.m) #quests .chip.st.open{color:rgb(74,222,128);border-color:rgba(74,222,128,.5)}html:not(.m) #quests .chip.st.fix,html:not(.m) #quests .chip.st.hand{color:rgb(111,183,255)}
+html:not(.m) #quests .chip.st.ret,html:not(.m) #quests .chip.v{color:rgb(255,181,71);border-color:rgba(255,181,71,.5)}html:not(.m) #quests .chip.age.old,html:not(.m) #quests .chip.path.gone{color:rgb(255,90,95);border-color:rgba(255,90,95,.5)}
+html:not(.m) #quests .chip.age.mid{color:rgb(255,181,71)}html:not(.m) #quests .chip.age.new{color:rgb(74,222,128)}html:not(.m) #quests .chip.tot{color:rgb(232,238,246)}
+html:not(.m) #quests .q{background:linear-gradient(90deg,rgba(255,255,255,.035),rgba(255,255,255,.015));border:0;border-radius:4px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);padding:10px 12px 10px 0}
+html:not(.m) #quests .q .rail{border-radius:2px;background:rgb(107,118,132)}html:not(.m) #quests .q.st-open .rail,html:not(.m) #quests .q.st-fix .rail,html:not(.m) #quests .q.st-hand .rail{background:rgb(255,181,71)}
+html:not(.m) #quests .q.st-ret .rail{background:rgb(74,222,128)}html:not(.m) #quests .q.st-gone .rail{background:rgb(58,74,100)}
+html:not(.m) #quests .q .tx{font:600 var(--cm-16)/1.25 "Barlow Condensed",sans-serif;color:rgb(232,238,246)}html:not(.m) #quests .q .tx b{color:rgb(232,238,246)}
+html:not(.m) #quests .q .ev,html:not(.m) #quests .q .adv,html:not(.m) #quests .q .run,html:not(.m) #quests .q details,html:not(.m) #quests .q .sr,html:not(.m) #quests .q.task .tx small{font:500 var(--cm-14)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}
+html:not(.m) #quests .q .adv .arrow,html:not(.m) #quests .q .run .rs{color:rgb(255,181,71)}html:not(.m) #quests .q .run .rs.bad{color:rgb(255,90,95)}
+html:not(.m) #quests .q details summary,html:not(.m) #quests .q .run button.rout,html:not(.m) #quests .col .sub button.showret{color:rgb(111,183,255);font:600 var(--cm-14)/1.3 "Barlow Condensed",sans-serif}
+html:not(.m) #quests .q .sr button,html:not(.m) #quests .q .sr select,html:not(.m) #quests .sweep select,html:not(.m) #quests .sweep button{height:30px;min-height:30px;border-radius:8px;border:1px solid rgb(52,68,94);background:rgba(255,255,255,.03);color:rgb(232,238,246);font:600 var(--cm-14)/1 "Barlow Condensed",sans-serif;padding:0 10px}
+html:not(.m) #quests .q .sr button:hover,html:not(.m) #quests .sweep button:hover{background:rgba(255,255,255,.08)}
+html:not(.m) #quests .q .sr button.sug{border-color:rgba(255,181,71,.7);color:rgb(255,208,138);background:rgba(255,181,71,.07);box-shadow:none}html:not(.m) #quests .q .sr button.sug::after{content:' · suggested'}
+html:not(.m) #quests .q .sr button.run1{border-color:rgba(111,183,255,.6);color:rgb(111,183,255)}html:not(.m) #quests .q .sr .bmsg{color:rgb(255,181,71)}html:not(.m) #quests .q .sr .bmsg.err{color:rgb(255,90,95)}
+html:not(.m) #quests .sweep{font:500 var(--cm-14)/1.3 "Barlow Condensed",sans-serif;color:rgb(154,168,188)}html:not(.m) #quests .sweep button.stop{border-color:rgba(255,90,95,.7);color:rgb(255,154,146)}
+html:not(.m) #quests .q .tx pre.cmd,html:not(.m) #quests .q details .ev{font:500 var(--cm-13)/1.4 "Share Tech Mono",ui-monospace,monospace;color:rgb(201,211,225)}
+/* the vector look keeps its own top rail over the map only, and its data card gets the rail's margins */
+html[data-render="vector"]:not(.m):not(.t) #tacrail{right:var(--railw)}
+html[data-render="vector"]:not(.m):not(.t) #railcardbody>#panel #pbody{padding:16px 20px 20px}
+html[data-render="vector"]:not(.m):not(.t) #crumb{top:56px}
+/* a touch tablet: the same frame with finger-sized targets; the fly pad keeps the map's bottom left, so the legend lives in
+   the "?" sheet and the machines chip sits at the top left */
+html.t #wrap,html.t #wrap.side,html.t #wrap.dash{--barh:56px}
+html.t #statusbar :is(button,.sbbtn,#sb-help){min-height:44px;min-width:44px}
+html.t #sb-counts{height:44px}
+html.t #sb-ask,html.t #sb-ask>#mate,html.t #sb-ask>#mate .nb,html.t #sb-ask>#mate #matef{height:44px!important}
+html.t #legendchip{display:none!important}
+html.t #machines{top:16px;bottom:auto}
+html.t #rail .row,html.t #rail .fold,html.t #railtabs [role=tab],html.t #railback{min-height:44px}
+html.t #rail .cmbtn{min-height:44px}
+html.t .cmbtn,html.t #railnew,html.t #helpsheet .hh .hx,html.t #helpsheet .hh [role=tab],html.t #helpsheet .srow select,html.t #helpsheet .mrow .cmbtn,html.t #machines button,html.t #crumb,html.t #mateclose,
+html.t #pbody .pc details.pc-more>summary,html.t #rail details.pc-rest>summary,html.t #pbody .pc .pc-det button.lnk,html.t #quests .q .sr button,html.t #quests .q .sr select,html.t #quests .sweep button,html.t #quests .sweep select{min-height:44px;min-width:44px}
+html.t #helpsheet .srow select{height:44px}html.t #machines{gap:4px;padding:2px 8px}html.t #machines button{padding:0 8px}html.t #pbody .pc .pc-det button.lnk{display:inline-flex;align-items:center}
+html.t #pbody .pc details.pc-more>summary,html.t #rail details.pc-rest>summary,html.t #helpsheet details>summary{display:flex;align-items:center;min-height:44px}
+html.t #pbody .pc details.pc-more>summary::after{margin-left:4px}
+/* a narrow status bar (a tablet with a card open, a small window): the readout gives way first, then the assistant's line narrows,
+   then Fly in 3D keeps its picture and its key; the counts keep their nouns */
+html:not(.m) #statusbar{container-type:inline-size;container-name:sb}
+@container sb (max-width:860px){#sb-mid{display:none}}
+@container sb (max-width:720px){#sb-ask{width:150px}html:not(.m) #sb-ask>#mate,html:not(.m) #sb-ask>#mate .nb,html:not(.m) #sb-ask>#mate #matef{width:150px!important}}
+@container sb (max-width:640px){#statusbar .sbbtn .fw{display:none}#sb-counts{gap:10px;padding:0 10px}}
+
+.thread-card{padding:18px 20px 24px;color:rgb(200,210,224)}.thread-card h2{margin:0 0 6px;font-size:22px;color:rgb(232,238,246)}.thread-card>p{margin:0 0 6px;color:rgb(148,163,184)}.thread-card section{margin:14px 0;padding:10px 12px;border-left:3px solid rgb(245,166,35);background:rgba(255,255,255,.03);border-radius:0 8px 8px 0}.thread-card h3{margin:0 0 6px;font-size:15px;color:rgb(232,238,246)}.thread-card blockquote{margin:6px 0;padding:0 0 0 10px;border-left:2px solid rgb(71,85,105);color:rgb(203,213,225);font-style:italic}.thread-card section p{margin:4px 0 0;font-size:12px;color:rgb(148,163,184)}.thread-card .cmbtn{margin-top:14px}.thread-card .cmbtn.lead{background:rgb(229,149,56);border-color:rgb(229,149,56);color:rgb(11,15,23);font-weight:700}.thread-card section blockquote{border-left:0;padding-left:0}.thread-card pre{margin:8px 0 0;padding:8px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(0,0,0,.35);border-radius:6px;font-size:12px;color:rgb(148,163,184)}
+.thread-card .finding-changed blockquote{color:rgb(100,116,139);opacity:.65}
+
+/* First visit: one readable card, with a pointer and an outline around the real thing. */
+#firstguide{position:fixed;inset:0;z-index:90;color:rgb(232,238,246);font:500 var(--cm-17)/1.4 "Barlow Condensed","Arial Narrow",sans-serif}
+#firstguide *{box-sizing:border-box}
+#firstguide .guidefocus{position:fixed;pointer-events:none;border:2px solid rgb(111,183,255);border-radius:12px;box-shadow:0 0 0 300vmax rgba(2,7,16,.48),0 0 20px rgba(111,183,255,.3)}
+#firstguide svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+#firstguide path{stroke:rgb(111,183,255);stroke-width:2;fill:none}
+#firstguide .guidecard{position:fixed;left:24px;bottom:142px;width:330px;max-width:calc(100vw - 32px);padding:18px 20px;background:rgb(13,21,38);border:1px solid rgb(79,113,157);border-radius:14px;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+#firstguide .guidehead{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;color:rgb(154,168,188)}
+#firstguide h2{font:600 var(--cm-24)/1.15 "Barlow Condensed","Arial Narrow",sans-serif;margin:12px 0 10px;color:rgb(232,238,246);letter-spacing:0}
+#firstguide p{margin:0 0 18px;color:rgb(201,211,225)}
+#firstguide .guidefoot{display:flex;align-items:center;gap:8px}
+#firstguide .guidecount{margin-right:auto;color:rgb(154,168,188);font-size:15px}
+#firstguide button{min-height:44px;min-width:44px;border-radius:8px;border:1px solid rgb(63,88,112);background:rgb(19,33,54);color:rgb(232,238,246);padding:8px 12px;font:600 var(--cm-16)/1.2 "Barlow Condensed","Arial Narrow",sans-serif;cursor:pointer}
+#firstguide [data-guide=next]{background:rgb(111,183,255);color:rgb(7,15,27);border-color:rgb(111,183,255)}
+#firstguide [data-guide=close]{border:0;background:transparent;padding:6px}
+#firstguide button:disabled{opacity:.4;cursor:default}
+#firstguide button:focus-visible{outline:2px solid rgb(232,238,246);outline-offset:3px}
+html.m #firstguide .guidecard{left:16px;right:16px;width:auto;bottom:calc(var(--B,78px) + 14px);padding:14px 18px}
+html.m #firstguide .guidecard.guide-high{bottom:calc(var(--B,78px) + 100px)}
+html.m #firstguide h2{font-size:24px}
+/* The camera switch has its own row. The demo label never sits over the legend or the switch. */
+html:not(.m) #pov-switch:not(.in3d){top:16px;bottom:auto}
+html:not(.m) #demobanner{left:16px;top:16px;bottom:auto;max-width:calc(100vw - var(--railw,0px) - 370px);padding:7px 10px;border-radius:8px;box-shadow:none;letter-spacing:.01em;font:600 var(--cm-14)/1.25 "Barlow Condensed",sans-serif}
+html.m #demobanner{left:12px;right:auto;top:62px;bottom:auto;max-width:calc(100vw - 24px);padding:5px 9px;border-radius:6px;letter-spacing:.01em;font:600 var(--cm-14)/1.25 "Barlow Condensed",sans-serif;box-shadow:none}
+
+#wrap:has(#firstguide) :is(#crumb,#fcrumb){visibility:hidden}
+#wrap:has(#firstguide[data-step="2"]) #pov-switch{visibility:hidden}
+#wrap:has(#crumb:not([hidden])) #demobanner{display:none}
+#wrap:has(#helpsheet:not([hidden])) #pov-switch{visibility:hidden}

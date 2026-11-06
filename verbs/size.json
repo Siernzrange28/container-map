@@ -1,0 +1,17 @@
+{
+  "name": "size",
+  "label": "how big, really",
+  "applies": [
+    "area",
+    "dir"
+  ],
+  "cmd": [
+    "du",
+    "-sh",
+    "--",
+    "{path}"
+  ],
+  "cwd": "tool",
+  "max_minutes": 5,
+  "desc": "du -sh on the target; counted, not estimated"
+}

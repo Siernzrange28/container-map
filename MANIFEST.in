@@ -1,0 +1,16 @@
+# What an sdist carries beyond the modules in pyproject.toml. setup.py copies the first block and
+# the data folders beside the modules at build time, so every one of them must be in here.
+include LICENSE NOTICE README.md
+include render-game.py world.sh demo.sh door.sh
+include container.example.json container.sources-example.json
+include test_*.py testenv.py
+graft themes
+graft skins
+graft fonts
+graft docs
+include playbooks/*.md
+include verbs/*.json
+include ui/*.js ui/*.css
+include world3d/*.js
+include vendor/*.js vendor/*.css vendor/*.txt
+include tests/fixtures/*.json

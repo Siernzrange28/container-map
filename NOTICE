@@ -1,0 +1,258 @@
+container-map is released under the licence in LICENSE. It ships the following third-party assets,
+each of which keeps its own licence, and code written from permissive sources, each credited below.
+
+How to read this file: every entry has a Key. Code in ui/*.js and world3d/*.js that was written from one
+of these sources carries a marker comment /* port: <Key> (<licence>) */ at the place it starts; the release
+test (test_release_smoke.py) checks that every marker names a Key listed here with that licence.
+
+FONTS
+
+Silkscreen (display typeface)
+  Key:        silkscreen
+  File:       fonts/Silkscreen-Regular.ttf, inlined into every rendered page as a data: font
+  Copyright:  2001 The Silkscreen Project Authors (https://github.com/googlefonts/silkscreen)
+  Licence:    SIL Open Font License, Version 1.1. The full text and the copyright line are in
+              fonts/OFL.txt, which travels with the font in every copy and every install.
+
+Barlow Condensed (label typeface of the vector look), Medium and SemiBold, subset to Latin
+  Key:        barlow-condensed
+  Files:      fonts/BarlowCondensed-Medium.woff2, fonts/BarlowCondensed-SemiBold.woff2, inlined as data: fonts
+  Copyright:  2017 The Barlow Project Authors (https://github.com/jpt/barlow)
+  Licence:    SIL Open Font License, Version 1.1; full text and copyright line in fonts/OFL-BarlowCondensed.txt.
+
+Share Tech Mono (data typeface of the vector look), unmodified
+  Key:        share-tech-mono
+  File:       fonts/ShareTechMono-Regular.ttf, inlined as a data: font
+  Copyright:  2012 Carrois Type Design, Ralph du Carrois, with Reserved Font Name 'Share'
+  Licence:    SIL Open Font License, Version 1.1; full text and copyright line in fonts/OFL-ShareTechMono.txt.
+
+BUNDLED LIBRARY
+
+three.js r180 (the 3D view's renderer), with its Line2 / LineSegments2 / LineGeometry / LineSegmentsGeometry /
+LineMaterial and Lensflare example modules
+  Key:        three
+  File:       vendor/three-r180.js: build/three.core.min.js and build/three.module.min.js of the three@0.180.0
+              npm package, plus the six example modules named above, combined into one classic script
+              by rewriting only module import and export statements; its @license header kept
+  Copyright:  Copyright © 2010-2025 three.js authors (https://github.com/mrdoob/three.js)
+  Licence:    MIT. The full text and the copyright line are in vendor/LICENSE-three.txt, beside the file.
+  Served:     from the /vendor/ address of the map's own server (or a folder beside a page rendered to disk),
+              loaded on the first entry into the 3D view; never fetched from the network.
+
+xterm.js 6.0.0 (the live terminal in a seat's panel)
+  Key:        xterm
+  File:       vendor/xterm-6.0.0.js and vendor/xterm-6.0.0.css: lib/xterm.js and css/xterm.css of the
+              @xterm/xterm@6.0.0 npm package, unmodified (the server drops the source-map comment and adds the
+              stylesheet when it serves them as one script)
+  Copyright:  Copyright (c) 2017-2019, The xterm.js authors; (c) 2014-2016, SourceLair Private Company;
+              (c) 2012-2013, Christopher Jeffrey (https://github.com/xtermjs/xterm.js)
+  Licence:    MIT. The full text and the copyright lines are in vendor/LICENSE-xterm.txt, beside the files.
+  Served:     from the /vendor/ address of the map's own server, loaded the first time a seat's live terminal
+              opens on the desktop; never fetched from the network.
+
+CODE WRITTEN FROM PERMISSIVE SOURCES (ideas, maths and structure re-written for this tool; credited per entry)
+MIT entries are under "The MIT License" text at the end of this file; the BSD and Zlib texts follow it.
+
+nova-lancer (tanuu5/nova-lancer): hull kit method, staged start-up with the shader compile raced against a
+deadline, deterministic step hooks for tests
+  Key:        nova-lancer
+  Copyright:  Copyright (c) 2026 たぬ
+  Licence:    MIT
+
+nebreck (victorzakharov/nebreck): adaptive render resolution governor, warp tunnel, camera-space edge chevrons,
+nebula skybox
+  Key:        nebreck
+  Copyright:  Copyright (c) 2026 Victor Zakharov
+  Licence:    MIT
+
+threejs-galaxy-shader (amitdigga/threejs-galaxy-shader): the spiral disc shader of the sun
+  Key:        galaxy-shader
+  Copyright:  Copyright 2025 AMIT DIGGA
+  Licence:    MIT
+
+deathstar (jeffotoni/deathstar): ideas for emissive materials and the glow layer
+  Key:        deathstar
+  Copyright:  Copyright (c) 2026 Jefferson Otoni Lima
+  Licence:    MIT
+
+spacekit (typpo/spacekit): particle fades and the pixel test page
+  Key:        spacekit
+  Copyright:  Copyright (c) 2019 Ian Webster
+  Licence:    MIT
+
+Yuka (mugen87/yuka), a subset: offset pursuit for formation flying
+  Key:        yuka
+  Copyright:  Copyright © 2023 Yuka authors
+  Licence:    MIT
+
+cosmos (eluvade/cosmos): layered planet profiles and seeds
+  Key:        cosmos
+  Copyright:  Copyright (c) 2026 Eluvade
+  Licence:    MIT
+
+PixelPlanets (Deep-Fold/PixelPlanets), the upstream of the cosmos planet shaders
+  Key:        deep-fold
+  Copyright:  Copyright (c) 2020 Deep-Fold
+  Licence:    MIT
+
+webgl-crt-shader (gingerbeardman/webgl-crt-shader): the CRT step monitor
+  Key:        webgl-crt
+  Copyright:  Copyright (c) 2025 Matt Sephton @gingerbeardman
+  Licence:    MIT
+
+space-3d (wwwtyro/space-3d): the direction-only nebula
+  Key:        space-3d
+  Copyright:  No copyright line in the upstream Unlicense dedication; author Rye Terrell
+  Licence:    Unlicense (public domain; credited here)
+
+glsl-atmosphere (wwwtyro/glsl-atmosphere): the atmosphere scattering function
+  Key:        glsl-atmosphere
+  Copyright:  No copyright line in the upstream Unlicense dedication; author Rye Terrell
+  Licence:    Unlicense (public domain; credited here)
+
+webgl-noise (ashima/webgl-noise): simplex and classic noise, where a shader uses it
+  Key:        ashima-noise
+  Copyright:  Copyright (C) 2011 by Ashima Arts (Simplex noise);
+              Copyright (C) 2011-2016 by Stefan Gustavson (Classic noise and others)
+  Licence:    MIT
+
+threejs-psx-shader (lferreira457/threejs-psx-shader): vertex snapping and the dithered retro option
+  Key:        psx-shader
+  Copyright:  Copyright (c) 2026 psx-shader contributors
+  Licence:    MIT
+  Upstream:   URP-PSX by Kodrin (MIT) and URP-PSX-FORKED by Math-Man (MIT, Copyright (c) 2020 Codrin-Mihail),
+              Keys urp-psx and urp-psx-forked below
+
+URP-PSX (Kodrin/URP-PSX), upstream of psx-shader
+  Key:        urp-psx
+  Copyright:  Copyright (c) 2020 Codrin-Mihail
+  Licence:    MIT
+
+URP-PSX-FORKED (Math-Man/URP-PSX-FORKED), upstream of psx-shader
+  Key:        urp-psx-forked
+  Copyright:  Copyright (c) 2020 Codrin-Mihail
+  Licence:    MIT
+
+three.quarks (alchemist0823/three.quarks): particle emitter ideas
+  Key:        three-quarks
+  Copyright:  Copyright (c) 2019 Forrest Sun
+  Licence:    MIT
+
+threejs-procedural-planets (dgreenheck/threejs-procedural-planets): five colours and four thresholds per body
+  Key:        procedural-planets
+  Copyright:  Copyright (c) 2023 Daniel Greenheck
+  Licence:    MIT (its noise is ashima-noise above)
+
+postprocessing (pmndrs/postprocessing 6.39.5): portions adapted, altered
+  Key:        postprocessing
+  Copyright:  Copyright © 2015 Raoul van Rüschen
+  Licence:    Zlib (text below). Altered source: this is not the original software.
+
+tsl-textures (boytchev/tsl-textures): the gas giant bands, re-written in JS
+  Key:        tsl-textures
+  Copyright:  Copyright (c) 2024 Pavel Boytchev
+  Licence:    MIT
+
+three-geospatial (takram-design-engineering/three-geospatial): the star field ideas
+  Key:        three-geospatial
+  Copyright:  Copyright (c) 2024 Shota Matsuda
+  Licence:    MIT
+
+instanced-mesh (agargaro/instanced-mesh): per-instance colour, instance picking and hover, re-written on
+THREE.InstancedMesh
+  Key:        instanced-mesh
+  Copyright:  Copyright (c) 2024 Andrea Gargaro
+  Licence:    MIT
+
+space-truckers (jelster/space-truckers): the asteroid belt layout
+  Key:        space-truckers
+  Copyright:  Copyright (c) 2021, Josh Elster
+  Licence:    BSD-3-Clause (text below). The author's name is not used to endorse this tool.
+
+lensflare-threejs-vanilla (ektogamat/lensflare-threejs-vanilla, Anderson Mancini): the flare idea, re-implemented
+  Key:        lensflare-vanilla
+  Copyright:  No copyright line in the upstream CC0 dedication; author Anderson Mancini
+  Licence:    CC0 1.0 Universal (public domain dedication; credited here, no notice required)
+
+IDEAS ONLY (no code, shader or asset taken; named as a courtesy)
+
+  web-flight-simulator: the cockpit drawn in a second pass after the world with the depth cleared (world3d/camera.js)
+  webglite: a radar that places contacts by bearing, and labels that each look for a free row (world3d/hud.js,
+            ui/labels.js)
+  cosmosjourneyer: a moon and its label fading out with the camera's distance to its planet (world3d/space.js)
+
+ORIGINAL WORK
+
+Craft in skins/neutral*.json, sounds synthesised by sfx.py, and generated rocks in world3d/rocks.js
+  Key:        container-map-original
+  Copyright:  container-map authors
+  Licence:    MIT (the project LICENSE). These assets are original work of the container-map authors.
+
+Nothing else is bundled: no other library, script, stylesheet or font, and the page loads nothing from the
+network (the 3D view's two scripts come from the map's own server or from beside the page on disk).
+
+------------------------------------------------------------------------------------------------------------
+The MIT License (applies to every entry above whose Licence is MIT, with that entry's copyright line)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
+THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+------------------------------------------------------------------------------------------------------------
+BSD 3-Clause License (space-truckers), Copyright (c) 2021, Josh Elster. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided
+that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and
+   the following disclaimer in the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or
+   promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+------------------------------------------------------------------------------------------------------------
+zlib License (postprocessing), Copyright © 2015 Raoul van Rüschen
+
+This software is provided 'as-is', without any express or implied warranty. In no event will the authors
+be held liable for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose, including commercial applications,
+and to alter it and redistribute it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not claim that you wrote the original
+   software. If you use this software in a product, an acknowledgment in the product documentation would
+   be appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the
+   original software.
+3. This notice may not be removed or altered from any source distribution.
+
+Public world library and craft
+------------------------------
+The maps in skins/neutral-planets3d/ are generated by the project's own procedural
+baker (pure 3D noise), using fixed public seeds. No third-party art,
+photography, folder identities or downloaded surface maps are used. The manifest
+is grouped by folder kind, with a stable uid hash selecting a variant. The baker
+is a development tool and is not distributed. These generated assets and the
+original flat-hulled cargo skiff craft in skins/neutral-3d.json are covered by this
+project's MIT license. The craft was authored as JSON geometry for this project.

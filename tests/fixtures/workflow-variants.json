@@ -1,0 +1,977 @@
+{
+ "_about": "States of the workflow in workflow-demo.json (FIX), built from it: the FIX_* variants keep FIX's id (the same workflow later or otherwise), BIG is a second workflow. Fields beyond the workflow summary that a variant needs: a task step's task_status (the thread's own status), wait (clear|merged) and check {runner, state running|done, verdict null|PASS|FAIL}; FIX_SHOWS.shows is a /tasks 'shows' list (apply it with applyTasks({tasks, workflows:[FIX_SHOWS], shows:FIX_SHOWS.shows})); a show carries no clock (left_s is what the bridge says is left), so it stays live. probe.py gives every key but this one as an eval/check macro, re-timed so each one's 'updated' is the moment the step runs (FIX_DONE stays 'updated today').",
+ "FIX_DONE": {
+  "id": "w-20261012-0700-fix-the-phone-labels-a1b2c3",
+  "title": "Fix the phone labels",
+  "goal": "Every planet name on the phone readable at 13 px, none cut",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "done",
+  "updated": "2026-10-12T07:14:00Z",
+  "seq": 16,
+  "done": 4,
+  "total": 4,
+  "elapsed_s": 840,
+  "current": [],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "6 labels are cut on the phone",
+    "progress": null,
+    "output": "6 cut labels",
+    "artifact": "cut-labels.txt",
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "task",
+    "state": "done",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "the label slots moved; 6 of 6 names fit",
+    "progress": {
+     "done": 800,
+     "total": 800
+    },
+    "output": "2 files changed",
+    "artifact": null,
+    "tid": "20261012-070100-move-each-planet-name-into-0a1b2c",
+    "attempt": 1,
+    "why": null,
+    "task_status": "merged",
+    "wait": "clear",
+    "check": {
+     "runner": "codex",
+     "state": "done",
+     "verdict": "PASS"
+    }
+   },
+   {
+    "key": "approve",
+    "label": "Look at the phone shots",
+    "kind": "gate",
+    "state": "done",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "fix"
+    ],
+    "says": "approved",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "docs",
+    "label": "Write it up",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "approve"
+    ],
+    "says": "wrote the change up",
+    "progress": null,
+    "output": "CHANGES.md updated",
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   }
+  ]
+ },
+ "FIX_FAILED": {
+  "id": "w-20261012-0700-fix-the-phone-labels-a1b2c3",
+  "title": "Fix the phone labels",
+  "goal": "Every planet name on the phone readable at 13 px, none cut",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "failed",
+  "updated": "2026-10-12T07:12:00Z",
+  "seq": 13,
+  "done": 2,
+  "total": 4,
+  "elapsed_s": 720,
+  "current": [],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "6 labels are cut on the phone",
+    "progress": null,
+    "output": "6 cut labels",
+    "artifact": "cut-labels.txt",
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "task",
+    "state": "done",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "the label slots moved",
+    "progress": {
+     "done": 800,
+     "total": 800
+    },
+    "output": "2 files changed",
+    "artifact": null,
+    "tid": "20261012-070100-move-each-planet-name-into-0a1b2c",
+    "attempt": 1,
+    "why": null
+   },
+   {
+    "key": "approve",
+    "label": "Look at the phone shots",
+    "kind": "gate",
+    "state": "failed",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "fix"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": "tests failed"
+   },
+   {
+    "key": "docs",
+    "label": "Write it up",
+    "kind": "note",
+    "state": "blocked",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "approve"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": "won't start: 'Look at the phone shots' failed"
+   }
+  ]
+ },
+ "FIX_PLANNED": {
+  "id": "w-20261012-0700-fix-the-phone-labels-a1b2c3",
+  "title": "Fix the phone labels",
+  "goal": "Every planet name on the phone readable at 13 px, none cut",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "planned",
+  "updated": "2026-10-12T06:58:00Z",
+  "seq": 1,
+  "done": 0,
+  "total": 4,
+  "elapsed_s": 0,
+  "current": [],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "waiting",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "task",
+    "state": "waiting",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "approve",
+    "label": "Look at the phone shots",
+    "kind": "gate",
+    "state": "waiting",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "fix"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "docs",
+    "label": "Write it up",
+    "kind": "note",
+    "state": "waiting",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "approve"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   }
+  ]
+ },
+ "FIX_GATE": {
+  "id": "w-20261012-0700-fix-the-phone-labels-a1b2c3",
+  "title": "Fix the phone labels",
+  "goal": "Every planet name on the phone readable at 13 px, none cut",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "needs_you",
+  "updated": "2026-10-12T07:07:00Z",
+  "seq": 9,
+  "done": 1,
+  "total": 4,
+  "elapsed_s": 420,
+  "current": [
+   "fix"
+  ],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "6 labels are cut on the phone",
+    "progress": null,
+    "output": "6 cut labels",
+    "artifact": "cut-labels.txt",
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "gate",
+    "state": "needs_you",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "approve",
+    "label": "Look at the phone shots",
+    "kind": "gate",
+    "state": "waiting",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "fix"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "docs",
+    "label": "Write it up",
+    "kind": "note",
+    "state": "waiting",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "approve"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   }
+  ]
+ },
+ "FIX_MERGE": {
+  "id": "w-20261012-0700-fix-the-phone-labels-a1b2c3",
+  "title": "Fix the phone labels",
+  "goal": "Every planet name on the phone readable at 13 px, none cut",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "needs_you",
+  "updated": "2026-10-12T07:10:00Z",
+  "seq": 11,
+  "done": 1,
+  "total": 4,
+  "elapsed_s": 600,
+  "current": [
+   "fix"
+  ],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "6 labels are cut on the phone",
+    "progress": null,
+    "output": "6 cut labels",
+    "artifact": "cut-labels.txt",
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "task",
+    "state": "needs_you",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "the label slots moved",
+    "progress": {
+     "done": 800,
+     "total": 800
+    },
+    "output": "2 files changed",
+    "artifact": null,
+    "tid": "20261012-070100-move-each-planet-name-into-0a1b2c",
+    "attempt": 1,
+    "why": "accept changes to continue",
+    "task_status": "review",
+    "wait": "merged"
+   },
+   {
+    "key": "approve",
+    "label": "Look at the phone shots",
+    "kind": "gate",
+    "state": "waiting",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "fix"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "docs",
+    "label": "Write it up",
+    "kind": "note",
+    "state": "waiting",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "approve"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   }
+  ]
+ },
+ "FIX_ART": {
+  "id": "w-20261012-0700-fix-the-phone-labels-a1b2c3",
+  "title": "Fix the phone labels",
+  "goal": "Every planet name on the phone readable at 13 px, none cut",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "working",
+  "updated": "2026-10-12T07:07:00Z",
+  "seq": 9,
+  "done": 1,
+  "total": 4,
+  "elapsed_s": 420,
+  "current": [
+   "fix"
+  ],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "6 labels are cut on the phone",
+    "progress": null,
+    "output": "report.md: 6 cut labels",
+    "artifact": "report.md",
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "task",
+    "state": "working",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "moving the name slots",
+    "progress": {
+     "done": 120,
+     "total": 800
+    },
+    "output": null,
+    "artifact": null,
+    "tid": "20261012-070100-move-each-planet-name-into-0a1b2c",
+    "attempt": 1,
+    "why": null
+   },
+   {
+    "key": "approve",
+    "label": "Look at the phone shots",
+    "kind": "gate",
+    "state": "waiting",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "fix"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "docs",
+    "label": "Write it up",
+    "kind": "note",
+    "state": "waiting",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "approve"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   }
+  ]
+ },
+ "FIX_CHECK": {
+  "id": "w-20261012-0700-fix-the-phone-labels-a1b2c3",
+  "title": "Fix the phone labels",
+  "goal": "Every planet name on the phone readable at 13 px, none cut",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "working",
+  "updated": "2026-10-12T07:09:00Z",
+  "seq": 10,
+  "done": 1,
+  "total": 4,
+  "elapsed_s": 540,
+  "current": [
+   "fix"
+  ],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "6 labels are cut on the phone",
+    "progress": null,
+    "output": "6 cut labels",
+    "artifact": "cut-labels.txt",
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "task",
+    "state": "working",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "a second opinion is reading the changes",
+    "progress": {
+     "done": 800,
+     "total": 800
+    },
+    "output": null,
+    "artifact": null,
+    "tid": "20261012-070100-move-each-planet-name-into-0a1b2c",
+    "attempt": 1,
+    "why": null,
+    "task_status": "checking",
+    "wait": "clear",
+    "check": {
+     "runner": "codex",
+     "state": "running",
+     "verdict": null
+    }
+   },
+   {
+    "key": "approve",
+    "label": "Look at the phone shots",
+    "kind": "gate",
+    "state": "waiting",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "fix"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "docs",
+    "label": "Write it up",
+    "kind": "note",
+    "state": "waiting",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "approve"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   }
+  ]
+ },
+ "FIX_SHOWS": {
+  "id": "w-20261012-0700-fix-the-phone-labels-a1b2c3",
+  "title": "Fix the phone labels",
+  "goal": "Every planet name on the phone readable at 13 px, none cut",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "working",
+  "updated": "2026-10-12T07:07:00Z",
+  "seq": 9,
+  "done": 1,
+  "total": 4,
+  "elapsed_s": 420,
+  "current": [
+   "fix"
+  ],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "6 labels are cut on the phone",
+    "progress": null,
+    "output": "6 cut labels",
+    "artifact": "cut-labels.txt",
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "task",
+    "state": "working",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "moving the name slots",
+    "progress": {
+     "done": 120,
+     "total": 800
+    },
+    "output": null,
+    "artifact": null,
+    "tid": "20261012-070100-move-each-planet-name-into-0a1b2c",
+    "attempt": 1,
+    "why": null
+   },
+   {
+    "key": "approve",
+    "label": "Look at the phone shots",
+    "kind": "gate",
+    "state": "waiting",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "fix"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "docs",
+    "label": "Write it up",
+    "kind": "note",
+    "state": "waiting",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "approve"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   }
+  ],
+  "shows": [
+   {
+    "id": "s-20261012-0705-ops-label-check-d4e5f6",
+    "by": "Claude Code",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "ttl_s": 300,
+    "left_s": 240,
+    "ops": [
+     {
+      "op": "card",
+      "title": "Label check",
+      "rows": [
+       [
+        "cut",
+        "6"
+       ],
+       [
+        "fixed",
+        "2"
+       ],
+       [
+        "left",
+        "4"
+       ]
+      ],
+      "text": "two of the six cut names fit their slot now",
+      "bar": [
+       2,
+       6
+      ]
+     },
+     {
+      "op": "chart",
+      "label": "label overlaps",
+      "values": [
+       9,
+       4,
+       0
+      ],
+      "unit": "",
+      "kind": "bars"
+     }
+    ]
+   }
+  ]
+ },
+ "BIG": {
+  "id": "w-20261012-0640-ship-the-phone-labels-d4e5f6",
+  "title": "Ship the phone labels",
+  "goal": "The new label slots on every screen, written up, the table rebuilt and the site updated",
+  "by": {
+   "name": "Claude Code",
+   "seat": null
+  },
+  "state": "working",
+  "updated": "2026-10-12T07:06:00Z",
+  "seq": 12,
+  "done": 2,
+  "total": 6,
+  "elapsed_s": 1560,
+  "current": [
+   "guide"
+  ],
+  "sentence": "",
+  "steps": [
+   {
+    "key": "find",
+    "label": "Find the cut labels",
+    "kind": "note",
+    "state": "done",
+    "planet_uid": "area:api",
+    "moon_uid": null,
+    "place": "api",
+    "after": [],
+    "says": "6 labels are cut on the phone",
+    "progress": null,
+    "output": "6 cut labels",
+    "artifact": "cut-labels.txt",
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "fix",
+    "label": "Fix the label slots",
+    "kind": "task",
+    "state": "done",
+    "planet_uid": "area:ops",
+    "moon_uid": null,
+    "place": "ops",
+    "after": [
+     "find"
+    ],
+    "says": "the label slots moved",
+    "progress": {
+     "done": 800,
+     "total": 800
+    },
+    "output": "2 files changed",
+    "artifact": null,
+    "tid": "20261012-064500-move-each-planet-name-into-9f8e7d",
+    "attempt": 1,
+    "why": null
+   },
+   {
+    "key": "guide",
+    "label": "Write the label guide",
+    "kind": "note",
+    "state": "working",
+    "planet_uid": "area:docs",
+    "moon_uid": null,
+    "place": "docs",
+    "after": [
+     "fix"
+    ],
+    "says": "writing the slot rules",
+    "progress": {
+     "done": 2,
+     "total": 5
+    },
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "table",
+    "label": "Rebuild the label table",
+    "kind": "task",
+    "state": "waiting",
+    "planet_uid": "area:data",
+    "moon_uid": null,
+    "place": "data",
+    "after": [
+     "guide"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "site",
+    "label": "Update the site pages",
+    "kind": "note",
+    "state": "waiting",
+    "planet_uid": "area:site",
+    "moon_uid": null,
+    "place": "site",
+    "after": [
+     "table"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   },
+   {
+    "key": "release",
+    "label": "Look at the release",
+    "kind": "gate",
+    "state": "waiting",
+    "planet_uid": "area:infra",
+    "moon_uid": null,
+    "place": "infra",
+    "after": [
+     "site"
+    ],
+    "says": "",
+    "progress": null,
+    "output": null,
+    "artifact": null,
+    "tid": null,
+    "attempt": 0,
+    "why": null
+   }
+  ]
+ }
+}

@@ -1,0 +1,176 @@
+{
+  "name": "synthwave",
+  "mood": "Neon magenta and cyan on near-black: grid-line cities, banded suns, delta-wing craft, halos turned up.",
+  "ui": {
+    "bg": "#080a17",
+    "panel": "#151329",
+    "border": "#59379c",
+    "text": "#f1ecff",
+    "muted": "#9c93b9",
+    "accent": "#ff43d4",
+    "danger": "#ff4f79",
+    "ok": "#24efc9",
+    "plate": "#0b0a1a",
+    "focus": "#ffe45c"
+  },
+  "space": {
+    "base": "#06030f",
+    "nebula": ["#27114b", "#681155", "#123965"],
+    "stars": ["#8bf7ff", "#ff9ee9", "#ffe36e", "#c9b8ff"],
+    "scanlines": false,
+    "glow": 0.95
+  },
+  "style": {
+    "city": {"a": "#2a155d", "b": "#e735b9", "c": "#b6ffff", "d": "#ffdc73", "glow": "#ff43d4"},
+    "ocean": {"a": "#0d335c", "b": "#17a9bb", "c": "#afffff", "d": "#bb3bff", "glow": "#21e9ff"},
+    "desert": {"a": "#713054", "b": "#ef6b86", "c": "#fff0bf", "d": "#ffb447", "glow": "#ff6edb"},
+    "ice": {"a": "#283776", "b": "#668bfa", "c": "#dcffff", "d": "#ef72ed", "glow": "#67ecff"},
+    "toxic": {"a": "#183c47", "b": "#46d98b", "c": "#d4ff97", "d": "#ffcf56", "glow": "#59ffa9"},
+    "blight": {"a": "#43125f", "b": "#bf33e2", "c": "#ffbbff", "d": "#45ffe1", "glow": "#e747ff"},
+    "gas": {"a": "#4a216d", "b": "#bb64c5", "c": "#ffe1fb", "d": "#5dc9ff", "glow": "#c873ff"},
+    "rock": {"a": "#292a51", "b": "#666696", "c": "#cad2ff", "d": "#f275bd", "glow": "#8074df"},
+    "belt": {"a": "#241939", "b": "#77608d", "c": "#e2bfff", "d": "#38d8ed", "glow": "#ae66ff"},
+    "star": {"a": "#923048", "b": "#ff7863", "c": "#fff6bc", "d": "#ffcf52", "glow": "#ffae49"},
+    "station": {"a": "#17375a", "b": "#4a91ca", "c": "#dcfdff", "d": "#ff40d1", "glow": "#55d8ff"}
+  },
+  "tiles": {
+    "city": [
+      "dddddddd",
+      "dbbbbbbb",
+      "dbccbbbb",
+      "dbccbbbb",
+      "dbbbbbbb",
+      "dbbbbccb",
+      "dbbbbccb",
+      "dbbbbbbb"
+    ],
+    "ocean": [
+      "bbbbbbbb",
+      "bddbbbbb",
+      "bbbbbbbb",
+      "bbbbbddb",
+      "bbbbbbbb",
+      "bbbbbbbb",
+      "ddbbbbbb",
+      "bbbbbbbb"
+    ],
+    "desert": [
+      "cccccccc",
+      "cccccccc",
+      "bbbbbbbb",
+      "cccccccc",
+      "bbbbbbbb",
+      "bbbbbbbb",
+      "cccccccc",
+      "bbbbbbbb"
+    ],
+    "ice": [
+      "bbbdbbbb",
+      "bbdedbbb",
+      "bbbdbbbb",
+      "bbbbbbbb",
+      "bbbbbbdb",
+      "bbbbbded",
+      "bbbbbbdb",
+      "bbbbbbbb"
+    ],
+    "toxic": [
+      "bdbdbdbd",
+      "dbdbdbdb",
+      "bdbdbdbd",
+      "dbdbdbdb",
+      "bdbdbdbd",
+      "dbdbdbdb",
+      "bdbdbdbd",
+      "dbdbdbdb"
+    ],
+    "blight": [
+      "ccbbccbb",
+      "cbbccbbc",
+      "bbccbbcc",
+      "bccbbccb",
+      "ccbbccbb",
+      "cbbccbbc",
+      "bbccbbcc",
+      "bccbbccb"
+    ],
+    "gas": [
+      "bbbbbbbb",
+      "cccccccc",
+      "bbbbbbbb",
+      "dddddddd",
+      "bbbbbbbb",
+      "cccccccc",
+      "bbbbbbbb",
+      "dddddddd"
+    ],
+    "rock": [
+      "bbabbbab",
+      "babbabbb",
+      "bbbbbcbb",
+      "abbbbbab",
+      "bbbabbbb",
+      "bcbbbabb",
+      "bbbbabbb",
+      "abbbbbbb"
+    ]
+  },
+  "tile_palette": {"a": "#080a17", "b": "#392660", "c": "#d738c3", "d": "#20d9e6", "e": "#f2e9ff"},
+  "sprites": {
+    "fighter": [
+      "....a....",
+      "....h....",
+      "...hch...",
+      "...hmh...",
+      "..hhmhh..",
+      ".hhhmhhh.",
+      "ahhdmdhha",
+      "a.hd.dh.a",
+      "...e.e..."
+    ],
+    "cargo": [
+      "..hhh..",
+      ".hmmmh.",
+      ".hmdmh.",
+      "ddddddd",
+      "dxxxxxd",
+      "dXXXXXd",
+      "ddddddd",
+      "dyyyyyd",
+      "dYYYYYd",
+      "ddddddd",
+      ".hmmmh.",
+      ".d...d.",
+      ".e...e."
+    ],
+    "drone": [
+      "r.....r",
+      ".d.h.d.",
+      "..hmh..",
+      "h.mam.h",
+      "..hmh..",
+      ".d.h.d.",
+      "r.....r"
+    ]
+  },
+  "sprite_palette": {
+    "h": "#d738c3",
+    "m": "#7a47c9",
+    "d": "#20d9e6",
+    "c": "#f2e9ff",
+    "r": "#20d9e6",
+    "p": "#20d9e6",
+    "P": "#7a47c9",
+    "x": "#d738c3",
+    "X": "#7a47c9",
+    "y": "#20d9e6",
+    "Y": "#1a7fa6",
+    "o": "#10062a",
+    "b": "#20d9e6",
+    "B": "#f2e9ff",
+    "R": "#ff3d8b",
+    "g": "#ffffff",
+    "k": "#2a0a4a",
+    "K": "#ff2d95"
+  }
+}

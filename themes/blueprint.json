@@ -1,0 +1,176 @@
+{
+  "name": "blueprint",
+  "mood": "Drafting paper and blue ink: hatched planets, graph-paper cities, outlined craft, no glow at all.",
+  "ui": {
+    "bg": "#f3eee2",
+    "panel": "#e8e1d0",
+    "border": "#7d93ab",
+    "text": "#142840",
+    "muted": "#425870",
+    "accent": "#1a5ea8",
+    "danger": "#b3261e",
+    "ok": "#1d6b43",
+    "plate": "#fbf8f1",
+    "focus": "#c2410c"
+  },
+  "space": {
+    "base": "#efe9dc",
+    "nebula": ["#c9d7e3", "#e2d8bf", "#c2d2df"],
+    "stars": ["#31577e", "#7993ad"],
+    "scanlines": false,
+    "glow": 0.0
+  },
+  "style": {
+    "city": {"a": "#b1c4d5", "b": "#254f7a", "c": "#fffdf7", "d": "#7895af", "glow": "#f4efdf"},
+    "ocean": {"a": "#96b5ca", "b": "#1e5a87", "c": "#fffdf7", "d": "#759cb6", "glow": "#f4efdf"},
+    "desert": {"a": "#c8b994", "b": "#365675", "c": "#fffdf7", "d": "#98a0a4", "glow": "#f4efdf"},
+    "ice": {"a": "#b1cbd2", "b": "#386c87", "c": "#fffdf7", "d": "#89a6b8", "glow": "#f4efdf"},
+    "toxic": {"a": "#a7bdc1", "b": "#27586c", "c": "#fffdf7", "d": "#7e98a6", "glow": "#f4efdf"},
+    "blight": {"a": "#adb5c9", "b": "#354875", "c": "#fffdf7", "d": "#8492a6", "glow": "#f4efdf"},
+    "gas": {"a": "#adbfcd", "b": "#365779", "c": "#fffdf7", "d": "#819aad", "glow": "#f4efdf"},
+    "rock": {"a": "#b4b7b1", "b": "#33485d", "c": "#fffdf7", "d": "#8a9298", "glow": "#f4efdf"},
+    "belt": {"a": "#9dabb8", "b": "#263e59", "c": "#fffdf7", "d": "#7e8d9b", "glow": "#f4efdf"},
+    "star": {"a": "#e8d8a8", "b": "#7a5a18", "c": "#fffdf7", "d": "#c9a24a", "glow": "#f4efdf"},
+    "station": {"a": "#9fb9cd", "b": "#173e68", "c": "#fffdf7", "d": "#7393b1", "glow": "#f4efdf"}
+  },
+  "tiles": {
+    "city": [
+      "bbbbbbbb",
+      "baaaaaaa",
+      "baccaaaa",
+      "baccaaaa",
+      "baaaaaaa",
+      "baaaaccc",
+      "baaaaccc",
+      "baaaaaaa"
+    ],
+    "ocean": [
+      "aabbaaaa",
+      "abaabaaa",
+      "baaaabaa",
+      "aaaaaabb",
+      "aaaabbaa",
+      "aaabaaba",
+      "bbaaaaab",
+      "aabaaaaa"
+    ],
+    "desert": [
+      "abaaabaa",
+      "aaaaaaaa",
+      "aaabaaab",
+      "aaaaaaaa",
+      "baaabaaa",
+      "aaaaaaaa",
+      "aabaaaba",
+      "aaaaaaaa"
+    ],
+    "ice": [
+      "caaacaaa",
+      "acaaacaa",
+      "aacaaaca",
+      "aaacaaac",
+      "caaacaaa",
+      "acaaacaa",
+      "aacaaaca",
+      "aaacaaac"
+    ],
+    "toxic": [
+      "bbaabbaa",
+      "baabbaab",
+      "aabbaabb",
+      "abbaabba",
+      "bbaabbaa",
+      "baabbaab",
+      "aabbaabb",
+      "abbaabba"
+    ],
+    "blight": [
+      "dbdbdbdb",
+      "bdbdbdbd",
+      "dbdbdbdb",
+      "bdbdbdbd",
+      "dbdbdbdb",
+      "bdbdbdbd",
+      "dbdbdbdb",
+      "bdbdbdbd"
+    ],
+    "gas": [
+      "aaaaaaaa",
+      "cccccccc",
+      "aaaaaaaa",
+      "bbbbbbbb",
+      "aaaaaaaa",
+      "cccccccc",
+      "aaaaaaaa",
+      "bbbbbbbb"
+    ],
+    "rock": [
+      "baaabaaa",
+      "abaabaab",
+      "aabbaaba",
+      "aaabbaaa",
+      "baaabaaa",
+      "abaabaab",
+      "aabbaaba",
+      "aaabbaaa"
+    ]
+  },
+  "tile_palette": {"a": "#efe8d6", "b": "#1f4a7a", "c": "#8fb0d0", "d": "#12263f", "e": "#d6cdb4"},
+  "sprites": {
+    "fighter": [
+      "....d....",
+      "...dhd...",
+      "...dcd...",
+      "..dhhhd..",
+      "a.dhmhd.a",
+      "adhhmhhda",
+      "adhdmdhda",
+      "a.dd.dd.a",
+      "...e.e..."
+    ],
+    "cargo": [
+      "..ddd..",
+      ".dhhhd.",
+      ".dhmhd.",
+      "ddddddd",
+      "dxxxxxd",
+      "dXXXXXd",
+      "ddddddd",
+      "dyyyyyd",
+      "dYYYYYd",
+      "ddddddd",
+      ".dhmhd.",
+      ".d...d.",
+      ".e...e."
+    ],
+    "drone": [
+      "r.....r",
+      ".d...d.",
+      "..dhd..",
+      "..dad..",
+      "..dhd..",
+      ".d...d.",
+      "r.....r"
+    ]
+  },
+  "sprite_palette": {
+    "h": "#f7f2e6",
+    "m": "#8fb0d0",
+    "d": "#12263f",
+    "c": "#1a5ea8",
+    "r": "#12263f",
+    "p": "#8fb0d0",
+    "P": "#12263f",
+    "x": "#8fb0d0",
+    "X": "#1f4a7a",
+    "y": "#e6dcc0",
+    "Y": "#7d93ab",
+    "o": "#12263f",
+    "b": "#1a5ea8",
+    "B": "#8fb0d0",
+    "R": "#b03a3a",
+    "g": "#ffffff",
+    "k": "#12263f",
+    "K": "#a8483f"
+  }
+}

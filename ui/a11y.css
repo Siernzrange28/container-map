@@ -1,0 +1,12 @@
+/* ui/a11y.css — the off-screen list mirror of the map and the live region.
+   Joins the end of the page's main stylesheet (render-game.py, the seams), before the theme rewriter: a hex colour
+   here becomes a theme variable like the rest of that sheet; one written as rgb() stays as it is. */
+/* off screen until the keyboard is in it: then the list shows as a small panel at the map's top left, so a sighted keyboard
+   user sees where the focus is (the map behind it does not move) */
+.srlive,#a11ymap{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#a11ymap:focus-within{z-index:41;left:16px;top:16px;width:340px;height:auto;max-height:calc(100vh - 140px);overflow-y:auto;clip-path:none;white-space:normal;
+  padding:8px;border-radius:12px;background:rgb(11,18,32);border:1px solid rgb(34,48,74);box-shadow:0 12px 40px rgba(0,0,0,.6);
+  font:500 var(--cm-15)/1.35 "Barlow Condensed","Arial Narrow",sans-serif;color:rgb(232,238,246)}
+#a11ymap [role=listitem]{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px}
+#a11ymap [role=listitem]:focus{outline:2px solid rgb(232,238,246);outline-offset:-2px;background:rgba(255,255,255,.06)}
+#a11ymap button{margin-left:auto;height:26px;padding:0 10px;border-radius:7px;border:1px solid rgb(52,68,94);background:none;color:rgb(232,238,246);font:600 var(--cm-13)/1 "Barlow Condensed",sans-serif;cursor:pointer}

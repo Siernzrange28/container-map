@@ -1,0 +1,13 @@
+{
+  "name": "new-verb",
+  "label": "ask a runner to write a new verb",
+  "applies": [
+    "any"
+  ],
+  "runner": "*",
+  "text": true,
+  "cwd": "target",
+  "max_minutes": 20,
+  "desc": "the map grows its own tools: a runner writes ONE manifest into the verbs dir; the next render offers it here",
+  "prompt": "You are adding ONE verb to a container map (a HUD over a directory tree). The owner asked, about {path}: {text}. Write exactly one JSON manifest to {verbs_dir}/<name>.json with fields: name (a-z0-9-, equal to the file name), label, applies (list from: any, area, dir, file, seat, machine), desc, and EITHER cmd (an argv list; {path} {name} {text} are substituted; cwd is the target directory) with max_minutes, OR runner (a runner name or *) with prompt (may use {path} {text} {verbs_dir}). Rules: the verb must run a real command that exists on this machine and print its own evidence; never delete anything (move to an _attic dir instead); no network unless the owner asked; do not touch any other file. After writing, run: python3 -c \"import sys; sys.path.insert(0,'{tool}'); import verbs; v,e=verbs.load('{verbs_dir}'); print(sorted(v), e)\" and make sure your file is listed with no errors. Report the file path and the command it runs."
+}

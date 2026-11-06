@@ -1,0 +1,191 @@
+{
+  "name": "earthen",
+  "mood": "Warm dirt, mossy grass and worn stone: chunky hand-built worlds and wooden spacecraft under a dusty night sky.",
+  "ui": {
+    "bg": "#1b130b",
+    "panel": "#2a1c0f",
+    "border": "#6e4b2a",
+    "text": "#ebd5b3",
+    "muted": "#b9a585",
+    "accent": "#e3a63a",
+    "danger": "#d4553a",
+    "ok": "#8fbc54",
+    "plate": "#150e07",
+    "focus": "#ffd27a"
+  },
+  "space": {
+    "base": "#140d08",
+    "nebula": ["#33200e", "#1d2c17", "#3d1c13"],
+    "stars": ["#eddcaa", "#e3a63a", "#b6c8a2", "#e07a62"],
+    "scanlines": false,
+    "glow": 0.25
+  },
+  "style": {
+    "city": {"a": "#5b5449", "b": "#879c60", "c": "#f2e6c8", "d": "#d89548", "glow": "#ad9c67"},
+    "ocean": {"a": "#284e54", "b": "#4d847a", "c": "#c9dec0", "d": "#9aa96c", "glow": "#619c8b"},
+    "desert": {"a": "#805436", "b": "#bb8c50", "c": "#edce8c", "d": "#5d392c", "glow": "#c49a5b"},
+    "ice": {"a": "#4f6e70", "b": "#90aca5", "c": "#e9eee0", "d": "#738a91", "glow": "#9abdb2"},
+    "toxic": {"a": "#435533", "b": "#82943d", "c": "#dfe69a", "d": "#baab48", "glow": "#92a957"},
+    "blight": {"a": "#6a2622", "b": "#3a1a18", "c": "#e07a62", "d": "#89964b", "glow": "#c24a3a"},
+    "gas": {"a": "#725746", "b": "#b58a62", "c": "#efcfaa", "d": "#855a68", "glow": "#c9a275"},
+    "rock": {"a": "#4b4640", "b": "#82796b", "c": "#c9c2aa", "d": "#b08a5e", "glow": "#938979"},
+    "belt": {"a": "#393c32", "b": "#73785d", "c": "#c1c5a1", "d": "#a07949", "glow": "#858d68"},
+    "star": {"a": "#ad5b2c", "b": "#e39e46", "c": "#fff0ba", "d": "#f9cb65", "glow": "#e6b65c"},
+    "station": {"a": "#484b43", "b": "#848d76", "c": "#e0dec6", "d": "#bc924f", "glow": "#a0ab8a"}
+  },
+  "sectors": {
+    "runner": {"floor": "#362412", "floor2": "#412b14", "grid": "#704920", "accent": "#d98a3a", "glow": "#d98a3a", "ink": "#e6c295"},
+    "seat": {"floor": "#262823", "floor2": "#2b312d", "grid": "#3f5657", "accent": "#6aa8b4", "glow": "#6aa8b4", "ink": "#cbcab3"},
+    "channel": {"floor": "#262313", "floor2": "#2a2916", "grid": "#3d4525", "accent": "#678344", "glow": "#678344", "ink": "#cac097"},
+    "machine": {"floor": "#372812", "floor2": "#433014", "grid": "#755520", "accent": "#e3a63a", "glow": "#e3a63a", "ink": "#e9c995"},
+    "room": {"floor": "#30261a", "floor2": "#392e20", "grid": "#5f503a", "accent": "#b29a74", "glow": "#b29a74", "ink": "#ddc6a3"},
+    "code": {"floor": "#262313", "floor2": "#2a2916", "grid": "#3d4525", "accent": "#678344", "glow": "#678344", "ink": "#cac097"},
+    "knowledge": {"floor": "#22231b", "floor2": "#252a21", "grid": "#32463d", "accent": "#4d847a", "glow": "#4d847a", "ink": "#c4c1a5"},
+    "bus": {"floor": "#2b1d21", "floor2": "#31212a", "grid": "#4d3352", "accent": "#8a5aa8", "glow": "#8a5aa8", "ink": "#d3b6b0"},
+    "archive": {"floor": "#2e2315", "floor2": "#37291a", "grid": "#59452c", "accent": "#a58254", "glow": "#a58254", "ink": "#dac09b"},
+    "reference": {"floor": "#331c12", "floor2": "#3d2014", "grid": "#673120", "accent": "#c4553a", "glow": "#c4553a", "ink": "#e1b595"},
+    "shared": {"floor": "#2b2a22", "floor2": "#32332b", "grid": "#4f5c54", "accent": "#8fb5ad", "glow": "#8fb5ad", "ink": "#d4cdb2"},
+    "config": {"floor": "#30261a", "floor2": "#392e20", "grid": "#5f503a", "accent": "#b29a74", "glow": "#b29a74", "ink": "#ddc6a3"},
+    "unknown": {"floor": "#351c12", "floor2": "#402014", "grid": "#6e3120", "accent": "#d4553a", "glow": "#d4553a", "ink": "#e5b595"}
+  },
+  "tiles": {
+    "city": [
+      "bbbabbba",
+      "bcbabcba",
+      "bbbabbba",
+      "aaadaaaa",
+      "babbbabb",
+      "bacbbacb",
+      "babbbabb",
+      "aaaaadaa"
+    ],
+    "ocean": [
+      "eeeeeeee",
+      "egggeeee",
+      "eeeeeeee",
+      "eeeeeggg",
+      "eeeeeeee",
+      "gggeeeee",
+      "eeeeeeee",
+      "eeegggee"
+    ],
+    "desert": [
+      "ffcccbff",
+      "fffcccbf",
+      "ffffcccb",
+      "bffffccc",
+      "cbffffcc",
+      "ccbffffc",
+      "cccbffff",
+      "fcccbfff"
+    ],
+    "ice": [
+      "gfffgfff",
+      "fgfffgff",
+      "ffgfffgf",
+      "fffgfffg",
+      "gfffgfff",
+      "fgfffgff",
+      "ffgfegfg",
+      "fffgfffg"
+    ],
+    "toxic": [
+      "dddadddd",
+      "ddaabddd",
+      "dddaddfd",
+      "dddddddd",
+      "dfdddadd",
+      "ddddaabd",
+      "dddddadd",
+      "dddddddd"
+    ],
+    "blight": [
+      "hhhahhhh",
+      "hhahhhch",
+      "hahhhhhh",
+      "ahhhhhhh",
+      "hhhhhhha",
+      "hchhhhah",
+      "hhhhhahh",
+      "hhhhahhh"
+    ],
+    "gas": [
+      "ccccccfc",
+      "bbbbbbbb",
+      "ccccfccc",
+      "cfcccccc",
+      "ffffffff",
+      "cccccfcc",
+      "bbbbbbbb",
+      "ccfccccc"
+    ],
+    "rock": [
+      "bbbbbabb",
+      "bcbbaabb",
+      "bbbaabcb",
+      "bbaabbbb",
+      "bbbbbbbb",
+      "abbcbbbb",
+      "bbbbbaab",
+      "bcbbbbab"
+    ]
+  },
+  "tile_palette": {"a": "#2d251e", "b": "#6c4e35", "c": "#a58254", "d": "#678344", "e": "#4d847a", "f": "#dfd5ac", "g": "#8fb5ad", "h": "#8c2f2a"},
+  "sprites": {
+    "fighter": [
+      "...hhh...",
+      "...hch...",
+      "..hhmhh..",
+      "hhhhmhhhh",
+      "hmdhmhdmh",
+      "a.dhmhd.a",
+      "a.ddmdd.a",
+      "a..dmd..a",
+      "...e.e..."
+    ],
+    "cargo": [
+      "..hhh..",
+      ".hmmmh.",
+      "hmdddmh",
+      "dddddmd",
+      "dxxxxxd",
+      "dXXXXXd",
+      "ddddddd",
+      "dyyyyyd",
+      "dYYYYYd",
+      "ddddddd",
+      "hmmmmmh",
+      ".d...d.",
+      ".e...e."
+    ],
+    "drone": [
+      "r..d..r",
+      ".r.hh.r",
+      "..hmmh.",
+      "d.mam.d",
+      "..hmmh.",
+      ".r.dd.r",
+      "r..d..r"
+    ]
+  },
+  "sprite_palette": {
+    "h": "#d9b36c",
+    "m": "#9a6b3a",
+    "d": "#5a3a1e",
+    "c": "#8fb5ad",
+    "r": "#dfd5ac",
+    "p": "#8a5a2e",
+    "P": "#5a3a1e",
+    "x": "#a58254",
+    "X": "#6c4e35",
+    "y": "#678344",
+    "Y": "#3f5a2a",
+    "o": "#2a1a0c",
+    "b": "#3f6f8a",
+    "B": "#9fd0d8",
+    "R": "#c8452e",
+    "g": "#fff0c0",
+    "k": "#2e1a14",
+    "K": "#9a3a22"
+  }
+}

@@ -1,0 +1,397 @@
+/* ui/phone.css — the phone and tablet layer, html.m / html.t.
+   Joins the end of the page's main stylesheet (render-game.py, the seams), before the theme rewriter: a hex colour
+   here becomes a theme variable like the rest of that sheet; one written as rgb() stays as it is.
+   The look of the phone and desktop Today pages (base
+   #05070d, panels #0b1220, hairlines #22304a, text #e8eef6 / #9aa8bc / #7f8da2; colour is state only: red #ff5a5f,
+   amber #ffb547, cyan #6fb7ff, green #4ade80, grey #6b7684; Barlow Condensed for words, Silkscreen for big numerals).
+   Sizes and places apply in every palette; colours are kept off the mono palette (body.gb), whose four greens the
+   main sheet's phone block sets. */
+
+/* ==== the phone's chrome over the map ==== */
+html.m #hud h1,html.m #hud .sc,html.m #ticker,html.m #quick{display:none}
+html.m body:not([data-tab=map]) #hud,html.m body.m-full #hud,html.m body.m-comp #hud{display:none}   /* the top line belongs to the map */
+html.m #hud #mline{display:flex;align-items:center;gap:6px;flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap}
+html.m #hud #mline .mc{display:inline-flex;align-items:baseline;gap:6px;min-height:44px;align-items:center;padding:0;background:none;border:0;box-shadow:none;
+  font-weight:600;font-size:15px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.005em;cursor:pointer}
+html.m #hud #mline .mc b{font-weight:400;font-size:16px;line-height:1;font-family:"Silkscreen",monospace;position:relative;top:1px}
+html.m #hud #mline i{font-style:normal;margin:0 2px}
+html.m #hud #mline.t1{gap:4px}
+html.m #hud #mline.t1 .mc{font-size:14px;gap:5px}
+html.m #hud #mline.t1 i{margin:0}
+html.m #hud #mline.t2{gap:9px}
+html.m #hud #mline.t2 .mc{font-size:13px;gap:4px}
+html.m #hud #mline.t2 i{display:none}
+html.m #hud #mline.t3{flex-wrap:wrap;white-space:normal;gap:0 8px;line-height:1}   /* four-digit counts: two short lines, never under More */
+html.m #hud #mline.t3 .mc{min-height:20px;font-size:13px;gap:4px}
+html.m #hud #mline.t3 .mc b{font-size:14px}
+html.m #hud #mline.t3 i{display:none}
+html.m #hud #mline .mc0{font-weight:600;font-size:15px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+html.m #hud #m3d{order:3;position:relative;isolation:isolate;display:flex;align-items:center;gap:6px;flex:none;height:44px;padding:0 11px 0 9px;border-radius:9px;background:none;border:0;box-shadow:none;
+  font-weight:600;font-size:15px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;cursor:pointer}   /* 44 px tall to the finger; the drawn chip is its ::before, 32 px */
+html.m #hud #m3d::before{content:'';position:absolute;z-index:-1;left:0;right:0;top:6px;bottom:6px;border-radius:9px}
+html.m #hud #m3d svg{width:16px;height:12px;fill:currentColor}
+html.m #hud #mmore{order:2;position:relative;isolation:isolate;flex:none;margin-left:auto;min-width:0;width:44px;height:44px;padding:0;border-radius:9px;font-size:0;background:none;border:0;box-shadow:none}   /* 44 px to the finger; the drawn box 34x32 */
+html.m #hud #mmore::before{content:'';position:absolute;z-index:-1;left:5px;right:5px;top:6px;bottom:6px;border-radius:9px}
+html.m #hud #mmore::after{content:'';position:absolute;left:50%;width:18px;margin-left:-9px;top:19px;height:4px;background:radial-gradient(circle,currentColor 1.7px,transparent 2.1px) 0 0/6px 4px repeat-x}
+html.m.land #hud #mmore,html.m.land #hud #m3d{height:40px}
+html.m.land #hud #mmore::before,html.m.land #hud #m3d::before{top:4px;bottom:4px}
+html.m.land #hud #mmore::after{top:17px}
+html.m body:not(.gb) #hud{background:linear-gradient(180deg,rgba(5,7,13,.92),rgba(5,7,13,.55) 70%,rgba(5,7,13,0));border-bottom:0;text-shadow:none}
+html.m body:not(.gb) #hud #mline .mc,html.m body:not(.gb) #hud #m3d{color:#e8eef6}
+html.m body:not(.gb) #hud #mline .mc.a b{color:#ffb547}
+html.m body:not(.gb) #hud #mline .mc.r b{color:#ff5a5f}
+html.m body:not(.gb) #hud #mline i{color:#3a4a64}
+html.m body:not(.gb) #hud #mline .mc0{color:#9aa8bc}
+html.m body:not(.gb) #hud #m3d,html.m body:not(.gb) #hud #mmore{color:#e8eef6}
+html.m body:not(.gb) #hud #m3d::before,html.m body:not(.gb) #hud #mmore::before{background:linear-gradient(180deg,rgba(16,25,44,.86),rgba(9,14,26,.86));border:1px solid #22304a;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 30px rgba(0,0,0,.45);backdrop-filter:blur(10px)}
+html.m body.gb #hud #mline .mc,html.m body.gb #hud #m3d,html.m body.gb #hud #mmore{color:#9bbc0f}
+html.m body.gb #hud #m3d::before,html.m body.gb #hud #mmore::before{background:#0f380f;border:1px solid #306230}
+
+/* the tabs: an icon over a word, the badges W.counts gives (Today = need you, amber; Agents = working, cyan) */
+html.m #tabs{padding:0 var(--sar) max(18px,env(safe-area-inset-bottom)) var(--sal)}
+html.m #tabs button{flex-direction:column;gap:4px;min-height:60px;padding:6px 4px 0;font-weight:600;font-size:14px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.01em}
+html.m #tabs button .ti{display:block;width:24px;height:24px;flex:none}
+html.m #tabs .tabn:not([hidden]){top:4px;right:auto;left:calc(50% + 3px);min-width:18px;height:18px;padding:0 5px;border-radius:9px;font-weight:600;font-size:12px;line-height:18px;font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+html.m #tabs .tabn.dot:not([hidden]){min-width:10px;width:10px;height:10px;padding:0;top:6px;left:calc(50% + 8px)}
+html.m #tabs #tabn-wingmate[data-n]:not([data-n=""]):not([hidden]){width:auto;min-width:18px;height:18px;padding:0 5px;top:4px;left:calc(50% + 3px)}
+html.m.land #tabs button{min-height:0;gap:3px;font-size:13px}
+html.m body:not(.gb) #tabs{background:linear-gradient(180deg,rgba(11,17,30,.97),#070b14);border-top:1px solid #22304a}
+html.m.land body:not(.gb) #tabs{border-top:0;border-left:1px solid #22304a}
+html.m body:not(.gb) #tabs button{color:#7f8da3}
+html.m body:not(.gb) #tabs button[aria-selected=true]{color:#e8eef6;box-shadow:none}
+html.m body:not(.gb) #tabs button[aria-selected=true]::before{content:'';position:absolute;top:-1px;left:50%;width:34px;height:2px;margin-left:-17px;border-radius:2px;background:#e8eef6;box-shadow:0 0 10px rgba(232,238,246,.45)}
+html.m.land body:not(.gb) #tabs button[aria-selected=true]::before{top:50%;left:auto;right:-1px;width:2px;height:34px;margin:-17px 0 0}
+html.m body:not(.gb) #tabs button:active{background:rgba(255,255,255,.04)}
+html.m body:not(.gb) #tabs .tabn:not([hidden]){color:#05070d;background:#9aa8bc}
+html.m body:not(.gb) #tabs #tabn-today:not([hidden]){background:#ffb547}
+html.m body:not(.gb) #tabs #tabn-threads:not([hidden]){background:#6fb7ff}
+html.m body:not(.gb) #tabs #tabn-wingmate:not([hidden]){background:#6fb7ff}
+
+/* + Task: a glass button on the Map tab only, 42 px at right 14 above the tabs (above the peek when a planet shows) */
+html.m #mfab{font-weight:600;font-size:16px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;border-radius:6px;border-width:1.5px;letter-spacing:.01em}
+html.m #mfab b{font-size:22px;font-weight:600;line-height:1;position:relative;top:-1px}
+html.m body:not(.gb) #mfab{background:linear-gradient(180deg,#1a2740,#0d1526);border-color:rgba(232,238,246,.85);color:#e8eef6;box-shadow:0 8px 22px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12)}
+html.m body:not(.gb) #mfab:active{background:#1a2740}
+
+/* the card sheet: a 35% peek over the map (the map keeps its top 60%), the grip pulls it full */
+html.m #pgrip{flex-basis:30px;height:30px}
+html.m #pgrip::before{top:10px;width:36px;height:4px;margin-left:-18px;border-radius:2px}
+html.m #panel .close{top:0}
+html.m body:not(.gb) #panel{background:linear-gradient(180deg,#111a2c,#0b1220 40%,#0a1120);border-top:1px solid #34445e;border-radius:16px 16px 0 0}
+html.m body:not(.gb) #panel.on{box-shadow:0 -18px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}
+html.m.land body:not(.gb) #panel{border-top:0;border-left:1px solid #34445e;border-radius:16px 0 0 16px}
+html.m body:not(.gb) #pgrip::before{background:#5a6a84}
+html.m #pbody .sch{display:flex;align-items:center;gap:10px;min-height:44px;padding-right:48px;margin-bottom:4px}
+html.m #pbody .sch b{font-weight:600;font-size:20px;line-height:1.15;font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+html.m #pbody .sch .scb{min-height:36px;padding:0 10px;border-radius:8px;font-weight:600;font-size:15px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+html.m body:not(.gb) #pbody .sch .scb{background:rgba(255,255,255,.03);border:1px solid #34445e;color:#e8eef6}
+
+/* the long-press menu and More: a sheet of plain rows, the title the thing held */
+html.m body:not(.gb) #scrim{background:rgba(2,4,9,.62)}
+html.m body:not(.gb) #msheet{background:linear-gradient(180deg,#121b2e,#0b1220);border-top:1px solid #34445e;border-radius:16px 16px 0 0;box-shadow:0 -18px 40px rgba(0,0,0,.55)}
+html.m #msheet .mshead{height:56px;padding:0 6px 0 18px}
+html.m #msheet-title{font-weight:600;font-size:19px;line-height:1.2;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.005em;text-transform:none}
+html.m #msheet-body .mrow{min-height:52px;padding:0 18px;font-weight:600;font-size:17px;line-height:1.2;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.01em}
+html.m body:not(.gb) #msheet .mshead{border-bottom:1px solid #22304a}
+html.m body:not(.gb) #msheet-title{color:#e8eef6}
+html.m body:not(.gb) #msheet-x{color:#9aa8bc}
+html.m body:not(.gb) #msheet-body .mrow{color:#e8eef6;border-bottom:1px solid rgba(34,48,74,.6)}
+html.m body:not(.gb) #msheet-body .mrow:active{background:rgba(111,183,255,.08)}
+html.m body:not(.gb) #mtoast.on{background:rgba(11,18,32,.95);border:1px solid #22304a;border-left:3px solid #6fb7ff;border-radius:8px;color:#e8eef6;font-weight:600;font-size:15px;line-height:1.3;font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+
+/* the composer from the map: a sheet over the Map tab, the planet it aims at still in view above it */
+html.m body.m-comp #side{top:calc(var(--T) + 28dvh);border-top:1px solid #34445e;border-radius:16px 16px 0 0;overflow:hidden}
+html.m.kb body.m-comp #side{top:var(--vvt,0px);bottom:auto;height:calc(var(--vvh,100dvh) - var(--P));border-radius:0}   /* the keyboard up: Start and Cancel stay above it (S1) */
+html.m body.m-comp #side .shead{display:none}
+html.m body:not(.gb).m-comp #side{box-shadow:0 -18px 40px rgba(0,0,0,.55);background:linear-gradient(180deg,#121b2e,#0b1220)}
+html.m #composer h2{font-weight:600;font-size:19px;line-height:1.2;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.005em;text-transform:none}
+html.m #composer h2 span{font-weight:600}
+html.m body:not(.gb) #composer{background:transparent}
+html.m body:not(.gb) #composer h2{color:#e8eef6}
+html.m body:not(.gb) #composer h2 span{color:#6fb7ff}
+
+/* the Agents tab: the chrome module's list in the phone's type */
+html.m #side .shead b{font-weight:600;font-size:20px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.005em}
+html.m #side .shead #snew{border-radius:8px;font-weight:600;font-size:15px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+html.m body:not(.gb) #side{background:linear-gradient(180deg,#0b1220,#070b14)}
+html.m body:not(.gb) #side .shead{border-bottom:1px solid #22304a}
+html.m body:not(.gb) #side .shead b{color:#e8eef6}
+html.m body:not(.gb) #side .shead #snew{background:rgba(255,255,255,.03);border:1px solid #34445e;color:#e8eef6}
+
+html.m #tasks{padding:0 14px 28px;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:15px}
+html.m #tasks h3{margin:18px 4px 8px;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:18px;line-height:1.2;letter-spacing:.005em;text-transform:lowercase}
+html.m #tasks h3::first-letter{text-transform:uppercase}
+html.m #tasks .trow{position:relative;gap:10px;padding:12px 12px 11px 14px;margin:0 0 8px;border-radius:12px;border-left-width:1px}
+html.m #tasks .trow b{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:17px;line-height:1.25}
+html.m #tasks .trow small{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:14px}
+html.m #tasks .mut{margin:4px 4px;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:15px}
+html.m body:not(.gb) #tasks h3{color:#e8eef6}
+html.m body:not(.gb) #tasks .trow{background:linear-gradient(180deg,#121b2e,#0b1220);border:1px solid #22304a}
+html.m body:not(.gb) #tasks .trow.sel{border-color:#6fb7ff}
+html.m body:not(.gb) #tasks .mut{color:#7f8da2}
+
+/* Ask: the assistant's screen in the same type; a small portrait row, the words, the box */
+html.m #mate .mp{flex:0 0 76px;padding:8px 16px;border-bottom-width:1px}
+html.m #mate .mp canvas{width:56px;height:56px}
+html.m #mate .mp b{padding:0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:20px;letter-spacing:.01em;text-transform:none}
+html.m #mate .nb{padding:14px 16px}
+html.m #mate .nh{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:14px}
+html.m #matetxt{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:500;font-size:17px;line-height:1.4}
+html.m #mateq{border-radius:10px;padding:0 12px;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:17px}
+html.m #matef button{border-radius:10px;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:16px}
+html.m body:not(.gb)[data-tab=wingmate] #mate{background:linear-gradient(180deg,#0b1220,#070b14)}
+html.m body:not(.gb) #mate .mp{background:linear-gradient(180deg,rgba(18,27,46,.97),rgba(11,18,32,.97));border-bottom-color:#22304a}
+html.m body:not(.gb) #mate .mp b{background:none;color:#e8eef6;box-shadow:none}
+html.m body:not(.gb) #mate .nb{background:transparent}
+html.m body:not(.gb) #mate .nh{color:#9aa8bc}
+html.m body:not(.gb) #matetxt{color:#e8eef6}
+html.m body:not(.gb) #mateq{background:rgba(5,7,13,.6);border:1px solid #2a3a54;color:#e8eef6}
+html.m body:not(.gb) #matef button{background:rgba(255,255,255,.03);border:1px solid #34445e;color:#e8eef6}
+
+/* a tablet: the desktop's layout, the touch's sizes */
+html.t #mzoom button{border-radius:10px}
+html.t body:not(.gb) #mzoom button{background:linear-gradient(180deg,rgba(16,25,44,.9),rgba(9,14,26,.9));border:1px solid #22304a;color:#e8eef6}
+
+/* ==== Today, the desktop page and the phone tab ==== */
+#today{font-weight:500;font-size:15px;line-height:1.3;font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+#today .tw{max-width:1600px;padding:40px 80px 40px}
+#today .th{display:flex;align-items:flex-end;gap:16px;padding:0 0 22px;border-bottom:1px solid #22304a}
+#today .th .thl{flex:1 1 auto;min-width:0}
+#today .th h1{margin:0;font-weight:600;font-size:40px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.005em;text-shadow:none}
+#today .th h1 span{font-weight:500}
+#today .tsub{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-top:10px;font-size:17px}
+#today .tsub i{font-style:normal}
+#today .tsub b{font-weight:600}
+#today .th .gen{flex:none;font-size:14px;font-weight:600;margin-bottom:4px}
+#today .th button{margin-left:0;flex:none}
+#today .th button.tnew{display:none}
+#today .tgo{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:9px;font-weight:600;font-size:15px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;box-shadow:none}
+#today .key{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;border-radius:4px;border:1px solid #3a4a64;border-bottom-width:2px;font-weight:600;font-size:12px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;margin-left:6px}
+#today .twhere{display:flex;align-items:center;gap:8px;margin-right:8px}
+#today .twhere .lbl{font-size:15px;font-weight:600;margin-right:2px}
+#today .twc{text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 10px 0 4px;border-radius:18px;font-weight:600;font-size:15px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;box-shadow:none}
+#today .twc img.tth,#today .twc i.tth{width:28px;height:28px}
+#today .twc i:not(.tth),#today .tbadge{font-style:normal;min-width:18px;height:18px;padding:0 5px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+#today .tcols{display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:40px;margin-top:22px;align-items:start}
+#today .tcol{min-width:0}
+#today section{margin:0 0 24px}
+#today h2,#today h3{margin:0 0 12px;display:flex;align-items:baseline;gap:10px;font-weight:600;font-size:22px;line-height:1.15;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.005em;text-transform:none}
+#today h2 .n{font-size:17px;font-weight:600}
+#today h2 .n b{font-weight:600;color:inherit}
+#today h2 .r{margin-left:auto;font-size:15px;font-weight:600}
+#today h2.tq{margin-bottom:8px}
+#today h2 .q{font-size:16px;font-weight:600}
+#today h3.talso{display:block;margin:6px 0 4px;font-size:15px;line-height:1.4;font-weight:600}
+#today h3.talso b{font-weight:600}
+#today h3.talso a.go{margin-left:6px;white-space:nowrap}
+#today .tcap{margin:-6px 0 10px;font-size:15px}
+#today .mut{margin-top:8px;font-size:15px;line-height:1.35}
+/* a need-you row: an amber rule, the planet, what it is in one line, one sentence, who asks · where · how long */
+#today .tn{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:16px;align-items:center;padding:13px 18px 13px 20px;margin-bottom:9px;border-radius:12px;cursor:pointer}
+#today .tn::before,#today .tcard::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:2px}
+#today .tn img.tth,#today .tn i.tth{width:44px;height:44px}
+#today .tt{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:19px;font-weight:600;line-height:1.2}
+#today .tt .tr{flex:none;font-size:16px;font-weight:600}
+#today .tn .tt{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#today .tn .ts{margin-top:4px;font-size:15px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#today .tn .tm{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:5px;font-size:14px;font-weight:600}
+#today .tn .tm>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#today .tn .tm b{font-weight:600}
+#today .tn .tsm{display:none;flex:none;cursor:pointer}
+#today .tn .ta{display:flex;gap:8px;align-items:center}
+#today .tbtn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:30px;padding:0 12px;border-radius:8px;font-weight:600;font-size:14px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;white-space:nowrap;cursor:pointer;box-shadow:none}
+#today .ta .tbtn{height:36px;padding:0 14px;font-size:15px;border-radius:9px}
+#today .tbtn.tic{width:36px;padding:0}
+#today .tbtn svg{width:16px;height:16px;fill:none;stroke-width:1.5}
+#today details.tmore>summary,#today details.tdet>summary{cursor:pointer;font-size:15px;font-weight:600;list-style:none;padding:6px 0}
+#today details.tdet>summary::-webkit-details-marker{display:none}
+#today details.tdet>summary::before{content:'›';display:inline-block;margin-right:8px;transition:transform .15s}
+#today details.tdet[open]>summary::before{transform:rotate(90deg)}
+/* the "+N more" row under the four Need you rows: a dashed row that opens the rest in place (C1) */
+#today details.tmore>summary{display:flex;align-items:center;min-height:40px;padding:0 18px 0 20px;margin-bottom:9px;border-radius:12px;font-size:16px}
+#today details.tmore>summary::before{display:none}
+#today details.tmore[open]>summary{margin-bottom:9px}
+body:not(.gb) #today details.tmore>summary{background:rgba(18,27,46,.6);border:1px dashed #2a3a54;color:#9aa8bc}
+#today details.tfold{margin-top:6px}
+#today .tdl{position:relative;padding:8px 12px;margin:6px 0;border-radius:8px;font-size:15px;line-height:1.35}
+#today .tdl small{display:block;margin-top:2px;font-size:14px}
+#today .lane{display:grid;grid-template-columns:130px 1fr;gap:4px 16px;padding:8px 12px;margin:6px 0;border-radius:8px}
+#today .lane b{font-weight:600;text-transform:none;letter-spacing:.01em}
+/* Do today: a box the user ticks, the line, when it is due or was last kept */
+#today .tdo{display:flex;align-items:center;gap:12px;padding:9px 4px;font-size:17px}
+#today .tdo .tbx{flex:none;width:20px;height:20px;min-width:20px;min-height:20px;padding:0;border-radius:6px;font-size:0;box-shadow:none;position:relative;cursor:pointer}
+#today .tdo .tbx.on::after{content:'';position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #05070d;border-width:0 2px 2px 0;transform:rotate(45deg)}
+#today .tdo .tdt{flex:1 1 auto;min-width:0}
+#today .tdo .tdt small{display:inline;margin-left:8px;font-size:13px;font-weight:600;text-transform:lowercase}
+#today .tdo .tdw{flex:none;font-size:14px;font-weight:600}
+#today .tdo .hist{float:none;margin:0;display:inline-flex;gap:3px}
+#today .tdo .hist i{width:8px;height:8px;margin:0;border-radius:2px}
+#today .tdo .tck{font-size:13px}
+/* Running now: a workflow card (route, progress, sentence), a task, an agent at work; the night run */
+#today .tcard{position:relative;padding:16px 18px;margin-bottom:12px;border-radius:14px;cursor:pointer}
+#today .tcard.tagent,#today .tcard.ttask{padding:14px 18px}
+#today .tnow{margin-top:8px;font-size:16px;line-height:1.35}
+#today .tnow b{font-weight:600}
+#today .troute{display:flex;align-items:center;margin-top:14px;padding:10px 12px;border-radius:10px}
+#today .tst{display:flex;flex-direction:column;align-items:center;gap:4px;width:84px;flex:none;min-width:0}
+#today .tst img.tth,#today .tst i.tth{width:34px;height:34px}
+#today .tst b{max-width:84px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:600}
+#today .tst span{font-size:13px;font-weight:600}
+#today .tln{flex:1 1 auto;height:2px;border-radius:1px;margin-bottom:34px;min-width:8px}
+#today .tdr{position:relative;height:12px;margin-top:12px;border-radius:6px;overflow:hidden;background:linear-gradient(90deg,#8b6fd0 0%,#3d6bff 30%,#6fb7ff 55%,#47bfb6 78%,#4ade80 100%)}
+#today .tdr i{position:absolute;top:0;right:0;bottom:0;left:0}
+#today .tdr.sm{height:6px;margin-top:6px}
+#today .tdr i.l0{left:0}#today .tdr i.l1{left:5%}#today .tdr i.l2{left:10%}#today .tdr i.l3{left:15%}#today .tdr i.l4{left:20%}#today .tdr i.l5{left:25%}#today .tdr i.l6{left:30%}#today .tdr i.l7{left:35%}#today .tdr i.l8{left:40%}#today .tdr i.l9{left:45%}#today .tdr i.l10{left:50%}
+#today .tdr i.l11{left:55%}#today .tdr i.l12{left:60%}#today .tdr i.l13{left:65%}#today .tdr i.l14{left:70%}#today .tdr i.l15{left:75%}#today .tdr i.l16{left:80%}#today .tdr i.l17{left:85%}#today .tdr i.l18{left:90%}#today .tdr i.l19{left:95%}#today .tdr i.l20{left:100%}
+#today .tdrl{display:flex;justify-content:space-between;margin-top:6px;font-size:14px;font-weight:600}
+#today .tdrl b{font-weight:600}
+#today .tbtns{display:flex;gap:10px;margin-top:12px}
+#today details.tnight{display:block}
+#today details.tnight>summary{display:flex;align-items:center;gap:14px;list-style:none;cursor:pointer}
+#today details.tnight>summary::-webkit-details-marker{display:none}
+#today details.tnight[open]>summary{margin-bottom:10px}
+#today .tnight .tnl{flex:1 1 auto;min-width:0}
+#today .tnight .tnow{margin-top:3px;font-size:15px}
+#today .tk{display:flex;gap:5px;flex:none}
+#today .tk i{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:14px;font-weight:600}
+#today .tdl.tnone{padding:2px 0;margin:0;font-size:15px}
+#today .tdl.tnone details.tdet>summary{display:inline;padding:0 0 0 10px;font-size:14px}
+#today .tkept{font-size:13px}
+#today .tmini{position:relative;height:158px;border-radius:14px;overflow:hidden;cursor:pointer;margin-top:2px}
+#today .tmini canvas{position:absolute;left:0;top:0;width:100%;height:100%}
+#today .tmini .cap{position:absolute;left:14px;top:10px;font-size:17px;font-weight:600}
+#today .tmini .tbtn{position:absolute;right:12px;top:10px}
+#today .hist i{display:inline-block}
+/* the colours (every palette but mono) */
+body:not(.gb) #today{background:linear-gradient(90deg,rgba(5,7,13,.86) 0%,rgba(5,7,13,.72) 55%,rgba(5,7,13,.5) 100%);backdrop-filter:blur(6px) brightness(.62) saturate(1.15);color:#e8eef6}
+body:not(.gb) #today .th h1{color:#e8eef6}
+body:not(.gb) #today .th h1 span,body:not(.gb) #today .tsub,body:not(.gb) #today h2 .n,body:not(.gb) #today h2 .r,body:not(.gb) #today .tt .tr,body:not(.gb) #today .twhere .lbl,
+body:not(.gb) #today .tdo .tdw,body:not(.gb) #today .tdrl,body:not(.gb) #today details.tdet>summary,body:not(.gb) #today .tcap,body:not(.gb) #today .mut,body:not(.gb) #today .tdl small,
+body:not(.gb) #today .tn .tm,body:not(.gb) #today .tst span,body:not(.gb) #today .tnight .tnow{color:#9aa8bc}
+body:not(.gb) #today .th .gen,body:not(.gb) #today h2 .q,body:not(.gb) #today h3.talso,body:not(.gb) #today .tdo .tdt small{color:#7f8da2}
+body:not(.gb) #today .tsub i{color:#3a4a64}
+body:not(.gb) #today .tsub .a b{color:#ffb547}body:not(.gb) #today .tsub .c b{color:#6fb7ff}body:not(.gb) #today .tsub .g b{color:#4ade80}
+body:not(.gb) #today .th{border-color:#22304a}
+body:not(.gb) #today h2,body:not(.gb) #today h3.talso b,body:not(.gb) #today .tdrl b,body:not(.gb) #today .tnow b,body:not(.gb) #today .tst b,body:not(.gb) #today .tn .tsm{color:#e8eef6}
+body:not(.gb) #today h3.talso span[data-count=decisions] b{color:#ffb547}body:not(.gb) #today h3.talso span[data-count=problems] b{color:#ff5a5f}
+body:not(.gb) #today .tgo,body:not(.gb) #today .tbtn{background:rgba(255,255,255,.03);border:1px solid #34445e;color:#e8eef6}
+body:not(.gb) #today .tbtn.amber{border-color:rgba(255,181,71,.7);color:#ffd08a;background:rgba(255,181,71,.07)}
+body:not(.gb) #today .tbtn svg{stroke:#e8eef6}
+body:not(.gb) #today .key{color:#9aa8bc}
+body:not(.gb) #today .twc{background:rgba(11,18,32,.85);border:1px solid #22304a;color:#e8eef6}
+body:not(.gb) #today .twc i.a,body:not(.gb) #today .tbadge.a{background:#ffb547;color:#05070d}body:not(.gb) #today .twc i.r{background:#ff5a5f;color:#05070d}
+body:not(.gb) #today .tn,body:not(.gb) #today .tcard{background:linear-gradient(180deg,rgba(18,27,46,.97),rgba(11,18,32,.97));border:1px solid #22304a;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+body:not(.gb) #today .tn.first{border-color:rgba(255,181,71,.38);background:linear-gradient(90deg,#2a2418,rgba(11,18,32,.97) 60%)}
+body:not(.gb) #today .tn::before{background:#ffb547}
+body:not(.gb) #today .tn .tm b{color:#ffb547}
+body:not(.gb) #today .tn .ts{color:#c3cddb}
+body:not(.gb) #today .tcard.c::before{background:#6fb7ff}body:not(.gb) #today .tcard.a::before{background:#ffb547}body:not(.gb) #today .tcard.r::before{background:#ff5a5f}
+body:not(.gb) #today .tnow{color:#c3cddb}
+body:not(.gb) #today .tnow .sw.c{color:#6fb7ff}body:not(.gb) #today .tnow .sw.a{color:#ffb547}body:not(.gb) #today .tnow .sw.r{color:#ff5a5f}
+body:not(.gb) #today .troute{background:rgba(5,7,13,.45);border:1px solid rgba(34,48,74,.55)}
+body:not(.gb) #today .tst span.g{color:#4ade80}body:not(.gb) #today .tst span.c{color:#6fb7ff}body:not(.gb) #today .tst span.a{color:#ffb547}body:not(.gb) #today .tst span.r{color:#ff5a5f}
+body:not(.gb) #today .tln{background:#3a4a64}body:not(.gb) #today .tln.g{background:#4ade80}
+body:not(.gb) #today .tdr{box-shadow:0 0 10px rgba(111,183,255,.35);border:1px solid #2a3a54}
+body:not(.gb) #today .tdr i{background:#141e31}
+body:not(.gb) #today .tcard.tnight{background:#0c1322;border-color:rgba(34,48,74,.55)}
+body:not(.gb) #today .tk i{background:rgba(154,168,188,.12);color:#9aa8bc}
+body:not(.gb) #today .tk i.g{background:rgba(74,222,128,.16);color:#4ade80}body:not(.gb) #today .tk i.r{background:rgba(255,90,95,.16);color:#ff5a5f}
+body:not(.gb) #today .tdo{border-bottom:1px solid rgba(34,48,74,.55)}
+body:not(.gb) #today .tdo .tbx{background:transparent;border:1.5px solid #4a5a74}
+body:not(.gb) #today .tdo .tbx.on{background:#4ade80;border-color:#4ade80}
+body:not(.gb) #today .tdl{background:rgba(255,255,255,.025);border:1px solid rgba(34,48,74,.55);color:#e8eef6}
+body:not(.gb) #today .tdl.need{border-left:3px solid #ffb547}body:not(.gb) #today .tdl.bad{border-left:3px solid #ff5a5f}body:not(.gb) #today .tdl.work{border-left:3px solid #6fb7ff}
+body:not(.gb) #today .lane{background:rgba(255,255,255,.025)}
+body:not(.gb) #today .tdl.tnone{background:none;border:0;color:#7f8da2}
+body:not(.gb) #today .lane b{color:#9aa8bc}
+body:not(.gb) #today a.go{color:#9fc8ff}
+body:not(.gb) #today .tmini{border:1px solid #22304a}
+body:not(.gb) #today .tmini .cap{color:#e8eef6;text-shadow:0 1px 3px #05070d}
+body:not(.gb) #today i.tth{display:inline-block;border-radius:50%;background:radial-gradient(circle at 35% 35%,#9aa8bc,#3a4a64 60%,#141e31)}
+#today i.tth{display:inline-block;border-radius:50%}
+#today img.tth{object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,.55))}
+#today .tn img.tth,#today .twc img.tth{transform:scale(1.1)}
+/* a phone: one column, the phone sizes; the actions in words ("Show on map ›") */
+html.m #today{font-size:14px}
+html.m #today .th{align-items:flex-end;padding:6px 4px 14px;border-bottom:0}
+html.m #today .th h1{font-size:22px}
+html.m #today .tsub,html.m #today .twhere{display:none}
+html.m #today .th .gen{font-size:13px;margin:0 0 2px}
+html.m #today section{margin:0}
+html.m #today h2,html.m #today h3{margin:0;padding:14px 4px 8px;font-size:20px}
+html.m #today h2 .n{font-size:16px}
+html.m #today h2 .r{display:none}
+html.m #today h3.talso{padding:0 4px;font-size:14px}
+html.m #today h3.talso a.go{min-height:40px}
+html.m #today .tcap{margin:-4px 4px 6px;font-size:14px}
+html.m #today .tn{grid-template-columns:36px minmax(0,1fr);gap:12px;padding:12px 12px 11px 14px;margin-bottom:8px}
+html.m #today .tn::before,html.m #today .tcard::before{top:12px;bottom:12px}
+html.m #today .tn img.tth,html.m #today .tn i.tth{width:36px;height:36px}
+html.m #today .tn .tt{font-size:17px}
+html.m #today .tn .ts,html.m #today .tn .ta,html.m #today .tn .wt{display:none}
+html.m #today .tn .tsm{display:inline}
+html.m #today .tn .tm{font-size:14px}
+html.m #today .tcard{padding:13px 14px 13px 16px;margin-bottom:8px;border-radius:12px}
+html.m #today .tcard.tagent,html.m #today .tcard.ttask{padding:12px 14px 12px 16px}
+html.m #today .tt{font-size:17px}
+html.m #today .tt .tr{font-size:15px}
+html.m #today .tnow{font-size:15px;margin-top:8px}
+html.m #today .troute{margin-top:11px;padding:0;background:none;border:0}
+html.m #today .tst{width:62px;gap:3px}
+html.m #today .tst img.tth,html.m #today .tst i.tth{width:30px;height:30px}
+html.m #today .tst b,html.m #today .tdrl,html.m #today .tbtns{display:none}
+html.m #today .tst span{font-size:12px}
+html.m #today .tln{margin-bottom:16px}
+html.m #today .tdr{height:10px;margin-top:10px;border-radius:5px}
+html.m #today .tnight{gap:10px;padding:12px 14px}
+html.m #today .tnight .tt{font-size:17px}
+html.m #today .tnight .tt .tr{display:none}
+html.m #today .tnight .tnow{font-size:14px}
+html.m #today .tk{gap:4px}
+html.m #today .tk i{width:20px;height:20px;font-size:13px}
+html.m #today .tdo{gap:11px;padding:11px 4px;font-size:16px}
+html.m #today .tdo .tbx{width:19px;height:19px;min-width:19px;min-height:19px}
+html.m #today .tdo .tdw{font-size:13px}
+html.m #today details.tdet>summary{min-height:44px;display:flex;align-items:center;padding:0 4px}
+html.m #today details.tmore>summary{min-height:44px;padding:0 14px;margin-bottom:8px}
+html.m #today .mut{margin:6px 4px 0;font-size:14px}
+html.m #today .tdl{font-size:14px}
+html.m #today .tkept{display:none}
+html.m #today .tdl.tnone{padding:2px 4px}
+html.m #today .lane{grid-template-columns:1fr}
+html.m body:not(.gb) #today{backdrop-filter:none;background:radial-gradient(120% 60% at 100% 0%,rgba(42,29,92,.55),rgba(42,29,92,0) 60%),radial-gradient(90% 50% at 0% 70%,rgba(15,58,74,.35),rgba(15,58,74,0) 60%),radial-gradient(70% 40% at 80% 100%,rgba(74,24,70,.35),rgba(74,24,70,0) 60%),#05070d}
+html.m body:not(.gb) #today .tw{background:radial-gradient(1px 1px at 12% 18%,rgba(207,220,255,.7),transparent 2px),radial-gradient(1px 1px at 78% 6%,rgba(255,255,255,.8),transparent 2px),radial-gradient(1.5px 1.5px at 56% 42%,rgba(207,220,255,.6),transparent 2px),radial-gradient(1px 1px at 92% 64%,rgba(159,182,255,.7),transparent 2px),radial-gradient(1px 1px at 30% 77%,rgba(207,220,255,.6),transparent 2px),radial-gradient(1px 1px at 66% 90%,rgba(255,255,255,.7),transparent 2px)}
+html.m body:not(.gb) #today .tcard.tnight{background:#0c1322}
+
+/* ==== the workflow sheet on a phone (read only until the workflow module's card takes it) ==== */
+.wfs{font-weight:500;font-size:15px;line-height:1.35;font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+.wfs .wft{margin:0 0 4px;font-weight:600;font-size:22px;line-height:1.15;font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.005em}
+.wfs .wfm{font-size:15px;font-weight:600}
+.wfs .tdr{position:relative;height:10px;margin-top:10px;border-radius:5px;overflow:hidden;background:linear-gradient(90deg,#8b6fd0 0%,#3d6bff 30%,#6fb7ff 55%,#47bfb6 78%,#4ade80 100%)}
+.wfs .tdr.sm{height:6px;margin-top:6px}
+.wfs .tdr i{position:absolute;top:0;right:0;bottom:0;left:0;background:#141e31}
+.wfs .tdr i.l0{left:0}.wfs .tdr i.l1{left:5%}.wfs .tdr i.l2{left:10%}.wfs .tdr i.l3{left:15%}.wfs .tdr i.l4{left:20%}.wfs .tdr i.l5{left:25%}.wfs .tdr i.l6{left:30%}.wfs .tdr i.l7{left:35%}.wfs .tdr i.l8{left:40%}.wfs .tdr i.l9{left:45%}.wfs .tdr i.l10{left:50%}
+.wfs .tdr i.l11{left:55%}.wfs .tdr i.l12{left:60%}.wfs .tdr i.l13{left:65%}.wfs .tdr i.l14{left:70%}.wfs .tdr i.l15{left:75%}.wfs .tdr i.l16{left:80%}.wfs .tdr i.l17{left:85%}.wfs .tdr i.l18{left:90%}.wfs .tdr i.l19{left:95%}.wfs .tdr i.l20{left:100%}
+.wfs .tnow{margin-top:8px}
+.wfs .wfst{list-style:none;margin:12px 0 0;padding:0}
+.wfs .wfst li{color:inherit;display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:start;padding:10px 0;border-bottom:1px solid rgba(34,48,74,.55)}
+.wfs .wfst li img.tth,.wfs .wfst li i.tth{width:30px;height:30px;display:inline-block;border-radius:50%}
+.wfs .wfst b{display:block;font-size:16px;font-weight:600}
+.wfs .wfst small{display:block;font-size:14px;font-weight:600}
+.wfs .wfsay{margin-top:3px;font-size:14px}
+.wfs .wfout{margin-top:3px;font-size:13px}
+.wfs .wfb{display:flex;gap:10px;margin-top:12px}
+.wfs .tbtn{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:9px;font-weight:600;font-size:15px;line-height:1;font-family:"Barlow Condensed","Arial Narrow",sans-serif;cursor:pointer}
+.wfs .mut{margin-top:10px;font-size:14px}
+body:not(.gb) .wfs,body:not(.gb) #pbody .wfs .wft,body:not(.gb) .wfs .wfst b{color:#e8eef6}
+body:not(.gb) .wfs .wfm,body:not(.gb) .wfs .wfst small,body:not(.gb) .wfs .wfout,body:not(.gb) .wfs .mut{color:#9aa8bc}
+body:not(.gb) .wfs .wfsay,body:not(.gb) .wfs .tnow{color:#c3cddb}
+body:not(.gb) .wfs .g{color:#4ade80}body:not(.gb) .wfs .c{color:#6fb7ff}body:not(.gb) .wfs .a{color:#ffb547}body:not(.gb) .wfs .r{color:#ff5a5f}
+body:not(.gb) .wfs .tbtn{background:rgba(255,255,255,.03);border:1px solid #34445e;color:#e8eef6}
+body:not(.gb) .wfs i.tth{background:radial-gradient(circle at 35% 35%,#9aa8bc,#3a4a64 60%,#141e31)}
+
+/* A newcomer can see the Review action without knowing that the whole row opens it. */
+html.m #today .taskhome .tn .ta{display:flex;grid-column:2;gap:8px}
+html.m #today .taskhome .tn .ta .tbtn{height:44px;min-width:80px}
+html.m #today .taskhome .tn .ta .tic{display:none}

@@ -1,0 +1,19 @@
+{
+  "name": "git-status",
+  "label": "git status",
+  "applies": [
+    "area",
+    "dir"
+  ],
+  "cmd": [
+    "git",
+    "-C",
+    "{path}",
+    "status",
+    "--short",
+    "--branch"
+  ],
+  "cwd": "target",
+  "max_minutes": 2,
+  "desc": "what is uncommitted here, from git itself"
+}

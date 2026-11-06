@@ -1,0 +1,15 @@
+/* ui/labels.css — planet name slots, leaders and pips.
+   Joins the end of the page's main stylesheet (render-game.py, the seams), before the theme rewriter: a hex colour
+   here becomes a theme variable like the rest of that sheet; one written as rgb() stays as it is. */
+/* the crumb chip while a planet is open: "Esc · All planets > ops", glass, 16 px in from the free map's corner (ui/focus.js) */
+#fcrumb{position:absolute;left:16px;top:16px;z-index:6;display:flex;align-items:center;gap:8px;height:34px;padding:0 12px 0 8px;
+  border:1px solid #22304A;border-radius:12px;background:linear-gradient(rgba(16,25,44,.86),rgba(9,14,26,.86));
+  box-shadow:inset 0 1px 0 rgba(232,238,246,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:15px;color:#E8EEF6;pointer-events:auto;user-select:none}
+#fcrumb[hidden]{display:none}
+#fcrumb kbd{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:12px;color:#9AA8BC;border:1px solid #3a4a66;border-radius:5px;padding:1px 5px;background:rgba(5,7,13,.6)}
+#fcrumb .fc-all{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:500;font-size:15px;color:#C9D3E1;background:none;border:0;padding:0;cursor:pointer}
+#fcrumb .fc-all:hover,#fcrumb .fc-all:focus-visible{color:#E8EEF6;text-decoration:underline}
+#fcrumb .fc-sep{color:#7F8DA2}
+#fcrumb .fc-here{font-weight:600;color:#E8EEF6}
+html.m #fcrumb{top:8px;height:30px;font-size:13px}

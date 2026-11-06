@@ -1,0 +1,2177 @@
+{
+ "name": "neutral-3d",
+ "look3d": {
+  "default": "kit",
+  "looks": [
+   "kit"
+  ],
+  "rim": "#8FB4FF",
+  "skyRim": 0.25,
+  "rimPow": 3,
+  "sun": "#FFF1DC",
+  "ambient": "#090B12",
+  "glow": {
+   "own": "#FFB45A",
+   "agent": "#CFE3FF",
+   "foe": "#FF5A5F",
+   "carrier": "#FFD58A"
+  },
+  "tells": {
+   "job_late": "#FFB547",
+   "task_failed": "#FF5A5F",
+   "big_file": "#E8EEF6"
+  },
+  "beacon": "#FFB547"
+ },
+ "feel3d": {
+  "speed": {
+   "cruise": 200,
+   "boost": 340,
+   "brake": 110
+  },
+  "boostK": 1.7,
+  "brakeK": 0.55,
+  "turn": 55,
+  "turnHard": 110,
+  "pitch": 30,
+  "bankSoft": 35,
+  "bankHard": 80,
+  "rollT": 400,
+  "rollDeg": 360,
+  "uturnT": 1200,
+  "fov": 55,
+  "fovBoost": 8,
+  "chase": {
+   "cruise": 50,
+   "boost": 90,
+   "brake": 35,
+   "lag": 8,
+   "rollCap": 0.3333,
+   "swing": 12,
+   "eye": 9,
+   "look": 40
+  },
+  "cockpit": {
+   "look": 0.8,
+   "glass": 0.2
+  },
+  "reticle": [
+   600,
+   1200
+  ],
+  "lock": {
+   "dwell": 0.8,
+   "cone": 10
+  },
+  "orbit": {
+   "deg": 120,
+   "r": 40,
+   "pitch0": 50,
+   "pitch1": 8,
+   "t": 1.2
+  },
+  "radio": {
+   "hold": 2.0,
+   "perChar": 0.04,
+   "cap": 8
+  },
+  "glow": {
+   "boost": 1.6,
+   "brake": 0.5,
+   "cooldown": 0.7,
+   "flash": 1
+  },
+  "meter": {
+   "burn": 2,
+   "refill": 4.5,
+   "lockout": false
+  },
+  "help": {
+   "on": 0.25,
+   "off": 0.25,
+   "total": 10
+  },
+  "hudLayout": {
+   "units": "percent",
+   "gauge": [
+    1.5,
+    2,
+    20,
+    6
+   ],
+   "counter": [
+    1.5,
+    7.5,
+    12,
+    15
+   ],
+   "slots": [
+    13.5,
+    9,
+    21,
+    14
+   ],
+   "agents": [
+    76,
+    2,
+    98,
+    6.5
+   ],
+   "boost": [
+    86,
+    7.5,
+    98.7,
+    11
+   ],
+   "tube": [
+    2.5,
+    22,
+    5.3,
+    66
+   ],
+   "comms": [
+    1.5,
+    77,
+    46,
+    97
+   ],
+   "radar": [
+    80,
+    70,
+    98.5,
+    97
+   ],
+   "mission": [
+    27,
+    6,
+    73,
+    27
+   ]
+  }
+ },
+ "atlas3d": {
+  "size": 512,
+  "panels": [
+   {
+    "name": "hullplates",
+    "size": 128,
+    "draw": [
+     {
+      "op": "grid",
+      "n": 4,
+      "m": 3,
+      "c": "#a2abb9"
+     },
+     {
+      "op": "lines",
+      "dir": "v",
+      "n": 2,
+      "at": [
+       0.37,
+       0.63
+      ],
+      "c": "#848d9c"
+     },
+     {
+      "op": "stripe",
+      "dir": "v",
+      "x": 0.46,
+      "wd": 0.08,
+      "c": "#ff9a80"
+     },
+     {
+      "op": "rivets",
+      "n": 16,
+      "y": 0.06,
+      "c": "#8a93a2"
+     },
+     {
+      "op": "text",
+      "s": "07",
+      "x": 0.25,
+      "y": 0.78,
+      "size": 0.18,
+      "c": "#5a6070"
+     }
+    ]
+   },
+   {
+    "name": "wingpanel",
+    "size": 128,
+    "draw": [
+     {
+      "op": "grid",
+      "n": 3,
+      "m": 4,
+      "c": "#aab0cc"
+     },
+     {
+      "op": "stripe",
+      "y": 0.12,
+      "h": 0.06,
+      "c": "#e8e8f4"
+     },
+     {
+      "op": "chevron",
+      "y": 0.62,
+      "h": 0.12,
+      "c": "#d8dcec"
+     },
+     {
+      "op": "frame",
+      "c": "#9096b8",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "name": "finpanel",
+    "size": 64,
+    "draw": [
+     {
+      "op": "lines",
+      "n": 3,
+      "c": "#9a9fbc"
+     },
+     {
+      "op": "stripe",
+      "y": 0.78,
+      "h": 0.14,
+      "c": "#ff9a80"
+     },
+     {
+      "op": "frame",
+      "c": "#a0a4c0"
+     }
+    ]
+   },
+   {
+    "name": "vents",
+    "size": 64,
+    "draw": [
+     {
+      "op": "vents",
+      "cols": 4,
+      "rows": 2,
+      "x": 0.12,
+      "y": 0.3,
+      "wd": 0.76,
+      "h": 0.4,
+      "c": "#6a7382"
+     },
+     {
+      "op": "lines",
+      "n": 1,
+      "at": [
+       0.1
+      ],
+      "c": "#9aa3b2"
+     }
+    ]
+   },
+   {
+    "name": "hauler",
+    "size": 128,
+    "draw": [
+     {
+      "op": "grid",
+      "n": 8,
+      "m": 4,
+      "c": "#9aa2ae"
+     },
+     {
+      "op": "stripe",
+      "y": 0.44,
+      "h": 0.1,
+      "c": "#ffc56a"
+     },
+     {
+      "op": "vents",
+      "cols": 10,
+      "rows": 1,
+      "x": 0.05,
+      "y": 0.72,
+      "wd": 0.9,
+      "h": 0.12,
+      "c": "#4a5260"
+     },
+     {
+      "op": "text",
+      "s": "H-01",
+      "x": 0.5,
+      "y": 0.22,
+      "size": 0.16,
+      "c": "#545c6a"
+     }
+    ]
+   },
+   {
+    "name": "foeplates",
+    "size": 64,
+    "draw": [
+     {
+      "op": "grid",
+      "n": 3,
+      "c": "#7a6a70"
+     },
+     {
+      "op": "checker",
+      "n": 16,
+      "c": "#e4dce0"
+     }
+    ]
+   }
+  ]
+ },
+ "models3d": {
+  "own": {
+   "span": 24,
+   "mats": {
+    "hull": {
+     "c": "#B9B5AD",
+     "grad": [
+      0.84,
+      1.06
+     ]
+    },
+    "accent": {
+     "c": "#35435A",
+     "grad": [
+      0.8,
+      1.1
+     ]
+    },
+    "accent2": {
+     "c": "#D9922E",
+     "grad": [
+      0.85,
+      1.08
+     ]
+    },
+    "canopy": {
+     "c": "#101C2A",
+     "grad": [
+      0.65,
+      1.3
+     ]
+    },
+    "dark": {
+     "c": "#2A2F3A"
+    },
+    "emit": {
+     "c": "#FFC46B",
+     "emit": true
+    },
+    "livery": {
+     "c": "#35435A"
+    },
+    "lamp": {
+     "c": "#FFE3A3",
+     "emit": true
+    },
+    "strip": {
+     "c": "#FFC46B",
+     "emit": true
+    },
+    "underside": {
+     "c": "#262E3C",
+     "grad": [
+      0.65,
+      1.08
+     ]
+    }
+   },
+   "sprite": {
+    "name": "pilot",
+    "w": 48,
+    "boost": "pilot_boost",
+    "flare": 8,
+    "letters": {
+     "hull": "hmw",
+     "accent": "Bbv",
+     "livery": "Bbv",
+     "accent2": "TRK",
+     "canopy": "ciC",
+     "dark": "ydY",
+     "emit": "e",
+     "lamp": "l",
+     "underside": "Bbv"
+    }
+   },
+   "parts": [
+    {
+     "name": "scow",
+     "op": "slab",
+     "mat": "hull",
+     "underMat": "hull",
+     "edgeMat": "hull",
+     "bevelMat": "hull",
+     "thick": 1.0,
+     "bevel": 0.26,
+     "pts": [
+      [
+       0,
+       7.0
+      ],
+      [
+       1.7,
+       6.1
+      ],
+      [
+       3.9,
+       3.9
+      ],
+      [
+       6.0,
+       0.5
+      ],
+      [
+       6.0,
+       -3.8
+      ],
+      [
+       5.2,
+       -5.0
+      ],
+      [
+       -5.2,
+       -5.0
+      ],
+      [
+       -6.0,
+       -3.8
+      ],
+      [
+       -6.0,
+       0.5
+      ],
+      [
+       -3.9,
+       3.9
+      ],
+      [
+       -1.7,
+       6.1
+      ]
+     ],
+     "atlas": "hullplates"
+    },
+    {
+     "name": "skirt",
+     "op": "slab",
+     "mat": "dark",
+     "thick": 0.5,
+     "pts": [
+      [
+       0.0,
+       6.51
+      ],
+      [
+       1.581,
+       5.673
+      ],
+      [
+       3.627,
+       3.627
+      ],
+      [
+       5.58,
+       0.465
+      ],
+      [
+       5.58,
+       -3.534
+      ],
+      [
+       4.836,
+       -4.65
+      ],
+      [
+       -4.836,
+       -4.65
+      ],
+      [
+       -5.58,
+       -3.534
+      ],
+      [
+       -5.58,
+       0.465
+      ],
+      [
+       -3.627,
+       3.627
+      ],
+      [
+       -1.581,
+       5.673
+      ]
+     ],
+     "at": [
+      0,
+      -0.7,
+      0
+     ]
+    },
+    {
+     "name": "deck-plate",
+     "op": "slab",
+     "mat": "accent",
+     "thick": 0.1,
+     "pts": [
+      [
+       0.0,
+       5.6
+      ],
+      [
+       1.36,
+       4.88
+      ],
+      [
+       3.12,
+       3.12
+      ],
+      [
+       4.8,
+       0.4
+      ],
+      [
+       4.8,
+       -3.04
+      ],
+      [
+       4.16,
+       -4.0
+      ],
+      [
+       -4.16,
+       -4.0
+      ],
+      [
+       -4.8,
+       -3.04
+      ],
+      [
+       -4.8,
+       0.4
+      ],
+      [
+       -3.12,
+       3.12
+      ],
+      [
+       -1.36,
+       4.88
+      ]
+     ],
+     "at": [
+      0,
+      0.52,
+      0.0
+     ],
+     "hiOnly": true,
+     "atlas": "wingpanel"
+    },
+    {
+     "name": "tower",
+     "op": "box",
+     "mat": "hull",
+     "size": [
+      1.0,
+      1.05,
+      1.5
+     ],
+     "taper": 0.82,
+     "at": [
+      -2.9,
+      1.55,
+      -0.7
+     ],
+     "atlas": "finpanel"
+    },
+    {
+     "name": "tower-glass",
+     "op": "box",
+     "mat": "canopy",
+     "size": [
+      1.02,
+      0.2,
+      0.62
+     ],
+     "at": [
+      -2.9,
+      2.0,
+      -1.6
+     ],
+     "rot": [
+      0.45,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "mast",
+     "op": "fin",
+     "mat": "dark",
+     "thick": 0.1,
+     "pts": [
+      [
+       0,
+       0
+      ],
+      [
+       0.35,
+       0
+      ],
+      [
+       0.2,
+       1.7
+      ],
+      [
+       0,
+       1.7
+      ]
+     ],
+     "at": [
+      -2.9,
+      2.5,
+      0.0
+     ]
+    },
+    {
+     "name": "mount",
+     "op": "fin",
+     "mat": "hull",
+     "edgeMat": "accent",
+     "thick": 0.55,
+     "bevel": 0.07,
+     "pts": [
+      [
+       0,
+       0
+      ],
+      [
+       2.4,
+       0
+      ],
+      [
+       2.0,
+       0.9
+      ],
+      [
+       0.5,
+       0.9
+      ]
+     ],
+     "at": [
+      0,
+      0.5,
+      2.4000000000000004
+     ],
+     "atlas": "finpanel"
+    },
+    {
+     "name": "fan-ring",
+     "op": "torus",
+     "mat": "accent2",
+     "R": 1.15,
+     "r": 0.26,
+     "ry": 0.7,
+     "seg": 12,
+     "segLo": 8,
+     "tube": 6,
+     "tubeLo": 4,
+     "at": [
+      0,
+      2.0,
+      3.6
+     ],
+     "atlas": "vents"
+    },
+    {
+     "name": "fan-vane-a",
+     "op": "box",
+     "mat": "dark",
+     "size": [
+      1.0499999999999998,
+      0.07,
+      0.28
+     ],
+     "at": [
+      0,
+      2.0,
+      3.5
+     ],
+     "rot": [
+      0,
+      0,
+      0.0
+     ],
+     "hiOnly": true
+    },
+    {
+     "name": "fan-vane-b",
+     "op": "box",
+     "mat": "dark",
+     "size": [
+      1.0499999999999998,
+      0.07,
+      0.28
+     ],
+     "at": [
+      0,
+      2.0,
+      3.5
+     ],
+     "rot": [
+      0,
+      0,
+      1.5707963267948966
+     ],
+     "hiOnly": true
+    },
+    {
+     "name": "fan-core",
+     "op": "cyl",
+     "mat": "emit",
+     "sides": 12,
+     "sidesLo": 6,
+     "r0": 1.0499999999999998,
+     "r1": 1.0499999999999998,
+     "z0": 3.94,
+     "z1": 4.0,
+     "at": [
+      0,
+      2.0,
+      0
+     ]
+    },
+    {
+     "name": "fan-hub",
+     "op": "cyl",
+     "mat": "dark",
+     "sides": 8,
+     "sidesLo": 5,
+     "r0": 0.32,
+     "r1": 0.32,
+     "z0": 3.1,
+     "z1": 4.05,
+     "at": [
+      0,
+      2.0,
+      0
+     ]
+    },
+    {
+     "name": "crate-fore",
+     "op": "box",
+     "mat": "accent2",
+     "size": [
+      1.15,
+      0.5,
+      1.2
+     ],
+     "taper": 0.94,
+     "at": [
+      2.6,
+      1.05,
+      -0.4
+     ],
+     "atlas": "hullplates"
+    },
+    {
+     "name": "crate-aft",
+     "op": "box",
+     "mat": "accent2",
+     "size": [
+      1.15,
+      0.5,
+      1.2
+     ],
+     "taper": 0.94,
+     "at": [
+      2.6,
+      1.05,
+      2.4
+     ],
+     "atlas": "hullplates"
+    },
+    {
+     "name": "bow-lamps",
+     "op": "box",
+     "mat": "lamp",
+     "size": [
+      0.14,
+      0.1,
+      0.16
+     ],
+     "at": [
+      3.8,
+      0.55,
+      -3.85
+     ],
+     "mirror": true,
+     "hiOnly": true
+    },
+    {
+     "name": "bow-dash-a",
+     "op": "slab",
+     "mat": "strip",
+     "bake": false,
+     "thick": 0.06,
+     "hiOnly": true,
+     "mirror": true,
+     "pts": [
+      [
+       1.45,
+       5.45
+      ],
+      [
+       2.2,
+       4.7
+      ],
+      [
+       2.04,
+       4.54
+      ],
+      [
+       1.29,
+       5.29
+      ]
+     ],
+     "at": [
+      0,
+      0.54,
+      0
+     ]
+    },
+    {
+     "name": "bow-dash-b",
+     "op": "slab",
+     "mat": "strip",
+     "bake": false,
+     "thick": 0.06,
+     "hiOnly": true,
+     "mirror": true,
+     "pts": [
+      [
+       2.55,
+       4.35
+      ],
+      [
+       3.3,
+       3.6
+      ],
+      [
+       3.14,
+       3.44
+      ],
+      [
+       2.39,
+       4.19
+      ]
+     ],
+     "at": [
+      0,
+      0.54,
+      0
+     ]
+    },
+    {
+     "name": "flank-dash-a",
+     "op": "slab",
+     "mat": "strip",
+     "bake": false,
+     "thick": 0.06,
+     "hiOnly": true,
+     "mirror": true,
+     "pts": [
+      [
+       5.45,
+       2.5
+      ],
+      [
+       5.45,
+       1.2999999999999998
+      ],
+      [
+       5.2,
+       1.2999999999999998
+      ],
+      [
+       5.2,
+       2.5
+      ]
+     ],
+     "at": [
+      0,
+      0.54,
+      0
+     ]
+    },
+    {
+     "name": "flank-dash-b",
+     "op": "slab",
+     "mat": "strip",
+     "bake": false,
+     "thick": 0.06,
+     "hiOnly": true,
+     "mirror": true,
+     "pts": [
+      [
+       5.45,
+       0.6
+      ],
+      [
+       5.45,
+       -0.6
+      ],
+      [
+       5.2,
+       -0.6
+      ],
+      [
+       5.2,
+       0.6
+      ]
+     ],
+     "at": [
+      0,
+      0.54,
+      0
+     ]
+    },
+    {
+     "name": "flank-dash-c",
+     "op": "slab",
+     "mat": "strip",
+     "bake": false,
+     "thick": 0.06,
+     "hiOnly": true,
+     "mirror": true,
+     "pts": [
+      [
+       5.45,
+       -1.2999999999999998
+      ],
+      [
+       5.45,
+       -2.5
+      ],
+      [
+       5.2,
+       -2.5
+      ],
+      [
+       5.2,
+       -1.2999999999999998
+      ]
+     ],
+     "at": [
+      0,
+      0.54,
+      0
+     ]
+    }
+   ],
+   "engines": [
+    [
+     0,
+     2.0,
+     4.05,
+     0.6
+    ]
+   ],
+   "lights": [
+    [
+     3.8,
+     0.55,
+     -3.85
+    ],
+    [
+     -3.8,
+     0.55,
+     -3.85
+    ]
+   ]
+  },
+  "wingman": {
+   "from": "own",
+   "lod": 1,
+   "span": 13,
+   "mats": {
+    "accent": {
+     "c": "#35435A",
+     "grad": [
+      0.8,
+      1.1
+     ]
+    },
+    "livery": {
+     "c": "#D9922E"
+    },
+    "emit": {
+     "c": "#FFC46B",
+     "emit": true
+    }
+   },
+   "lights": []
+  },
+  "carrier": {
+   "length": 140,
+   "mats": {
+    "hull": {
+     "c": "#C9CED6",
+     "grad": [
+      0.8,
+      1.06
+     ]
+    },
+    "hull2": {
+     "c": "#9EA6B2",
+     "grad": [
+      0.8,
+      1.05
+     ]
+    },
+    "dark": {
+     "c": "#2A2F3A"
+    },
+    "glass": {
+     "c": "#1E4A66",
+     "grad": [
+      0.7,
+      1.3
+     ]
+    },
+    "lamp": {
+     "c": "#FFB547",
+     "emit": true
+    },
+    "emit": {
+     "c": "#FFD58A",
+     "emit": true
+    },
+    "accent": {
+     "c": "#3B3F8F"
+    }
+   },
+   "sprite": {
+    "name": "carrier",
+    "w": 40,
+    "h": 64,
+    "letters": {
+     "hull": "hmw",
+     "hull2": "pP",
+     "accent": "Bbv",
+     "dark": "ydY",
+     "glass": "C",
+     "lamp": "l",
+     "emit": "e"
+    }
+   },
+   "parts": [
+    {
+     "name": "spine",
+     "op": "loft",
+     "mat": "hull",
+     "sides": 12,
+     "round": 5.0,
+     "sec": [
+      [
+       -10,
+       0.4,
+       0.3,
+       0.2
+      ],
+      [
+       -9.2,
+       0.9,
+       0.7,
+       0.2
+      ],
+      [
+       -6,
+       1.1,
+       0.85,
+       0.1
+      ],
+      [
+       0,
+       1.2,
+       0.9,
+       0
+      ],
+      [
+       6,
+       1.15,
+       0.85,
+       0
+      ],
+      [
+       8.5,
+       1.0,
+       0.75,
+       0
+      ],
+      [
+       9.4,
+       0.8,
+       0.6,
+       0
+      ]
+     ],
+     "atlas": "hauler"
+    },
+    {
+     "name": "ring",
+     "op": "torus",
+     "mat": "hull",
+     "R": 3.6,
+     "r": 0.32,
+     "ry": 0.55,
+     "seg": 32,
+     "tube": 8,
+     "at": [
+      0,
+      0,
+      0.6
+     ]
+    },
+    {
+     "name": "ring",
+     "op": "torus",
+     "mat": "accent",
+     "R": 3.6,
+     "r": 0.36,
+     "ry": 0.12,
+     "seg": 32,
+     "tube": 4,
+     "at": [
+      0,
+      0,
+      0.6
+     ]
+    },
+    {
+     "name": "spokes",
+     "op": "box",
+     "mat": "hull2",
+     "size": [
+      1.8,
+      0.12,
+      0.2
+     ],
+     "at": [
+      1.8,
+      0,
+      0.6
+     ],
+     "mirror": true
+    },
+    {
+     "name": "spokes",
+     "op": "box",
+     "mat": "hull2",
+     "size": [
+      0.12,
+      1.8,
+      0.2
+     ],
+     "at": [
+      0,
+      1.8,
+      0.6
+     ]
+    },
+    {
+     "name": "spokes",
+     "op": "box",
+     "mat": "hull2",
+     "size": [
+      0.12,
+      1.8,
+      0.2
+     ],
+     "at": [
+      0,
+      -1.8,
+      0.6
+     ]
+    },
+    {
+     "name": "pods",
+     "op": "box",
+     "mat": "hull2",
+     "size": [
+      0.9,
+      0.7,
+      1.4
+     ],
+     "taper": 0.9,
+     "at": [
+      1.9,
+      -0.1,
+      -5.0
+     ],
+     "mirror": true,
+     "atlas": "hauler"
+    },
+    {
+     "name": "pods",
+     "op": "box",
+     "mat": "hull2",
+     "size": [
+      0.9,
+      0.7,
+      1.4
+     ],
+     "taper": 0.9,
+     "at": [
+      1.9,
+      -0.1,
+      -1.2
+     ],
+     "mirror": true,
+     "atlas": "hauler"
+    },
+    {
+     "name": "pods",
+     "op": "box",
+     "mat": "hull2",
+     "size": [
+      0.9,
+      0.7,
+      1.4
+     ],
+     "taper": 0.9,
+     "at": [
+      1.9,
+      -0.1,
+      2.6
+     ],
+     "mirror": true,
+     "atlas": "hauler"
+    },
+    {
+     "name": "bridge",
+     "op": "box",
+     "mat": "hull",
+     "size": [
+      1.0,
+      0.45,
+      1.2
+     ],
+     "taper": 0.7,
+     "at": [
+      0,
+      1.05,
+      -7.6
+     ]
+    },
+    {
+     "name": "bridge",
+     "op": "box",
+     "mat": "glass",
+     "size": [
+      0.82,
+      0.12,
+      0.3
+     ],
+     "at": [
+      0,
+      1.3,
+      -8.55
+     ]
+    },
+    {
+     "name": "mast",
+     "op": "cyl",
+     "mat": "dark",
+     "sides": 5,
+     "r0": 0.06,
+     "r1": 0.02,
+     "z0": 0,
+     "z1": 3.0,
+     "rot": [
+      -1.5708,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      1.45,
+      -7.2
+     ]
+    },
+    {
+     "name": "engines",
+     "op": "cyl",
+     "mat": "dark",
+     "capMat": "dark",
+     "sides": 12,
+     "r0": 0.55,
+     "r1": 0.75,
+     "z0": 9.0,
+     "z1": 10.6,
+     "at": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "engines",
+     "op": "cyl",
+     "mat": "dark",
+     "capMat": "dark",
+     "sides": 12,
+     "r0": 0.45,
+     "r1": 0.62,
+     "z0": 7.2,
+     "z1": 8.7,
+     "at": [
+      1.9,
+      -0.2,
+      0
+     ],
+     "mirror": true
+    },
+    {
+     "name": "engines",
+     "op": "cyl",
+     "mat": "emit",
+     "sides": 12,
+     "r0": 0.66,
+     "r1": 0.5,
+     "z0": 10.6,
+     "z1": 10.7
+    },
+    {
+     "name": "engines",
+     "op": "cyl",
+     "mat": "emit",
+     "sides": 12,
+     "r0": 0.55,
+     "r1": 0.4,
+     "z0": 8.7,
+     "z1": 8.8,
+     "at": [
+      1.9,
+      -0.2,
+      0
+     ],
+     "mirror": true
+    },
+    {
+     "name": "lamps",
+     "op": "box",
+     "mat": "lamp",
+     "size": [
+      0.3,
+      0.62,
+      0.3
+     ],
+     "at": [
+      3.6,
+      0,
+      0.6
+     ],
+     "mirror": true
+    },
+    {
+     "name": "lamps",
+     "op": "box",
+     "mat": "lamp",
+     "size": [
+      0.3,
+      0.3,
+      0.3
+     ],
+     "at": [
+      0,
+      3.6,
+      0.6
+     ]
+    },
+    {
+     "name": "lamps",
+     "op": "box",
+     "mat": "lamp",
+     "size": [
+      0.3,
+      0.3,
+      0.3
+     ],
+     "at": [
+      0,
+      -3.6,
+      0.6
+     ]
+    },
+    {
+     "name": "lamps",
+     "op": "box",
+     "mat": "lamp",
+     "size": [
+      0.12,
+      0.08,
+      2.2
+     ],
+     "at": [
+      0.55,
+      0.92,
+      -2.6
+     ],
+     "mirror": true
+    },
+    {
+     "name": "engines",
+     "op": "cyl",
+     "mat": "emit",
+     "sides": 12,
+     "r0": 0.78,
+     "r1": 0.66,
+     "z0": 10.1,
+     "z1": 10.6
+    },
+    {
+     "name": "engines",
+     "op": "cyl",
+     "mat": "emit",
+     "sides": 10,
+     "r0": 0.86,
+     "r1": 0.72,
+     "z0": 8.2,
+     "z1": 8.75,
+     "at": [
+      1.9,
+      -0.2,
+      0
+     ],
+     "mirror": true
+    }
+   ],
+   "lights": [
+    [
+     3.6,
+     0,
+     0.6
+    ],
+    [
+     -3.6,
+     0,
+     0.6
+    ],
+    [
+     0,
+     3.6,
+     0.6
+    ],
+    [
+     0,
+     -3.6,
+     0.6
+    ]
+   ],
+   "engines": [
+    [
+     0,
+     0,
+     10.7,
+     0.7
+    ],
+    [
+     1.9,
+     -0.2,
+     8.8,
+     0.55
+    ],
+    [
+     -1.9,
+     -0.2,
+     8.8,
+     0.55
+    ]
+   ]
+  },
+  "flagship": {
+   "from": "carrier",
+   "length": 70
+  },
+  "raider": {
+   "span": 12,
+   "mats": {
+    "hull": {
+     "c": "#8A2A34",
+     "grad": [
+      0.8,
+      1.1
+     ]
+    },
+    "dark": {
+     "c": "#5A1A22"
+    },
+    "plate": {
+     "c": "#4A505C"
+    },
+    "emit": {
+     "c": "#FF7A70",
+     "emit": true
+    },
+    "tell": {
+     "c": "#FF5A5F",
+     "emit": true
+    }
+   },
+   "sprite": {
+    "name": "raider",
+    "w": 32,
+    "h": 28,
+    "letters": {
+     "hull": "RKk",
+     "dark": "k",
+     "plate": "hmw",
+     "emit": "e",
+     "tell": "a"
+    }
+   },
+   "parts": [
+    {
+     "name": "delta",
+     "op": "slab",
+     "mat": "hull",
+     "edgeMat": "dark",
+     "thick": 0.3,
+     "pts": [
+      [
+       0,
+       4.2
+      ],
+      [
+       5.6,
+       -2.6
+      ],
+      [
+       4.4,
+       -3.0
+      ],
+      [
+       0,
+       -2.0
+      ]
+     ],
+     "mirror": true,
+     "atlas": "foeplates"
+    },
+    {
+     "name": "spine",
+     "op": "loft",
+     "mat": "plate",
+     "sides": 4,
+     "sec": [
+      [
+       -4.2,
+       0.05,
+       0.05,
+       0.1
+      ],
+      [
+       -1.5,
+       0.55,
+       0.45,
+       0.2
+      ],
+      [
+       1.6,
+       0.6,
+       0.42,
+       0.15
+      ],
+      [
+       2.8,
+       0.35,
+       0.25,
+       0.1
+      ]
+     ]
+    },
+    {
+     "name": "fins",
+     "op": "fin",
+     "mat": "dark",
+     "thick": 0.12,
+     "pts": [
+      [
+       0,
+       0
+      ],
+      [
+       1.6,
+       0
+      ],
+      [
+       2.0,
+       1.4
+      ],
+      [
+       1.4,
+       1.4
+      ]
+     ],
+     "rot": [
+      0,
+      0,
+      0.3
+     ],
+     "at": [
+      1.4,
+      0.15,
+      0.6
+     ],
+     "mirror": true
+    },
+    {
+     "name": "pods",
+     "op": "cyl",
+     "mat": "plate",
+     "sides": 4,
+     "r0": 0.32,
+     "r1": 0.4,
+     "z0": -1.2,
+     "z1": 2.0,
+     "at": [
+      2.2,
+      -0.1,
+      0
+     ],
+     "mirror": true
+    },
+    {
+     "name": "nozzles",
+     "op": "box",
+     "mat": "emit",
+     "size": [
+      0.3,
+      0.26,
+      0.3
+     ],
+     "at": [
+      2.2,
+      -0.1,
+      2.3
+     ],
+     "mirror": true
+    },
+    {
+     "name": "window",
+     "op": "box",
+     "mat": "tell",
+     "size": [
+      0.32,
+      0.12,
+      0.5
+     ],
+     "at": [
+      0,
+      0.6,
+      -1.3
+     ]
+    }
+   ],
+   "tells": [
+    [
+     0,
+     0.62,
+     -1.2
+    ],
+    [
+     2.2,
+     -0.1,
+     2.5
+    ],
+    [
+     -2.2,
+     -0.1,
+     2.5
+    ]
+   ],
+   "engines": [
+    [
+     2.2,
+     -0.1,
+     2.45,
+     0.32
+    ],
+    [
+     -2.2,
+     -0.1,
+     2.45,
+     0.32
+    ]
+   ]
+  },
+  "drone": {
+   "span": 7,
+   "mats": {
+    "hull": {
+     "c": "#4A505C",
+     "grad": [
+      0.78,
+      1.12
+     ]
+    },
+    "dark": {
+     "c": "#2A2F3A"
+    },
+    "band": {
+     "c": "#8A2A34"
+    },
+    "emit": {
+     "c": "#FFB547",
+     "emit": true
+    },
+    "tell": {
+     "c": "#FFB547",
+     "emit": true
+    },
+    "lamp": {
+     "c": "#7FF6FF",
+     "emit": true
+    }
+   },
+   "sprite": {
+    "name": "drone",
+    "w": 24,
+    "h": 24,
+    "letters": {
+     "hull": "hmw",
+     "dark": "w",
+     "band": "RKk",
+     "emit": "a",
+     "tell": "a",
+     "lamp": "l"
+    }
+   },
+   "parts": [
+    {
+     "name": "body",
+     "op": "cyl",
+     "mat": "hull",
+     "capMat": "hull",
+     "sides": 6,
+     "r0": 0.45,
+     "r1": 1.05,
+     "z0": -0.6,
+     "z1": 0.25,
+     "rot": [
+      1.5708,
+      0,
+      0
+     ],
+     "atlas": "foeplates"
+    },
+    {
+     "name": "antenna",
+     "op": "box",
+     "mat": "lamp",
+     "size": [
+      0.16,
+      0.2,
+      0.16
+     ],
+     "at": [
+      0,
+      0.62,
+      0.35
+     ]
+    },
+    {
+     "name": "band",
+     "op": "cyl",
+     "mat": "band",
+     "sides": 6,
+     "r0": 1.16,
+     "r1": 1.24,
+     "z0": 0.02,
+     "z1": 0.3,
+     "rot": [
+      1.5708,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "eye",
+     "op": "box",
+     "mat": "emit",
+     "size": [
+      0.22,
+      0.18,
+      0.12
+     ],
+     "at": [
+      0,
+      0.05,
+      -0.98
+     ]
+    },
+    {
+     "name": "arms",
+     "op": "box",
+     "mat": "dark",
+     "size": [
+      0.9,
+      0.08,
+      0.14
+     ],
+     "rot": [
+      0,
+      0.7854,
+      0
+     ],
+     "at": [
+      1.1,
+      0,
+      1.1
+     ]
+    },
+    {
+     "name": "rotors",
+     "op": "quad",
+     "mat": "hull",
+     "w": 1.1,
+     "l": 1.1,
+     "rot": [
+      0,
+      0.7854,
+      0
+     ],
+     "at": [
+      1.75,
+      0.1,
+      1.75
+     ]
+    },
+    {
+     "name": "arms",
+     "op": "box",
+     "mat": "dark",
+     "size": [
+      0.9,
+      0.08,
+      0.14
+     ],
+     "rot": [
+      0,
+      -0.7854,
+      0
+     ],
+     "at": [
+      -1.1,
+      0,
+      1.1
+     ]
+    },
+    {
+     "name": "rotors",
+     "op": "quad",
+     "mat": "hull",
+     "w": 1.1,
+     "l": 1.1,
+     "rot": [
+      0,
+      0.7854,
+      0
+     ],
+     "at": [
+      -1.75,
+      0.1,
+      1.75
+     ]
+    },
+    {
+     "name": "arms",
+     "op": "box",
+     "mat": "dark",
+     "size": [
+      0.9,
+      0.08,
+      0.14
+     ],
+     "rot": [
+      0,
+      -0.7854,
+      0
+     ],
+     "at": [
+      1.1,
+      0,
+      -1.1
+     ]
+    },
+    {
+     "name": "rotors",
+     "op": "quad",
+     "mat": "hull",
+     "w": 1.1,
+     "l": 1.1,
+     "rot": [
+      0,
+      0.7854,
+      0
+     ],
+     "at": [
+      1.75,
+      0.1,
+      -1.75
+     ]
+    },
+    {
+     "name": "arms",
+     "op": "box",
+     "mat": "dark",
+     "size": [
+      0.9,
+      0.08,
+      0.14
+     ],
+     "rot": [
+      0,
+      0.7854,
+      0
+     ],
+     "at": [
+      -1.1,
+      0,
+      -1.1
+     ]
+    },
+    {
+     "name": "rotors",
+     "op": "quad",
+     "mat": "hull",
+     "w": 1.1,
+     "l": 1.1,
+     "rot": [
+      0,
+      0.7854,
+      0
+     ],
+     "at": [
+      -1.75,
+      0.1,
+      -1.75
+     ]
+    }
+   ],
+   "tells": [
+    [
+     0,
+     0.05,
+     -1.05
+    ],
+    [
+     0,
+     0.6,
+     0
+    ]
+   ],
+   "engines": [
+    [
+     0,
+     -0.5,
+     0,
+     0.4
+    ]
+   ]
+  },
+  "derelict": {
+   "span": 9,
+   "mats": {
+    "hull": {
+     "c": "#6B7280",
+     "grad": [
+      0.75,
+      1.05
+     ]
+    },
+    "dark": {
+     "c": "#2B3140"
+    },
+    "burn": {
+     "c": "#3A2A24"
+    },
+    "tell": {
+     "c": "#E8EEF6",
+     "emit": true
+    }
+   },
+   "parts": [
+    {
+     "name": "hull",
+     "op": "box",
+     "mat": "hull",
+     "size": [
+      1.2,
+      0.8,
+      1.8
+     ],
+     "taper": 0.8,
+     "rot": [
+      0.2,
+      0.3,
+      0.15
+     ]
+    },
+    {
+     "name": "hull",
+     "op": "box",
+     "mat": "burn",
+     "size": [
+      0.9,
+      0.6,
+      0.6
+     ],
+     "rot": [
+      0.5,
+      -0.2,
+      0.4
+     ],
+     "at": [
+      1.4,
+      -0.3,
+      1.6
+     ]
+    },
+    {
+     "name": "spar",
+     "op": "box",
+     "mat": "dark",
+     "size": [
+      2.6,
+      0.12,
+      0.18
+     ],
+     "rot": [
+      0,
+      0.4,
+      0.25
+     ],
+     "at": [
+      -1.8,
+      0.4,
+      -0.6
+     ]
+    },
+    {
+     "name": "ring",
+     "op": "torus",
+     "mat": "hull",
+     "R": 2.2,
+     "r": 0.18,
+     "seg": 8,
+     "tube": 4,
+     "rot": [
+      0.9,
+      0,
+      0
+     ],
+     "at": [
+      0.4,
+      0,
+      -1.2
+     ]
+    }
+   ],
+   "tells": [
+    [
+     0,
+     0.9,
+     0
+    ]
+   ]
+  },
+  "beacon": {
+   "span": 9,
+   "mats": {
+    "ring": {
+     "c": "#FFB547",
+     "emit": true
+    },
+    "mark": {
+     "c": "#FFE3A8",
+     "emit": true
+    },
+    "frame": {
+     "c": "#4A3A1C"
+    }
+   },
+   "parts": [
+    {
+     "name": "ring",
+     "op": "torus",
+     "mat": "ring",
+     "R": 4.0,
+     "r": 0.35,
+     "seg": 8,
+     "tube": 4,
+     "phase": 0.3927
+    },
+    {
+     "name": "frame",
+     "op": "torus",
+     "mat": "frame",
+     "R": 4.0,
+     "r": 0.5,
+     "ry": 0.2,
+     "seg": 8,
+     "tube": 4,
+     "phase": 0.3927
+    },
+    {
+     "name": "mark",
+     "op": "box",
+     "mat": "mark",
+     "size": [
+      0.38,
+      1.5,
+      0.2
+     ],
+     "at": [
+      0,
+      0.8,
+      0
+     ]
+    },
+    {
+     "name": "mark",
+     "op": "box",
+     "mat": "mark",
+     "size": [
+      0.38,
+      0.38,
+      0.2
+     ],
+     "at": [
+      0,
+      -1.55,
+      0
+     ]
+    }
+   ]
+  }
+ },
+ "planets3d": "neutral-planets3d.json",
+ "sky3d": {
+  "sun": {
+   "kind": "photosphere",
+   "edge": "#CE501B",
+   "churn": "#FFBD50",
+   "rim": "#F47C2B",
+   "corona": "#FFAD48",
+   "rings": [],
+   "rays": 10
+  }
+ }
+}

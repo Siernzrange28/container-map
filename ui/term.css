@@ -1,0 +1,11 @@
+/* the live terminal in a seat's panel (ui/term.js): xterm.js draws inside #pterm; the snapshot <pre> is hidden while it runs */
+#panel .live.term{padding:6px 8px;overflow:auto;white-space:normal;line-height:normal;background:#07090d}
+#panel .live.term .xterm{padding:0}
+#panel .live.term .xterm-viewport{background:#07090d!important}
+.terminalbar .termnote{margin-left:10px;color:#ffb547;font-size:var(--fs-small,12px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45%}
+/* on the desktop card the screen sits on top of the card's body (ui/chrome.js chromeUnitCardHtml), not under More */
+.pc-term{margin:10px 0 4px;display:flex;flex-direction:column}
+.pc-term .live.term{min-height:200px;max-height:62vh}
+.pc-term pre.live{max-height:46vh}
+/* while a live terminal is open the desktop rail widens so a pane's 80-120 columns read at a normal size */
+html:not(.m) #wrap.term-wide,html:not(.m) #wrap.side.term-wide,html:not(.m) #wrap.dash.term-wide{--railw:min(900px,56vw)}

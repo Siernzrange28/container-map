@@ -1,0 +1,150 @@
+{
+  "_what": "ROOT/.container-map/container.json. `python3 cli.py init ROOT` writes one from this file and what it finds on the machine. Every key is optional; paths may start with ~. Optional data sources (digest, relay, dispatch, other machines, the Today screen) are in container.sources-example.json.",
+  "version": 1,
+  "name": "MYBOX",
+  "owner": "",
+  "_theme": "the map's theme and texture pack: a file in themes/ (classic, earthen, blueprint, synthwave, phosphor). V in the page cycles them and the browser's choice wins over this.",
+  "theme": "classic",
+  "_skin": "the craft, the words on the plates and the wingmate's face: a file in skins/ (neutral ships), or in skins_dir for your own. Fixed per map.",
+  "skin": "neutral",
+  "work_root": "~/work",
+  "private": [],
+  "_private": "Folder names, or paths inside work_root or absolute ones. A paired phone sees only names and counts for these folders and dot-folders; the local map keeps its file lists.",
+  "planets": [
+    {
+      "name": "app",
+      "path": "~/work/app",
+      "kind": "code",
+      "desc": "the main repo"
+    },
+    {
+      "name": "notes",
+      "path": "~/work/notes",
+      "kind": "knowledge",
+      "desc": "plain-text notes"
+    }
+  ],
+  "tmux_session": "",
+  "_hangar_slots": "berths on the hangar plate (1-99): agent seats and ships are counted against it, with a warning past it; a display only, nothing is stopped",
+  "hangar_slots": 6,
+  "crontab_file": "",
+  "processes": true,
+  "decision_scan": true,
+  "decision_words": [
+    "DECIDE:",
+    "TODO:",
+    "FIXME:",
+    "QUESTION:"
+  ],
+  "detect_runners": true,
+  "_agent_verify": "false = only the page can attach a verify shell line to a thread; true lets agents (bearer token) do it too. The line runs as you.",
+  "agent_verify": false,
+  "runners": {
+    "claude": {
+      "cmd": [
+        "claude",
+        "-p",
+        "--output-format",
+        "stream-json",
+        "--verbose",
+        "--permission-mode",
+        "acceptEdits"
+      ],
+      "followup_cmd": [
+        "claude",
+        "-p",
+        "--resume",
+        "{session}",
+        "--output-format",
+        "stream-json",
+        "--verbose",
+        "--permission-mode",
+        "acceptEdits"
+      ],
+      "check_cmd": [
+        "claude",
+        "-p",
+        "--output-format",
+        "stream-json",
+        "--verbose",
+        "--permission-mode",
+        "plan",
+        "--disallowedTools",
+        "Edit,Write,NotebookEdit,MultiEdit"
+      ],
+      "max_minutes": 45,
+      "desc": "Claude Code, headless",
+      "models": [
+        {
+          "name": "sonnet",
+          "args": [
+            "--model",
+            "sonnet"
+          ]
+        },
+        {
+          "name": "haiku",
+          "args": [
+            "--model",
+            "haiku"
+          ]
+        },
+        {
+          "name": "opus",
+          "args": [
+            "--model",
+            "opus"
+          ]
+        }
+      ],
+      "default_model": "sonnet"
+    }
+  },
+  "tasks_dir": "",
+  "_worktree_setup": "one shell line a new worktree thread runs before its agent's first run, per repo: {\"/abs/path/to/repo\": \"npm ci\", \"*\": \"…\"} (\"*\" = any repo). {} = none. A thread's own setup line wins.",
+  "worktree_setup": {},
+  "task_scope": true,
+  "no_ai_trailers": false,
+  "wingmate": {
+    "name": "Scout",
+    "cmd": [
+      "claude",
+      "-p"
+    ],
+    "models": [
+      {
+        "name": "haiku",
+        "label": "Claude Haiku 5.5",
+        "family": "claude",
+        "args": [
+          "--model",
+          "haiku"
+        ]
+      },
+      {
+        "name": "sonnet",
+        "label": "Claude Sonnet 5.5",
+        "family": "claude",
+        "args": [
+          "--model",
+          "sonnet"
+        ]
+      },
+      {
+        "name": "opus",
+        "label": "Claude Opus 5.5",
+        "family": "claude",
+        "args": [
+          "--model",
+          "opus"
+        ]
+      }
+    ],
+    "default": "haiku",
+    "max_seconds": 60
+  },
+  "_tick_seconds": "the oracle loop's own clock: a failed thread with retries left is sent back every N seconds even with no page open; 0 = off",
+  "tick_seconds": 10,
+  "constellations": [],
+  "_constellations": "Optional groups for your conversations: [{\"name\":\"Writing\", \"key\":\"writing\", \"keywords\":[\"draft\"], \"private\":false}]. Empty draws no groups unless your scan findings name one. private groups show only a count on phones."
+}
